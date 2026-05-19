@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="./setu_gloabal_logo.png" />
+<title>Setu Global Solution – Study in Germany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #5B2DA8;
+    --purple-dark: #3d1d72;
+    --purple-light: #7B4DD8;
+    --orange: #FF8A00;
+    --orange-light: #FFB347;
+    --white: #FFFFFF;
+    --off-white: #F9F7FF;
+    --text: #1a1028;
+    --text-muted: #6b5f80;
+    --border: rgba(91,45,168,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAVBAR ─────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .logo-text {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: var(--purple);
+    line-height: 1.1;
+  }
+
+  .logo-text span {
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 0.65rem;
+    color: var(--orange);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.92rem;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--purple); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s;
+    border: none;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--orange), #ff6b00);
+    color: white;
+    box-shadow: 0 4px 20px rgba(255,138,0,0.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,138,0,0.45); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--purple);
+    border: 2px solid var(--purple);
+  }
+  .btn-outline:hover { background: var(--purple); color: white; }
+
+  .btn-sm { padding: 8px 20px; font-size: 0.85rem; }
+
+  /* hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--purple);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 70px; left: 0; right: 0;
+    background: white;
+    padding: 20px 5%;
+    border-bottom: 1px solid var(--border);
+    z-index: 999;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  }
+
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { text-decoration: none; color: var(--text); font-weight: 500; padding: 8px 0; border-bottom: 1px solid var(--border); }
+
+  /* ─── HERO ────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 5% 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+    background: var(--off-white);
+  }
+
+  /* soft radial glows */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(91,45,168,0.07) 0%, transparent 68%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,138,0,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ─── BG CANVAS (noise + dot grid) ───────────────── */
+  .bg-canvas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  /* dot grid overlay */
+  .bg-canvas::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(91,45,168,0.13) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* subtle diagonal lines */
+  .bg-canvas::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent,
+      transparent 38px,
+      rgba(91,45,168,0.03) 38px,
+      rgba(91,45,168,0.03) 39px
+    );
+  }
+
+  .hero > * { position: relative; z-index: 1; }
+
+  /* floating decorative shapes */
+  .deco-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .deco-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px solid rgba(91,45,168,0.1);
+  }
+
+  .deco-ring.r1 { width: 160px; height: 160px; top: 12%; left: 6%; }
+  .deco-ring.r2 { width: 80px; height: 80px; top: 30%; left: 12%; border-color: rgba(255,138,0,0.12); }
+  .deco-ring.r3 { width: 220px; height: 220px; bottom: 8%; right: 42%; border-color: rgba(91,45,168,0.07); }
+  .deco-ring.r4 { width: 50px; height: 50px; top: 18%; right: 48%; border-color: rgba(255,138,0,0.15); }
+
+  .deco-plus {
+    position: absolute;
+    width: 14px; height: 14px;
+    opacity: 0.18;
+  }
+  .deco-plus::before, .deco-plus::after {
+    content: '';
+    position: absolute;
+    background: var(--purple);
+    border-radius: 2px;
+  }
+  .deco-plus::before { width: 100%; height: 2px; top: 50%; transform: translateY(-50%); }
+  .deco-plus::after  { width: 2px; height: 100%; left: 50%; transform: translateX(-50%); }
+
+  .deco-plus.p1 { top: 22%; left: 18%; }
+  .deco-plus.p2 { top: 60%; left: 8%;  opacity: 0.12; }
+  .deco-plus.p3 { top: 40%; right: 44%; opacity: 0.15; }
+  .deco-plus.p4 { bottom: 20%; left: 24%; opacity: 0.1; }
+
+  .deco-square {
+    position: absolute;
+    border: 1.5px solid rgba(255,138,0,0.12);
+    border-radius: 6px;
+    transform: rotate(20deg);
+  }
+  .deco-square.sq1 { width: 36px; height: 36px; top: 14%; left: 38%; transform: rotate(15deg); }
+  .deco-square.sq2 { width: 22px; height: 22px; bottom: 24%; left: 30%; transform: rotate(35deg); border-color: rgba(91,45,168,0.1); }
+  .deco-square.sq3 { width: 48px; height: 48px; top: 55%; left: 3%; transform: rotate(10deg); border-color: rgba(91,45,168,0.07); }
+
+  .deco-dot {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--orange);
+    opacity: 0.18;
+  }
+  .deco-dot.d1 { width: 8px; height: 8px; top: 28%; left: 32%; }
+  .deco-dot.d2 { width: 5px; height: 5px; top: 70%; left: 20%; opacity: 0.12; }
+  .deco-dot.d3 { width: 10px; height: 10px; top: 10%; left: 50%; background: var(--purple); opacity: 0.1; }
+  .deco-dot.d4 { width: 6px; height: 6px; bottom: 30%; left: 40%; opacity: 0.14; }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(91,45,168,0.08);
+    border: 1px solid rgba(91,45,168,0.2);
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--purple);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .hero-tag .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--orange);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.3); }
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .hero h1 .gradient-text {
+    background: linear-gradient(135deg, var(--purple), var(--orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--orange);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-sub::before {
+    content: '';
+    display: block;
+    width: 32px; height: 2px;
+    background: var(--orange);
+    border-radius: 2px;
+  }
+
+  .hero p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.75;
+    max-width: 480px;
+    margin-bottom: 36px;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 28px;
+    margin-top: 44px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--purple);
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* Hero visual side */
+  .hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-card-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+  }
+
+  .hero-flag-card {
+    background: white;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 20px 60px rgba(91,45,168,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-flag-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #000 33.3%, #D00 33.3% 66.6%, var(--orange) 66.6%);
+  }
+
+  .de-flag-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .de-flag {
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 10px;
+    margin-bottom: 20px;
+    width: 60px;
+  }
+  .de-flag .s1 { flex: 1; background: #000; }
+  .de-flag .s2 { flex: 1; background: #D00; }
+  .de-flag .s3 { flex: 1; background: var(--orange); }
+
+  .germany-big {
+    font-family: 'Fraunces', serif;
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: var(--purple);
+    margin-bottom: 16px;
+  }
+
+  .card-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .cf-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text);
+    background: var(--off-white);
+    border-radius: 10px;
+    padding: 8px 12px;
+  }
+
+  .cf-item .icon-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+
+  .floating-badge {
+    position: absolute;
+    background: var(--purple);
+    color: white;
+    border-radius: 14px;
+    padding: 10px 18px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(91,45,168,0.3);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .floating-badge.top-right {
+    top: -16px; right: -16px;
+  }
+
+  .floating-badge.bottom-left {
+    bottom: -16px; left: -16px;
+    background: var(--orange);
+    box-shadow: 0 8px 24px rgba(255,138,0,0.3);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* ─── SECTION SHARED ──────────────────────────────── */
+  section { padding: 90px 5%; }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .section-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .section-title .accent { color: var(--purple); }
+
+  .section-divider {
+    width: 48px; height: 4px;
+    background: linear-gradient(90deg, var(--purple), var(--orange));
+    border-radius: 4px;
+    margin: 0 auto;
+  }
+
+  /* ─── SERVICES ────────────────────────────────────── */
+  #services {
+    background: var(--white);
+    position: relative;
+  }
+
+  #services::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(91,45,168,0.07) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+  }
+
+  #services > * { position: relative; z-index: 1; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .service-card {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px 28px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple), var(--orange));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(91,45,168,0.12);
+    border-color: rgba(91,45,168,0.25);
+  }
+
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(91,45,168,0.1), rgba(255,138,0,0.08));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .service-card h3 {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .service-card p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ─── WHY GERMANY ─────────────────────────────────── */
+  #why-germany {
+    background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 60%, #7B2DD8 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #why-germany::before {
+    content: '';
+    position: absolute;
+    top: -150px; right: -150px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    pointer-events: none;
+  }
+
+  /* dot texture overlay on why-germany */
+  #why-germany::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+  }
+
+  #why-germany > * { position: relative; z-index: 1; }
+
+  #why-germany .section-title { color: white; }
+  #why-germany .section-eyebrow { color: var(--orange-light); }
+  #why-germany .section-divider { background: linear-gradient(90deg, white, var(--orange-light)); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .why-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.3s;
+    backdrop-filter: blur(8px);
+  }
+
+  .why-card:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.2);
+  }
+
+  .why-icon {
+    font-size: 2.2rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .why-card h3 {
+    font-weight: 700;
+    font-size: 0.98rem;
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  .why-card p {
+    font-size: 0.84rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+  }
+
+  /* ─── CONTACT ─────────────────────────────────────── */
+  #contact {
+    background: var(--off-white);
+    position: relative;
+  }
+
+  #contact::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(91,45,168,0.04) 22px, rgba(91,45,168,0.04) 23px),
+      repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(91,45,168,0.04) 22px, rgba(91,45,168,0.04) 23px);
+    pointer-events: none;
+  }
+
+  #contact > * { position: relative; z-index: 1; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .contact-info h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+
+  .contact-info p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .detail-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--purple);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .detail-text strong {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .detail-text span {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .contact-form {
+    background: white;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 8px 40px rgba(91,45,168,0.1);
+    border: 1px solid var(--border);
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.92rem;
+    color: var(--text);
+    background: var(--off-white);
+    transition: all 0.2s;
+    outline: none;
+  }
+
+  input:focus, textarea:focus {
+    border-color: var(--purple);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(91,45,168,0.08);
+  }
+
+  textarea { resize: vertical; min-height: 110px; }
+
+  .form-submit {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+  }
+
+  /* ─── FOOTER ──────────────────────────────────────── */
+  footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.75);
+    padding: 60px 5% 30px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand .logo-text { color: white; }
+
+  .footer-tagline {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-top: 12px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .social-links {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .social-link {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.2s;
+    color: white;
+  }
+
+  .social-link:hover { background: var(--orange); }
+
+  .footer-col h4 {
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 18px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--orange); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .footer-bottom a { color: var(--orange); text-decoration: none; }
+
+  /* ─── ANIMATIONS ──────────────────────────────────── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-up.delay-1 { transition-delay: 0.1s; }
+  .fade-up.delay-2 { transition-delay: 0.2s; }
+  .fade-up.delay-3 { transition-delay: 0.3s; }
+  .fade-up.delay-4 { transition-delay: 0.4s; }
+  .fade-up.delay-5 { transition-delay: 0.5s; }
+
+  /* ─── RESPONSIVE ──────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 860px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero { grid-template-columns: 1fr; padding: 100px 5% 60px; gap: 40px; }
+    .hero-visual { display: none; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 540px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <!-- <svg class="logo-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org">
+      <circle cx="40" cy="28" r="22" fill="#FF8A00"/>
+      <path d="M15 48 Q30 20 40 28 Q50 36 65 48" stroke="#5B2DA8" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M10 54 Q25 38 40 44 Q55 50 70 38" stroke="#7B4DD8" stroke-width="4.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <path d="M8 62 Q22 50 40 56 Q58 62 72 52" stroke="#5B2DA8" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.35"/>
+    </svg> -->
+    <img src="./setu_gloabal_logo.png" alt="logo_image" class="logo-icon">
+    <div class="logo-text">
+      Setu Global
+      <span>Solution</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why-germany">Why Germany</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="btn btn-primary btn-sm nav-cta">Contact Us</a>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#home" onclick="closeMobile()">Home</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#why-germany" onclick="closeMobile()">Why Germany</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="#contact" class="btn btn-primary" style="text-align:center;margin-top:8px;" onclick="closeMobile()">Contact Us</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+  <!-- dot-grid + diagonal texture -->
+  <div class="bg-canvas"></div>
+
+  <!-- floating micro-elements -->
+  <div class="deco-shapes">
+    <div class="deco-ring r1"></div>
+    <div class="deco-ring r2"></div>
+    <div class="deco-ring r3"></div>
+    <div class="deco-ring r4"></div>
+    <div class="deco-plus p1"></div>
+    <div class="deco-plus p2"></div>
+    <div class="deco-plus p3"></div>
+    <div class="deco-plus p4"></div>
+    <div class="deco-square sq1"></div>
+    <div class="deco-square sq2"></div>
+    <div class="deco-square sq3"></div>
+    <div class="deco-dot d1"></div>
+    <div class="deco-dot d2"></div>
+    <div class="deco-dot d3"></div>
+    <div class="deco-dot d4"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      Ahmedabad's Trusted Study Abroad Partner
+    </div>
+    <h1>Study in<br><span class="gradient-text">Germany</span></h1>
+    <p class="hero-sub">End-to-End Support for Students</p>
+    <p>We help students with admission, visa process, accommodation, and career guidance in Germany. Your dream of studying abroad starts here.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-primary">Apply Now &rarr;</a>
+      <a href="#contact" class="btn btn-outline">Contact Us</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">50+</span><span class="stat-label">Partner Universities</span></div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card-wrap">
+      <div class="floating-badge top-right">🎓 Free Counselling</div>
+      <div style="border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(91,45,168,0.18);position:relative;">
+        <img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?w=700&q=80&fit=crop" alt="Brandenburg Gate Berlin" style="width:100%;display:block;height:340px;object-fit:cover;object-position:center;">
+        <div style="position:absolute;top:0;left:0;right:0;height:6px;display:flex;">
+          <div style="flex:1;background:#000;"></div>
+          <div style="flex:1;background:#DD0000;"></div>
+          <div style="flex:1;background:#FFCE00;"></div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:18px 20px;background:linear-gradient(to top,rgba(20,5,40,0.82),transparent);">
+          <p style="color:white;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;opacity:0.75;margin-bottom:4px;">Berlin, Germany</p>
+          <p style="color:white;font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;">Brandenburger Tor</p>
+        </div>
+        <div style="position:absolute;top:16px;right:16px;background:white;border-radius:10px;padding:7px 10px;box-shadow:0 4px 12px rgba(0,0,0,0.18);display:flex;flex-direction:column;gap:3px;">
+          <div style="width:40px;height:5px;background:#000;border-radius:2px;"></div>
+          <div style="width:40px;height:5px;background:#DD0000;border-radius:2px;"></div>
+          <div style="width:40px;height:5px;background:#FFCE00;border-radius:2px;"></div>
+        </div>
+      </div>
+      <div class="floating-badge bottom-left">✅ Visa Experts</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header fade-up">
+    <span class="section-eyebrow">What We Offer</span>
+    <h2 class="section-title">Our <span class="accent">Services</span></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up delay-1">
+      <div class="service-icon">🎯</div>
+      <h3>Study Counselling</h3>
+      <p>Personalised guidance to help you find the right university and program that matches your goals and academic background.</p>
+    </div>
+    <div class="service-card fade-up delay-2">
+      <div class="service-icon">📚</div>
+      <h3>Course Selection</h3>
+      <p>Expert advice on choosing the best courses and degree programs from top German universities tailored to your career ambitions.</p>
+    </div>
+    <div class="service-card fade-up delay-3">
+      <div class="service-icon">🛂</div>
+      <h3>Visa Guidance</h3>
+      <p>Complete end-to-end student visa consultation and application support with a 98% success rate for our applicants.</p>
+    </div>
+    <div class="service-card fade-up delay-1">
+      <div class="service-icon">📋</div>
+      <h3>German Documentation</h3>
+      <p>Accurate preparation and translation of all required documents including admission letters, financial proofs and more.</p>
+    </div>
+    <div class="service-card fade-up delay-2">
+      <div class="service-icon">🏠</div>
+      <h3>Accommodation Support</h3>
+      <p>We help you find safe, affordable student housing in Germany — from dormitories to private apartments near your campus.</p>
+    </div>
+    <div class="service-card fade-up delay-3">
+      <div class="service-icon">💼</div>
+      <h3>Job Guidance in Germany</h3>
+      <p>Career counselling, resume building, and job search support to help you land your first role in Germany after graduation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY GERMANY -->
+<section id="why-germany">
+  <div class="section-header fade-up">
+    <span class="section-eyebrow">Your Future Destination</span>
+    <h2 class="section-title">Why <span style="color:var(--orange-light)">Germany?</span></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="why-grid">
+    <div class="why-card fade-up delay-1">
+      <span class="why-icon">🏛️</span>
+      <h3>Affordable Education</h3>
+      <p>Public universities in Germany charge little to no tuition fees, even for international students — saving lakhs each year.</p>
+    </div>
+    <div class="why-card fade-up delay-2">
+      <span class="why-icon">🌍</span>
+      <h3>Global Career Opportunities</h3>
+      <p>Germany's powerful economy opens doors to top companies worldwide. Graduates are highly sought after across industries.</p>
+    </div>
+    <div class="why-card fade-up delay-3">
+      <span class="why-icon">🎓</span>
+      <h3>High Quality Universities</h3>
+      <p>Home to globally ranked institutions like TU Munich and Heidelberg with cutting-edge research and world-class faculty.</p>
+    </div>
+    <div class="why-card fade-up delay-4">
+      <span class="why-icon">🛡️</span>
+      <h3>Safe & Student Friendly</h3>
+      <p>Germany ranks among the safest countries globally with strong student support systems and a vibrant international community.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header fade-up">
+    <span class="section-eyebrow">Get In Touch</span>
+    <h2 class="section-title">Contact <span class="accent">Us</span></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info fade-up">
+      <h3>Start Your Germany Journey Today</h3>
+      <p>Book a free consultation with our expert counsellors. We'll guide you from selecting your university all the way to landing in Germany.</p>
+      <div class="contact-detail">
+        <div class="detail-icon">📞</div>
+        <div class="detail-text">
+          <strong>Phone</strong>
+          <span>8140881823</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="detail-icon">✉️</div>
+        <div class="detail-text">
+          <strong>Email</strong>
+          <span>setuglobalsolution@gmail.com</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="detail-icon">📍</div>
+        <div class="detail-text">
+          <strong>Location</strong>
+          <span>Ahmedabad, India</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form fade-up delay-2">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="+91 00000 00000">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Tell us about your study goals..."></textarea>
+      </div>
+      <button class="btn btn-primary form-submit" onclick="handleSubmit(event)">Send Message &rarr;</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo" style="text-decoration:none;display:flex;align-items:center;gap:10px;">
+        <svg width="38" height="38" viewBox="0 0 80 80" fill="none">
+          <circle cx="40" cy="28" r="22" fill="#FF8A00"/>
+          <path d="M15 48 Q30 20 40 28 Q50 36 65 48" stroke="#A87DEA" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M10 54 Q25 38 40 44 Q55 50 70 38" stroke="#C8A8F0" stroke-width="4.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+        </svg>
+        <div class="logo-text">Setu Global<span>Solution</span></div>
+      </div>
+      <p class="footer-tagline">Bridging your world — from Ahmedabad to Germany. Your trusted partner for education, visa, and career guidance.</p>
+      <div class="social-links">
+        <a href="#" class="social-link">in</a>
+        <a href="#" class="social-link">𝕏</a>
+        <a href="#" class="social-link">f</a>
+        <a href="#" class="social-link">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why-germany">Why Germany</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul class="footer-links">
+        <li><a href="#services">Study Counselling</a></li>
+        <li><a href="#services">Visa Guidance</a></li>
+        <li><a href="#services">Documentation</a></li>
+        <li><a href="#services">Accommodation</a></li>
+        <li><a href="#services">Job Guidance</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Setu Global Solution. All Rights Reserved.</span>
+    <span>Made with ♥ for aspiring students</span>
+  </div>
+</footer>
+
+<script>
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Navbar shrink on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+      nav.style.height = '60px';
+      nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+    } else {
+      nav.style.height = '70px';
+      nav.style.boxShadow = 'none';
+    }
+  });
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target;
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = 'linear-gradient(135deg, #5B2DA8, #7B4DD8)';
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+    }, 3000);
+  }
+</script>
+</body>
+</html>
