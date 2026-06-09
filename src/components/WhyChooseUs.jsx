@@ -1,0 +1,60 @@
+const checkItems = [
+  '100% Free consultation — no hidden charges ever',
+  '98% student visa approval rate',
+  'Germany-specialised — we focus only on Germany',
+  'Professional SOP & LOR writing included',
+  'Scholarship shortlisting & application support',
+  'Blocked account (Sperrkonto) setup guidance',
+  'Post-arrival support & alumni network access',
+  'Dedicated counsellor for your entire journey',
+  'WhatsApp support — always reachable',
+];
+
+const points = [
+  { icon: '🇩🇪', title: 'Germany-Only Focus', desc: 'Unlike multi-country consultancies, we specialise exclusively in Germany. This depth means we know every university, intake, and process inside out.' },
+  { icon: '🤝', title: 'Dedicated Personal Counsellor', desc: 'You get one assigned counsellor who knows your case from day one. No call centres, no repeating yourself — just consistent, personalised support.' },
+  { icon: '📋', title: 'Complete Documentation Handled', desc: 'SOP writing, LOR drafts, certified translations, university application forms — we handle the paperwork so you can focus on your future.' },
+  { icon: '🎯', title: 'Result-Oriented Approach', desc: 'Our 98% visa success rate is the result of meticulous document preparation, proactive embassy communication, and years of Germany-specific expertise.' },
+  { icon: '🏠', title: 'End-to-End till Arrival', desc: 'Our support does not stop at visa. We help with accommodation, pre-departure orientation, and settling-in guidance once you land in Germany.' },
+];
+
+export default function WhyChooseUs() {
+  return (
+    <section id="why-us">
+      <div className="section-header fade-up">
+        <div className="section-eyebrow">Why Setu Global</div>
+        <h2 className="section-title">Why Students <span className="accent">Choose Us</span></h2>
+        <p className="section-subtitle">We are not just consultants — we are your dedicated partners from Ahmedabad to Germany.</p>
+      </div>
+      <div className="why-us-layout">
+        <div className="why-us-visual fade-up">
+          <div className="why-us-card">
+            <div className="why-us-card-header">
+              <h3>The Setu Global Advantage</h3>
+              <p>What sets us apart from every other consultancy</p>
+            </div>
+            <ul className="checklist">
+              {checkItems.map((item, i) => (
+                <li key={i}>
+                  <span className="check-icon">✓</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div className="why-us-points">
+          {points.map((p, i) => (
+            <div key={i} className={`why-us-point fade-up d${i + 1}`}>
+              <div className="point-icon">{p.icon}</div>
+              <div className="point-body">
+                <h4>{p.title}</h4>
+                <p>{p.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
