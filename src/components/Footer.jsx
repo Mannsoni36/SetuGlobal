@@ -47,7 +47,7 @@ export default function Footer() {
           </div>
           <div className="footer-contact-item">
             <span className="fc-icon">✉️</span>
-            <a href="mailto:setuglobalsolution@gmail.com">setuglobalsolution@gmail.com</a>
+            <a href="mailto:mann@setuglobalsolution.com">mann@setuglobalsolution.com</a>
           </div>
           <div className="footer-contact-item">
             <span className="fc-icon">📍</span>
