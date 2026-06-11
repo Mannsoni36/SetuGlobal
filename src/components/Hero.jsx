@@ -8,7 +8,7 @@ export default function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent(prev => (prev + 1) % slides.length);
-    }, 3000);
+    }, 6000);
     return () => clearInterval(timer);
   }, []);
 
