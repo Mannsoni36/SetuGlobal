@@ -1,0 +1,79 @@
+---
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import overrideObjects from "@/lib/utils/overrideObjects";
+import { markdownify } from "@/lib/utils/textConverter";
+import SectionBadge from "../global/SectionBadge.astro";
+import SectionTitle from "../global/SectionTitle.astro";
+import Icons from "@/helpers/Icons.astro";
+
+type Reason = { icon?: string; highlight?: string; title: string; description: string };
+type SectionType = {
+  enable?: boolean;
+  badge?: string;
+  title?: string;
+  description?: string;
+  reasons?: Reason[];
+};
+
+type Props = { content?: SectionType };
+
+let defaultContent = (
+  await getEntryCTM("sections", "why-germany", Astro.currentLocale)
+)?.data as unknown as SectionType;
+
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as SectionType;
+
+const { enable = true, badge, title, description, reasons } = actualContent ?? {};
+
+if (!enable) return;
+---
+
+<section id="why-germany" class="section-spacing-vertical relative scroll-mt-28">
+  <div class="container">
+    <div class="mx-auto max-w-2xl text-center">
+      {badge && <SectionBadge title={badge} />}
+      {title && <SectionTitle title={title} class="mb-4!" />}
+      {
+        description && (
+          <p
+            class="text-text-default/70 text-base xl:text-lg"
+            set:html={markdownify(description)}
+          />
+        )
+      }
+    </div>
+
+    {
+      reasons && reasons.length > 0 && (
+        <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+          {reasons.map((reason, i) => (
+            <div
+              class="bg-theme-light flex flex-col gap-3 rounded-lg p-5 xl:gap-4 xl:px-7 xl:py-7"
+              data-aos="fade-up"
+              data-aos-delay={(i % 4) * 100}
+              data-aos-duration="600">
+              {reason.icon && (
+                <div class="bg-primary/10 text-primary flex size-12 items-center justify-center rounded-full">
+                  <Icons icon={reason.icon} width="24" height="24" />
+                </div>
+              )}
+              {reason.highlight && (
+                <span class="text-primary text-sm font-semibold uppercase tracking-wide">
+                  {reason.highlight}
+                </span>
+              )}
+              <h3 class="text-h5-sm lg:text-h5 font-semibold">{reason.title}</h3>
+              <p
+                class="text-text-default/70 text-sm xl:text-base"
+                set:html={markdownify(reason.description)}
+              />
+            </div>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</section>

@@ -1,0 +1,117 @@
+---
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import overrideObjects from "@/lib/utils/overrideObjects";
+import { markdownify } from "@/lib/utils/textConverter";
+import SectionBadge from "../global/SectionBadge.astro";
+import SectionTitle from "../global/SectionTitle.astro";
+import Icons from "@/helpers/Icons.astro";
+import Button from "../Button.astro";
+
+type FaqItem = { q: string; a: string };
+type SectionType = {
+  enable?: boolean;
+  badge?: string;
+  title?: string;
+  description?: string;
+  items?: FaqItem[];
+};
+
+type Props = { content?: SectionType };
+
+let defaultContent = (
+  await getEntryCTM("sections", "faq", Astro.currentLocale)
+)?.data as unknown as SectionType;
+
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as SectionType;
+
+const { enable = true, badge, title, description, items } = actualContent ?? {};
+
+if (!enable) return;
+---
+
+<section id="faq" class="section-spacing-vertical relative scroll-mt-28">
+  <div class="container grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-16">
+    <div class="lg:col-span-1">
+      {badge && <SectionBadge title={badge} />}
+      {title && <SectionTitle title={title} class="mb-4!" />}
+      {
+        description && (
+          <p
+            class="text-text-default/70 mb-6 text-base xl:text-lg"
+            set:html={markdownify(description)}
+          />
+        )
+      }
+      <div class="flex flex-col gap-3 sm:flex-row lg:flex-col">
+        <Button
+          tag="a"
+          variant="outline"
+          url="https://wa.me/918140881823"
+          label="💬 Ask on WhatsApp"
+          target="_blank"
+          rel="noopener"
+        />
+        <Button tag="a" variant="fill" url="/#contact" label="Book Free Consultation" />
+      </div>
+    </div>
+
+    {
+      items && items.length > 0 && (
+        <div class="divide-border-dark/15 border-border-dark/15 lg:col-span-2 divide-y border-y">
+          {items.map((item) => (
+            <div class="faq-item">
+              <button
+                type="button"
+                class="faq-q flex w-full items-center justify-between gap-4 py-5 text-left font-semibold lg:text-lg">
+                <span>{item.q}</span>
+                <span class="faq-chevron text-primary shrink-0 transition-transform duration-300">
+                  <Icons icon="ChevronDown" width="20" height="20" />
+                </span>
+              </button>
+              <div class="faq-a overflow-hidden transition-[max-height] duration-300" style="max-height: 0;">
+                <p class="text-text-default/70 pb-5 text-sm xl:text-base" set:html={markdownify(item.a)} />
+              </div>
+            </div>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll(".faq-item").forEach((item) => {
+    const question = item.querySelector(".faq-q");
+    const answer = item.querySelector(".faq-a");
+    const chevron = item.querySelector(".faq-chevron");
+
+    question?.addEventListener("click", () => {
+      const isOpen = item.classList.contains("open");
+
+      document.querySelectorAll(".faq-item.open").forEach((openItem) => {
+        if (openItem !== item) {
+          openItem.classList.remove("open");
+          const openAnswer = openItem.querySelector(".faq-a") as HTMLElement | null;
+          const openChevron = openItem.querySelector(".faq-chevron") as HTMLElement | null;
+          if (openAnswer) openAnswer.style.maxHeight = "0";
+          openChevron?.classList.remove("rotate-180");
+        }
+      });
+
+      if (isOpen) {
+        item.classList.remove("open");
+        if (answer instanceof HTMLElement) answer.style.maxHeight = "0";
+        chevron?.classList.remove("rotate-180");
+      } else {
+        item.classList.add("open");
+        if (answer instanceof HTMLElement) {
+          answer.style.maxHeight = `${answer.scrollHeight}px`;
+        }
+        chevron?.classList.add("rotate-180");
+      }
+    });
+  });
+</script>
