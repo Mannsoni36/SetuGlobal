@@ -1,16 +1,24 @@
-# React + Vite
+# Setu Global Solution
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A static marketing site for Setu Global Solution (Germany study-abroad consultancy), built on the [Lumio Lite](https://github.com/getastrothemes/lumio-lite-astro) Astro theme. Statically generated at build time for fast loads and full SEO crawlability.
 
-Currently, two official plugins are available:
+## Commands
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Command | Action |
+| --- | --- |
+| `npm install` | Install dependencies |
+| `npm run dev` | Start local dev server at `localhost:4321` |
+| `npm run build` | Build the production site to `./dist/` |
+| `npm run preview` | Preview the production build locally |
 
-## React Compiler
+## Content
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Homepage sections live in `src/content/sections/english/*.md`.
+- Services (each gets its own page at `/services/<slug>/`) live in `src/content/services/english/*.mdx`.
+- Site identity, contact info, and the contact form's destination email are configured in `src/config/config.toml`.
+- Navigation is configured in `src/config/menu.en.json`.
 
-## Expanding the ESLint configuration
+## Placeholders to replace
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- CEO Mann Soni's photo: uncomment `photo:` in `src/content/sections/english/founder.md` once a real photo is available (currently shows initials).
+- Germany/university photos throughout `src/assets/images/` are free stock placeholders (Pexels) — swap them for real photos when available.

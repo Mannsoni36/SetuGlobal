@@ -1,0 +1,83 @@
+---
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import overrideObjects from "@/lib/utils/overrideObjects";
+import { markdownify } from "@/lib/utils/textConverter";
+import OptimizedImage from "../utilities/OptimizedImage.astro";
+
+type SectionType = {
+  enable?: boolean;
+  name?: string;
+  role?: string;
+  quote?: string;
+  bio?: string;
+  photo?: string;
+  photoAlt?: string;
+  initials?: string;
+};
+
+type Props = { content?: SectionType };
+
+let defaultContent = (
+  await getEntryCTM("sections", "founder", Astro.currentLocale)
+)?.data as unknown as SectionType;
+
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as SectionType;
+
+const { enable = true, name, role, quote, bio, photo, photoAlt, initials } =
+  actualContent ?? {};
+
+if (!enable) return;
+---
+
+<section class="section-spacing-vertical relative">
+  <div class="container">
+    <div
+      class="bg-theme-light mx-auto flex max-w-4xl flex-col items-center gap-8 rounded-2xl p-8 text-center md:flex-row md:items-start md:gap-10 md:p-12 md:text-left"
+      data-aos="fade-up"
+      data-aos-duration="600">
+      <div class="shrink-0">
+        {
+          photo ? (
+            <OptimizedImage
+              src={photo}
+              alt={photoAlt || name || "Founder"}
+              width={140}
+              height={140}
+              class="size-32 rounded-full object-cover md:size-35"
+            />
+          ) : (
+            <div
+              class="bg-primary text-text-inverse flex size-32 items-center justify-center rounded-full text-4xl font-bold md:size-35"
+              title="Photo coming soon">
+              {initials || "MS"}
+            </div>
+          )
+        }
+      </div>
+
+      <div>
+        {
+          quote && (
+            <p
+              class="text-h5-sm lg:text-h5 mb-4 font-medium italic"
+              set:html={markdownify(`“${quote}”`)}
+            />
+          )
+        }
+        {
+          bio && (
+            <p
+              class="text-text-default/70 mb-4 text-sm xl:text-base"
+              set:html={markdownify(bio)}
+            />
+          )
+        }
+        {name && <p class="font-semibold lg:text-lg">{name}</p>}
+        {role && <p class="text-primary text-sm font-medium">{role}</p>}
+      </div>
+    </div>
+  </div>
+</section>
