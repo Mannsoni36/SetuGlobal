@@ -1,0 +1,68 @@
+---
+const slides = Array.from({ length: 14 }, (_, i) => `/hero-images/slide-${i + 1}.jpeg`);
+---
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span>Study Abroad, Without The Stress</span></div>
+    <h1>Your Dream of Studying<br />in <span class="gradient-text">Germany</span> Starts Here</h1>
+    <p class="hero-desc">From university shortlisting to visa approval and pre-departure, we guide Indian students through every step of the journey to Germany with a 98% visa success rate.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-primary btn-lg">Request a free consultation →</a>
+      <a href="https://wa.me/918140881823" target="_blank" rel="noopener" class="btn btn-outline btn-lg">💬 WhatsApp Us</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item">
+        <span class="trust-num">50<em style="font-family: Outfit,sans-serif; font-size: 1rem; color: var(--orange); font-style: normal;">+</em></span>
+        <span class="trust-label">Partner Universities</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">98<em style="font-family: Outfit,sans-serif; font-size: 1rem; color: var(--orange); font-style: normal;">%</em></span>
+        <span class="trust-label">Visa Success Rate</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">200<em style="font-family: Outfit,sans-serif; font-size: 1rem; color: var(--orange); font-style: normal;">+</em></span>
+        <span class="trust-label">Students Placed</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num" style="font-family: Outfit,sans-serif; font-size: 1.1rem;">FREE</span>
+        <span class="trust-label">Consultation</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-image-wrap">
+    {slides.map((src, i) => (
+      <img
+        src={src}
+        alt={`Slide ${i + 1}`}
+        class={`hero-image${i === 0 ? ' hero-image--active' : ''}`}
+      />
+    ))}
+    <div class="hero-slide-dots">
+      {slides.map((_, i) => (
+        <button
+          class={`slide-dot${i === 0 ? ' slide-dot--active' : ''}`}
+          aria-label={`Go to slide ${i + 1}`}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const wrap = document.querySelector('.hero-image-wrap');
+  const images = wrap.querySelectorAll('.hero-image');
+  const dots = wrap.querySelectorAll('.slide-dot');
+  let current = 0;
+
+  function showSlide(i) {
+    images.forEach((img, idx) => img.classList.toggle('hero-image--active', idx === i));
+    dots.forEach((dot, idx) => dot.classList.toggle('slide-dot--active', idx === i));
+    current = i;
+  }
+
+  dots.forEach((dot, i) => dot.addEventListener('click', () => showSlide(i)));
+
+  setInterval(() => {
+    showSlide((current + 1) % images.length);
+  }, 6000);
+</script>

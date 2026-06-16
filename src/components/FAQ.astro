@@ -1,5 +1,4 @@
-import { useState } from 'react';
-
+---
 const faqs = [
   {
     q: 'Is the consultation with Setu Global completely free?',
@@ -34,36 +33,38 @@ const faqs = [
     a: 'Absolutely. Germany offers an 18-month Job Seeker Visa after graduation, allowing you to stay and find employment. Once you have a job offer, you can convert it into a work permit. After 5 years of working in Germany, you can apply for Permanent Residency (PR).',
   },
 ];
-
-export default function FAQ() {
-  const [openIdx, setOpenIdx] = useState(null);
-
-  const toggle = (i) => setOpenIdx(openIdx === i ? null : i);
-
-  return (
-    <section id="faq">
-      <div className="section-header fade-up" style={{ display: 'none' }} />
-      <div className="faq-wrapper">
-        <div className="faq-intro fade-up">
-          <div className="section-eyebrow" style={{ marginBottom: 16 }}>Got Questions?</div>
-          <h3>Frequently asked questions.</h3>
-          <p>Can't find your answer here? Our experts are available 6 days a week to answer any query about studying in Germany.</p>
-          <a href="https://wa.me/918140881823" target="_blank" rel="noopener" className="btn btn-whatsapp" style={{ marginBottom: 12 }}>💬 Ask on WhatsApp</a>
-          <br />
-          <a href="#contact" className="btn btn-purple" style={{ marginTop: 12 }}>Book Free Consultation</a>
+---
+<section id="faq">
+  <div class="section-header fade-up" style="display: none;" />
+  <div class="faq-wrapper">
+    <div class="faq-intro fade-up">
+      <div class="section-eyebrow" style="margin-bottom: 16px;">Got Questions?</div>
+      <h3>Frequently asked questions.</h3>
+      <p>Can't find your answer here? Our experts are available 6 days a week to answer any query about studying in Germany.</p>
+      <a href="https://wa.me/918140881823" target="_blank" rel="noopener" class="btn btn-whatsapp" style="margin-bottom: 12px;">💬 Ask on WhatsApp</a>
+      <br />
+      <a href="#contact" class="btn btn-purple" style="margin-top: 12px;">Book Free Consultation</a>
+    </div>
+    <div class="faq-list fade-up d2">
+      {faqs.map((faq) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{faq.q}</span>
+            <div class="faq-chevron">▼</div>
+          </button>
+          <div class="faq-a"><p>{faq.a}</p></div>
         </div>
-        <div className="faq-list fade-up d2">
-          {faqs.map((faq, i) => (
-            <div key={i} className={`faq-item${openIdx === i ? ' open' : ''}`}>
-              <button className="faq-q" onClick={() => toggle(i)}>
-                <span>{faq.q}</span>
-                <div className="faq-chevron">▼</div>
-              </button>
-              <div className="faq-a"><p>{faq.a}</p></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach((item) => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach((el) => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>

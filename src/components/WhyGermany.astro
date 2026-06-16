@@ -1,3 +1,4 @@
+---
 const reasons = [
   { icon: '🏛️', highlight: '€0 Tuition', title: 'Virtually Free Education', desc: 'Public universities charge little to no tuition fees — even for international students — saving you lakhs every year.' },
   { icon: '🎓', highlight: 'World Top 100', title: 'World-Class Universities', desc: 'TU Munich, RWTH Aachen, Heidelberg — globally ranked institutions with cutting-edge research and world-class faculty.' },
@@ -8,25 +9,21 @@ const reasons = [
   { icon: '🏥', highlight: 'Affordable Living', title: 'Low Cost of Living', desc: 'Student cities like Leipzig and Dresden offer a high quality of life for just €700–€1,000/month in total expenses.' },
   { icon: '🇪🇺', highlight: 'EU Gateway', title: 'Gateway to Europe', desc: "A degree from Germany opens doors across the European Union's 450 million-person job market and beyond." },
 ];
-
-export default function WhyGermany() {
-  return (
-    <section id="why-germany">
-      <div className="section-header fade-up">
-        <div className="section-eyebrow">Your Future Destination</div>
-        <h2 className="section-title">Why <em>Study in Germany?</em></h2>
-        <p className="section-subtitle">Germany is the world's most sought-after destination for Indian students — here's why.</p>
+---
+<section id="why-germany">
+  <div class="section-header fade-up">
+    <div class="section-eyebrow">Your Future Destination</div>
+    <h2 class="section-title">Why <em>Study in Germany?</em></h2>
+    <p class="section-subtitle">Germany is the world's most sought-after destination for Indian students — here's why.</p>
+  </div>
+  <div class="why-grid">
+    {reasons.map((r, i) => (
+      <div class={`why-card fade-up d${(i % 4) + 1}`}>
+        <span class="why-icon">{r.icon}</span>
+        <div class="why-highlight">{r.highlight}</div>
+        <h3>{r.title}</h3>
+        <p>{r.desc}</p>
       </div>
-      <div className="why-grid">
-        {reasons.map((r, i) => (
-          <div key={i} className={`why-card fade-up d${(i % 4) + 1}`}>
-            <span className="why-icon">{r.icon}</span>
-            <div className="why-highlight">{r.highlight}</div>
-            <h3>{r.title}</h3>
-            <p>{r.desc}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
+    ))}
+  </div>
+</section>
