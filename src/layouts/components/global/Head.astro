@@ -52,6 +52,105 @@ const preloadImages = (Astro.props.preloadImages as string[]) || [];
     }}
   />
   {preloadImages.map((src) => <link rel="preload" as="image" href={src} />)}
+
+  <!-- LocalBusiness + EducationalOrganization Schema -->
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "EducationalOrganization"],
+    "name": "Setu Global Solution",
+    "url": "https://www.setuglobalsolution.com",
+    "logo": "https://www.setuglobalsolution.com/images/logo.png",
+    "image": "https://www.setuglobalsolution.com/images/og-image.jpg",
+    "description": "Ahmedabad's dedicated Germany education consultancy offering free counselling, university admissions, visa guidance, SOP writing, blocked account support, and accommodation help for Indian students.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ahmedabad",
+      "addressRegion": "Gujarat",
+      "addressCountry": "IN"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-81408-81823",
+      "contactType": "customer service",
+      "availableLanguage": ["English", "Hindi", "Gujarati"]
+    },
+    "email": "info@setuglobalsolution.com",
+    "telephone": "+91-81408-81823",
+    "priceRange": "Free",
+    "areaServed": {
+      "@type": "City",
+      "name": "Ahmedabad"
+    },
+    "knowsAbout": [
+      "Study in Germany",
+      "German Student Visa",
+      "University Admissions Germany",
+      "Blocked Account Sperrkonto",
+      "DAAD Scholarship",
+      "APS Certificate",
+      "SOP Writing for Germany"
+    ],
+    "sameAs": [
+      "https://www.instagram.com/setuglobalsolution",
+      "https://www.facebook.com/setuglobalsolution"
+    ]
+  }
+  </script>
+
+  <!-- HowTo Schema: Germany Student Visa Process -->
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Apply for a Germany Student Visa from India",
+    "description": "Step-by-step process to apply for a Germany student visa as an Indian student with Setu Global Solution. 98% visa success rate.",
+    "totalTime": "PT12M",
+    "estimatedCost": {
+      "@type": "MonetaryAmount",
+      "currency": "EUR",
+      "value": "11208"
+    },
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": "1",
+        "name": "Free Profile Assessment",
+        "text": "Book a free 30-minute consultation with Setu Global Solution via WhatsApp or Zoom. We assess your academic profile, grades, budget, and career goals, then provide a realistic university recommendation and timeline."
+      },
+      {
+        "@type": "HowToStep",
+        "position": "2",
+        "name": "University Shortlisting",
+        "text": "We shortlist the best German universities matching your profile — prioritising tuition-free public universities (€0–€350/semester) — based on your GPA, language scores, and career goals."
+      },
+      {
+        "@type": "HowToStep",
+        "position": "3",
+        "name": "SOP & Documentation",
+        "text": "We write and iterate on your Statement of Purpose (SOP), guide your recommenders for LORs, prepare certified translations of your academic records, and coordinate your APS certificate for Germany."
+      },
+      {
+        "@type": "HowToStep",
+        "position": "4",
+        "name": "Blocked Account (Sperrkonto) Setup",
+        "text": "We guide you through opening a Sperrkonto with the current required deposit (€11,208 as of 2024) through trusted providers like Fintiba or Expatrio, ensuring your confirmation documents match embassy requirements exactly."
+      },
+      {
+        "@type": "HowToStep",
+        "position": "5",
+        "name": "Visa Application & Embassy Coaching",
+        "text": "We prepare your complete visa file, book your consulate appointment, and conduct mock embassy interviews. Visa processing typically takes 6–12 weeks after you receive your university admission letter."
+      },
+      {
+        "@type": "HowToStep",
+        "position": "6",
+        "name": "Pre-Departure & Arrival Support",
+        "text": "We arrange student accommodation, brief you on city registration, health insurance, SIM card, and bank account setup. Our WhatsApp support group stays active throughout your full program in Germany."
+      }
+    ]
+  }
+  </script>
   <noscript>
     <style>
       [data-aos] {
