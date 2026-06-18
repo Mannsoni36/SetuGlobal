@@ -2,8 +2,8 @@
 enable: true
 badge: "// ABOUT US"
 title: "Bridging India to Germany for your higher education journey."
-imageSecondary: "/images/about/about-rated-pic.jpg"
-imageSecondaryAlt: "Students reviewing university applications together"
+imageSecondary: "/images/team/malay-ginoya-cofounder.png"
+imageSecondaryAlt: "Malay Ginoya, Co-Founder of Setu Global Solution, in Germany"
 image: "/images/about/about-two.png"
 imageAlt: "Counsellor guiding a student through their application"
 description: "Setu Global Solution is Ahmedabad's dedicated Germany education consultancy. We handle the full arc of a study-abroad application — university shortlisting, SOP and visa documentation, blocked account setup, and arrival support — so you can focus on academics and language tests while we take care of everything else."

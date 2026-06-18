@@ -22,9 +22,9 @@ button:
   # target: "" # Optional
 
 satisfactionClients:
-  enable: true
-  count: "200+"
-  label: "Students successfully placed in German universities"
+  enable: false
+  count: ""
+  label: ""
   avatars:
     - "/images/customers/avatar/client-1-1.png"
     - "/images/customers/avatar/client-2-1.png"

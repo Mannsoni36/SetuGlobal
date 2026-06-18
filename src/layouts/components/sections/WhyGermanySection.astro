@@ -1,9 +1,6 @@
 ---
 import { getEntryCTM } from "@/lib/contentParser.astro";
 import overrideObjects from "@/lib/utils/overrideObjects";
-import { markdownify } from "@/lib/utils/textConverter";
-import SectionBadge from "../global/SectionBadge.astro";
-import Icons from "@/helpers/Icons.astro";
 
 type Reason = { icon?: string; highlight?: string; title: string; description: string };
 type SectionType = {
@@ -25,102 +22,103 @@ let actualContent = overrideObjects(
   Astro.props.content,
 ) as SectionType;
 
-const { enable = true, badge, title, description, reasons } = actualContent ?? {};
+const { enable = true, reasons } = actualContent ?? {};
 
 if (!enable) return;
 
-const topReasons = reasons?.slice(0, 3) ?? [];
-const restReasons = reasons?.slice(3) ?? [];
+// Use only top 4 most impactful reasons
+const keyReasons = reasons?.slice(0, 4) ?? [];
 ---
 
-<section id="why-germany" class="section-spacing-vertical relative scroll-mt-28 overflow-hidden">
+<section id="why-germany" class="scroll-mt-28 overflow-hidden">
 
-  <!-- Background gradient -->
-  <div class="pointer-events-none absolute inset-0 -z-10">
-    <div class="absolute -top-40 -right-40 size-[600px] rounded-full bg-primary/5 blur-3xl"></div>
-    <div class="absolute -bottom-40 -left-40 size-[500px] rounded-full bg-secondary/5 blur-3xl"></div>
+  <!-- Bold header band -->
+  <div class="bg-primary py-20 lg:py-28">
+    <div class="container">
+      <div class="mx-auto max-w-4xl" data-aos="fade-up" data-aos-duration="600">
+        <p class="text-secondary mb-3 text-sm font-bold uppercase tracking-[0.25em]">Your Future Destination</p>
+        <h2 class="text-4xl font-black text-white leading-tight lg:text-6xl xl:text-7xl">
+          Why study<br />
+          <span class="text-secondary">in Germany?</span>
+        </h2>
+        <p class="mt-6 max-w-2xl text-base text-white/60 lg:text-lg">
+          Four reasons that make Germany the world's smartest choice for Indian students — and none of them are what you'd expect.
+        </p>
+      </div>
+    </div>
   </div>
 
-  <div class="container">
-    <!-- Header -->
-    <div class="mx-auto max-w-3xl text-center" data-aos="fade-up" data-aos-duration="500">
-      {badge && <SectionBadge title={badge} />}
-      {title && (
-        <h2 class="text-h2-sm lg:text-h2 mb-4 font-bold leading-tight">
-          {title}
-        </h2>
-      )}
-      {description && (
-        <p class="text-text-default/60 text-base xl:text-lg" set:html={markdownify(description)} />
-      )}
-    </div>
+  <!-- Editorial reason rows -->
+  <div class="bg-[#f5f3ef]">
+    {keyReasons.map((reason, i) => (
+      <div
+        class:list={[
+          "border-border-light border-b last:border-0",
+          i % 2 === 1 ? "bg-white" : "bg-[#f5f3ef]"
+        ]}
+        data-aos="fade-up"
+        data-aos-delay={i * 80}
+        data-aos-duration="500">
+        <div class="container">
+          <div class="grid grid-cols-1 gap-6 py-10 lg:grid-cols-12 lg:items-center lg:gap-12 lg:py-14">
+            <!-- Number -->
+            <div class="lg:col-span-1 flex items-center">
+              <span class:list={[
+                "text-6xl font-black leading-none lg:text-8xl",
+                i === 0 ? "text-primary/15" :
+                i === 1 ? "text-secondary/25" :
+                i === 2 ? "text-primary/15" :
+                "text-secondary/25"
+              ]}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            </div>
 
-    <!-- Top 3 Spotlight Cards -->
-    {topReasons.length > 0 && (
-      <div class="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
-        {topReasons.map((reason, i) => (
-          <div
-            class:list={[
-              "group relative overflow-hidden rounded-2xl p-8 transition-transform duration-300 hover:-translate-y-1",
-              i === 0
-                ? "bg-primary text-white"
-                : i === 1
-                ? "bg-secondary text-white"
-                : "bg-theme-dark text-white"
-            ]}
-            data-aos="fade-up"
-            data-aos-delay={i * 100}
-            data-aos-duration="600">
-            <!-- Big highlight number/text -->
-            <p class="mb-2 text-5xl font-black opacity-20 lg:text-6xl">{reason.highlight}</p>
-            <div class="relative">
-              {reason.icon && (
-                <div class="mb-4 flex size-12 items-center justify-center rounded-xl bg-white/15">
-                  <Icons icon={reason.icon} width="24" height="24" />
-                </div>
-              )}
-              <h3 class="text-h5-sm lg:text-h5 mb-3 font-bold">{reason.title}</h3>
-              <p class="text-sm leading-relaxed opacity-80">{reason.description}</p>
+            <!-- Highlight + Title -->
+            <div class="lg:col-span-4">
+              <span class:list={[
+                "mb-2 block text-xs font-black uppercase tracking-[0.2em]",
+                i % 2 === 0 ? "text-primary" : "text-secondary"
+              ]}>
+                {reason.highlight}
+              </span>
+              <h3 class="text-2xl font-black leading-tight text-text-default lg:text-3xl">
+                {reason.title}
+              </h3>
+            </div>
+
+            <!-- Divider (hidden on mobile) -->
+            <div class="hidden lg:col-span-1 lg:flex lg:justify-center">
+              <div class:list={[
+                "h-16 w-px",
+                i % 2 === 0 ? "bg-primary/20" : "bg-secondary/30"
+              ]}></div>
+            </div>
+
+            <!-- Description -->
+            <div class="lg:col-span-6">
+              <p class="text-text-default/60 text-base leading-relaxed lg:text-lg">
+                {reason.description}
+              </p>
             </div>
           </div>
-        ))}
+        </div>
       </div>
-    )}
+    ))}
+  </div>
 
-    <!-- Remaining 5 Reasons — clean list rows -->
-    {restReasons.length > 0 && (
-      <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5" data-aos="fade-up" data-aos-delay="200" data-aos-duration="600">
-        {restReasons.map((reason, i) => (
-          <div class="bg-theme-light group flex flex-col gap-3 rounded-xl p-6 transition-all duration-300 hover:shadow-md">
-            {reason.icon && (
-              <div class="bg-primary/10 text-primary flex size-10 items-center justify-center rounded-lg">
-                <Icons icon={reason.icon} width="20" height="20" />
-              </div>
-            )}
-            {reason.highlight && (
-              <span class="text-secondary text-base font-bold">{reason.highlight}</span>
-            )}
-            <h3 class="text-sm font-bold leading-snug lg:text-base">{reason.title}</h3>
-            <p class="text-text-default/60 text-xs leading-relaxed xl:text-sm">{reason.description}</p>
-          </div>
-        ))}
-      </div>
-    )}
-
-    <!-- Bottom CTA strip -->
-    <div
-      class="mt-10 flex flex-col items-center justify-between gap-4 rounded-2xl border border-primary/20 bg-primary/5 px-8 py-6 text-center sm:flex-row sm:text-left"
-      data-aos="fade-up"
-      data-aos-delay="300"
-      data-aos-duration="500">
-      <p class="text-text-default/80 text-base font-medium">
-        Ready to make Germany your next chapter?
+  <!-- Bottom CTA -->
+  <div class="bg-[#f5f3ef] border-t border-border-light">
+    <div class="container py-12 flex flex-col items-center gap-5 text-center" data-aos="fade-up" data-aos-duration="400">
+      <p class="text-text-default/70 text-base lg:text-lg max-w-xl">
+        Still wondering if Germany is right for you? Let's talk — it's free, and it takes 30 minutes.
       </p>
       <a
         href="/#contact"
-        class="bg-primary hover:bg-primary/90 shrink-0 rounded-lg px-6 py-3 text-sm font-semibold text-white transition-colors duration-200">
-        Book a Free Consultation
+        class="bg-primary hover:bg-primary/90 inline-block rounded-xl px-8 py-4 text-sm font-bold text-white transition-colors duration-200 lg:text-base">
+        Book Your Free Consultation →
       </a>
     </div>
   </div>
+
 </section>

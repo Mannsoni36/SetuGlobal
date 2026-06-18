@@ -20,10 +20,10 @@ footerDescription = footerDescription || t("footerBlock.description");
 const copyrightText = copyright.text;
 
 const stats = [
-  { value: "200+", label: "Students Placed" },
   { value: "14", label: "Years in Germany" },
   { value: "8+", label: "Services Offered" },
   { value: "100%", label: "Free Consultation" },
+  { value: "€0", label: "Consultation Fee" },
 ];
 ---
 
@@ -66,50 +66,45 @@ const stats = [
     </div>
   </div>
 
-  <!-- Main footer body -->
-  <div class="bg-theme-dark">
+  <!-- Main footer body — cream/beige -->
+  <div class="bg-[#f5f3ef]">
     <div class="relative container flex flex-col">
       <div
         class="grid gap-12 py-15 md:grid-cols-6 md:py-20 lg:flex lg:justify-between xl:py-27">
         <div class="space-y-4 md:col-span-3">
-          <h3
-            class="text-text-inverse mb-4 text-2xl font-semibold capitalize md:mb-10">
+          <h3 class="text-text-default mb-4 text-2xl font-semibold capitalize md:mb-10">
             {t("footerBlock.aboutUsLabel")}
           </h3>
           {
             footerDescription && (
               <p
-                class="text-text-inverse/50 max-w-74.5"
+                class="text-text-default/60 max-w-74.5"
                 set:html={markdownify(footerDescription)}
               />
             )
           }
-          <!-- Contact info inline -->
           <div class="mt-6 flex flex-col gap-2 text-sm">
             <a
               href={`mailto:${config.contact.email}`}
-              class="text-secondary hover:text-secondary/80 font-medium transition-colors">
+              class="text-secondary hover:text-secondary/80 font-semibold transition-colors">
               {config.contact.email}
             </a>
             <a
               href={`tel:${config.contact.phone?.replace(/\s/g, "")}`}
-              class="text-text-inverse/60 hover:text-text-inverse font-medium transition-colors">
+              class="text-text-default/60 hover:text-text-default font-medium transition-colors">
               {config.contact.phone}
             </a>
+            <p class="text-text-default/40 text-xs mt-1">Mon – Sat · 10:00 AM – 7:00 PM IST</p>
           </div>
         </div>
 
         <div class="md:col-span-3">
-          <h3
-            class="text-text-inverse mb-4 text-2xl font-semibold capitalize md:mb-10">
+          <h3 class="text-text-default mb-4 text-2xl font-semibold capitalize md:mb-10">
             {t("footerBlock.officeLabel")}
           </h3>
-          <div class="text-text-inverse/50 flex flex-col gap-4">
+          <div class="text-text-default/60 flex flex-col gap-4">
             <p class="leading-relaxed lg:max-w-50">
               {config.contact.location}
-            </p>
-            <p class="text-text-inverse/40 text-sm">
-              Mon – Sat &nbsp;·&nbsp; 10:00 AM – 7:00 PM IST
             </p>
           </div>
         </div>
@@ -119,7 +114,7 @@ const stats = [
             <div class="md:col-span-2">
               {menu.label && (
                 <h3
-                  class="text-text-inverse mb-4 text-2xl font-semibold capitalize md:mb-10"
+                  class="text-text-default mb-4 text-2xl font-semibold capitalize md:mb-10"
                   set:html={markdownify(menu.label)}
                 />
               )}
@@ -129,12 +124,9 @@ const stats = [
                     <Button
                       tag="a"
                       variant="text"
-                      url={getLocaleUrlCTM(
-                        item.url as string,
-                        Astro.currentLocale,
-                      )}
+                      url={getLocaleUrlCTM(item.url as string, Astro.currentLocale)}
                       label={item.name}
-                      class="text-text-inverse/50 hover:text-text-inverse transition-colors"
+                      class="text-text-default/50 hover:text-primary transition-colors"
                     />
                   </li>
                 ))}
@@ -144,8 +136,7 @@ const stats = [
         }
 
         <div class="md:col-span-2">
-          <h3
-            class="text-text-inverse mb-4 text-2xl font-semibold capitalize md:mb-10">
+          <h3 class="text-text-default mb-4 text-2xl font-semibold capitalize md:mb-10">
             {t("footerBlock.socialLabel")}
           </h3>
           <ul class="flex flex-col gap-3.5">
@@ -155,13 +146,10 @@ const stats = [
                   <Button
                     tag="a"
                     variant="text"
-                    url={getLocaleUrlCTM(
-                      item.url as string,
-                      Astro.currentLocale,
-                    )}
+                    url={getLocaleUrlCTM(item.url as string, Astro.currentLocale)}
                     aria-label={item.label}
                     label={item.label}
-                    class="text-text-inverse/50 hover:text-text-inverse capitalize transition-colors"
+                    class="text-text-default/50 hover:text-primary capitalize transition-colors"
                   />
                 </li>
               ))
@@ -170,9 +158,9 @@ const stats = [
         </div>
       </div>
 
-      <!-- Bottom bar without copyright -->
-      <div class="border-border-dark flex flex-col items-center justify-center gap-2 border-t py-6">
-        <p class="text-text-inverse/30 text-xs text-center">
+      <!-- Bottom bar -->
+      <div class="border-border-light flex flex-col items-center justify-center gap-2 border-t py-6">
+        <p class="text-text-default/30 text-xs text-center">
           Setu Global Solution · Ahmedabad, Gujarat, India · Dedicated Germany Education Consultancy
         </p>
       </div>

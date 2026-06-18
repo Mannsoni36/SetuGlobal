@@ -7,7 +7,7 @@ items:
   - q: "Is the consultation with Setu Global completely free?"
     a: "Yes, 100% free — always. Our initial consultation, profile assessment, and university shortlisting involve zero charges and no hidden fees. We believe every student deserves expert guidance regardless of budget, which is why our support is free from your first call to your arrival in Germany."
   - q: "Is it really free to study in Germany for Indian students?"
-    a: "For the most part, yes. Public universities in Germany charge €0–€350 per semester as administrative fees only, with no tuition fees even for international students from India. You mainly cover living costs and a blocked account. This can save you lakhs compared to other study destinations, and we help you shortlist tuition-free public universities."
+    a: "Germany is one of the most affordable study destinations in the world. Public universities charge only a small semester administrative fee — a fraction of what you'd pay in the UK, US, or Australia — and this applies to international students from India as well. You mainly need to cover living costs and a blocked account, which still works out to far less than other popular study destinations."
   - q: "What documents are required for a Germany student visa?"
     a: "Key documents include your university admission letter, valid passport, proof of financial resources (a blocked account of €11,208 or more), health insurance, academic certificates with certified translations, APS certificate, biometric photos, and a completed visa application form. Setu Global Solution prepares and reviews every document with you, including professional SOP and LOR writing."
   - q: "What is a blocked account (Sperrkonto) and how much do I need?"
@@ -17,7 +17,7 @@ items:
   - q: "How long does the entire Germany application and visa process take?"
     a: "Ideally start 12 to 18 months before your target intake. The university application itself takes 2 to 4 months, and visa processing takes roughly 6 to 12 weeks after you receive your admission letter. We strongly recommend starting early, especially for the Winter Semester (October) and Summer Semester (April) intakes. Setu Global Solution manages the full process end to end with expert guidance at every stage."
   - q: "What is the cost of studying and living in Germany?"
-    a: "Public universities charge €0–€350 per semester as administrative fees only, with no tuition fees. Private universities range from €5,000 to €20,000 per year. Living costs vary by city: Munich is higher at €1,200–€1,500 per month, while cities like Leipzig or Dresden are very affordable at €700–€900 per month. In your free consultation we give you a realistic budget for your chosen city."
+    a: "Public universities in Germany charge only a modest semester administrative fee — far lower than UK, US, or Australian universities. Private universities range from €5,000 to €20,000 per year. Living costs vary by city: Munich is higher at €1,200–€1,500 per month, while cities like Leipzig or Dresden are very affordable at €700–€900 per month. In your free consultation we give you a realistic budget for your chosen city."
   - q: "Can I work while studying in Germany?"
     a: "Yes. International students in Germany can legally work up to 120 full days or 240 half days per year. Part-time jobs typically pay €12–€15 per hour, which can cover a significant portion of your monthly living expenses. After graduation you also receive an 18-month job seeker visa to find full-time work."
   - q: "Which courses and programs are popular in Germany?"
@@ -27,7 +27,7 @@ items:
   - q: "What happens after graduation — can I stay in Germany?"
     a: "Absolutely. Germany offers an 18-month Job Seeker Visa after graduation, allowing you to stay and find employment. Once you have a job offer, you can convert it into a work permit. After five years of working in Germany, you can apply for Permanent Residency. Our career and job guidance helps you with resume building, interview prep, and your job search."
   - q: "Which is the best Germany education consultancy in Ahmedabad?"
-    a: "Setu Global Solution is Ahmedabad's dedicated Germany education consultancy with 200+ students successfully placed in German universities. Unlike general study-abroad consultancies, we focus exclusively on Germany — which means every recommendation is grounded in current APS rules, German university intake requirements, and what German embassies actually look for from Indian applicants. Our consultation is 100% free with no hidden fees."
+    a: "Setu Global Solution is Ahmedabad's dedicated Germany education consultancy with a strong track record of students successfully placed in German universities. Unlike general study-abroad consultancies, we focus exclusively on Germany — which means every recommendation is grounded in current APS rules, German university intake requirements, and what German embassies actually look for from Indian applicants. Our consultation is 100% free with no hidden fees."
   - q: "What is the APS certificate and how do I get it for a Germany student visa?"
     a: "The APS (Akademische Prüfstelle) certificate is a mandatory document verification issued by the German embassy's academic assessment office in India. It confirms that your academic qualifications meet German standards. To get it, you submit your degree certificates, transcripts, and marksheets to the APS India office along with the application fee. Processing takes 4–8 weeks. Setu Global Solution guides you through the complete APS application — including document preparation and what to expect in the APS interview."
   - q: "What IELTS score is required for German university admission?"
@@ -55,7 +55,7 @@ items:
       "name": "Is it really free to study in Germany for Indian students?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For the most part, yes. Public universities in Germany charge €0–€350 per semester as administrative fees only, with no tuition fees even for international students from India. You mainly cover living costs and a blocked account. This can save you lakhs compared to other study destinations, and we help you shortlist tuition-free public universities."
+        "text": "Germany is one of the most affordable study destinations in the world. Public universities charge only a small semester administrative fee — a fraction of what you'd pay in the UK, US, or Australia — and this applies to international students from India as well. You mainly need to cover living costs and a blocked account, which still works out to far less than other popular study destinations."
       }
     },
     {
@@ -95,7 +95,7 @@ items:
       "name": "What is the cost of studying and living in Germany?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Public universities charge €0–€350 per semester as administrative fees only, with no tuition fees. Private universities range from €5,000 to €20,000 per year. Living costs vary by city: Munich is higher at €1,200–€1,500 per month, while cities like Leipzig or Dresden are very affordable at €700–€900 per month. In your free consultation we give you a realistic budget for your chosen city."
+        "text": "Public universities in Germany charge only a modest semester administrative fee — far lower than UK, US, or Australian universities. Private universities range from €5,000 to €20,000 per year. Living costs vary by city: Munich is higher at €1,200–€1,500 per month, while cities like Leipzig or Dresden are very affordable at €700–€900 per month. In your free consultation we give you a realistic budget for your chosen city."
       }
     },
     {
@@ -135,7 +135,7 @@ items:
       "name": "Which is the best Germany education consultancy in Ahmedabad?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Setu Global Solution is Ahmedabad's dedicated Germany education consultancy with 200+ students successfully placed in German universities. Unlike general study-abroad consultancies, we focus exclusively on Germany — which means every recommendation is grounded in current APS rules, German university intake requirements, and what German embassies actually look for from Indian applicants. Our consultation is 100% free with no hidden fees."
+        "text": "Setu Global Solution is Ahmedabad's dedicated Germany education consultancy with a strong track record of students successfully placed in German universities. Unlike general study-abroad consultancies, we focus exclusively on Germany — which means every recommendation is grounded in current APS rules, German university intake requirements, and what German embassies actually look for from Indian applicants. Our consultation is 100% free with no hidden fees."
       }
     },
     {
