@@ -4,7 +4,7 @@ import overrideObjects from "@/lib/utils/overrideObjects";
 import { markdownify } from "@/lib/utils/textConverter";
 import OptimizedImage from "../utilities/OptimizedImage.astro";
 
-type SectionType = {
+type PersonType = {
   enable?: boolean;
   name?: string;
   role?: string;
@@ -15,68 +15,136 @@ type SectionType = {
   initials?: string;
 };
 
-type Props = { content?: SectionType };
+type Props = { content?: PersonType };
 
-let defaultContent = (
+let founderData = (
   await getEntryCTM("sections", "founder", Astro.currentLocale)
-)?.data as unknown as SectionType;
+)?.data as unknown as PersonType;
 
-let actualContent = overrideObjects(
-  { ...defaultContent },
-  Astro.props.content,
-) as SectionType;
+let coFounderData = (
+  await getEntryCTM("sections", "co-founder", Astro.currentLocale)
+)?.data as unknown as PersonType;
 
-const { enable = true, name, role, quote, bio, photo, photoAlt, initials } =
-  actualContent ?? {};
+let founder = overrideObjects({ ...founderData }, Astro.props.content) as PersonType;
+let coFounder = coFounderData as PersonType;
 
-if (!enable) return;
+if (!founder?.enable) return;
 ---
 
 <section class="section-spacing-vertical relative">
   <div class="container">
-    <div
-      class="bg-theme-light mx-auto flex max-w-4xl flex-col items-center gap-8 rounded-2xl p-8 text-center md:flex-row md:items-start md:gap-10 md:p-12 md:text-left"
-      data-aos="fade-up"
-      data-aos-duration="600">
-      <div class="shrink-0">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-10 text-center" data-aos="fade-up" data-aos-duration="500">
+        <span class="bg-primary/10 text-primary mb-3 inline-block rounded-full px-4 py-1.5 text-sm font-semibold tracking-wide uppercase">
+          The People Behind Setu
+        </span>
+        <h2 class="text-h3-sm lg:text-h3 font-bold">Built by people who've lived it</h2>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <!-- Founder Card -->
+        <div
+          class="bg-theme-light flex flex-col gap-6 rounded-2xl p-8 md:p-10"
+          data-aos="fade-up"
+          data-aos-delay="0"
+          data-aos-duration="600">
+          <div class="flex items-center gap-5">
+            <div class="shrink-0">
+              {
+                founder.photo ? (
+                  <OptimizedImage
+                    src={founder.photo}
+                    alt={founder.photoAlt || founder.name || "Founder"}
+                    width={100}
+                    height={100}
+                    class="size-20 rounded-full object-cover ring-4 ring-primary/20"
+                  />
+                ) : (
+                  <div
+                    class="bg-primary text-text-inverse flex size-20 items-center justify-center rounded-full text-2xl font-bold ring-4 ring-primary/20"
+                    title="Photo coming soon">
+                    {founder.initials || "MS"}
+                  </div>
+                )
+              }
+            </div>
+            <div>
+              {founder.name && <p class="text-lg font-bold">{founder.name}</p>}
+              {founder.role && <p class="text-primary text-sm font-semibold">{founder.role}</p>}
+              <span class="bg-secondary/15 text-secondary mt-1 inline-block rounded-full px-3 py-0.5 text-xs font-semibold">Ahmedabad, India</span>
+            </div>
+          </div>
+          {
+            founder.quote && (
+              <p
+                class="text-text-default/80 border-primary border-l-4 pl-4 text-base italic leading-relaxed"
+                set:html={markdownify(`"${founder.quote}"`)}
+              />
+            )
+          }
+          {
+            founder.bio && (
+              <p
+                class="text-text-default/60 text-sm leading-relaxed"
+                set:html={markdownify(founder.bio)}
+              />
+            )
+          }
+        </div>
+
+        <!-- Co-Founder Card -->
         {
-          photo ? (
-            <OptimizedImage
-              src={photo}
-              alt={photoAlt || name || "Founder"}
-              width={140}
-              height={140}
-              class="size-32 rounded-full object-cover md:size-35"
-            />
-          ) : (
+          coFounder?.enable !== false && coFounder && (
             <div
-              class="bg-primary text-text-inverse flex size-32 items-center justify-center rounded-full text-4xl font-bold md:size-35"
-              title="Photo coming soon">
-              {initials || "MS"}
+              class="bg-theme-light flex flex-col gap-6 rounded-2xl p-8 md:p-10"
+              data-aos="fade-up"
+              data-aos-delay="150"
+              data-aos-duration="600">
+              <div class="flex items-center gap-5">
+                <div class="shrink-0">
+                  {
+                    coFounder.photo ? (
+                      <OptimizedImage
+                        src={coFounder.photo}
+                        alt={coFounder.photoAlt || coFounder.name || "Co-Founder"}
+                        width={100}
+                        height={100}
+                        class="size-20 rounded-full object-cover ring-4 ring-secondary/20"
+                      />
+                    ) : (
+                      <div
+                        class="bg-secondary text-text-inverse flex size-20 items-center justify-center rounded-full text-2xl font-bold ring-4 ring-secondary/20"
+                        title="Photo coming soon">
+                        {coFounder.initials || "MG"}
+                      </div>
+                    )
+                  }
+                </div>
+                <div>
+                  {coFounder.name && <p class="text-lg font-bold">{coFounder.name}</p>}
+                  {coFounder.role && <p class="text-secondary text-sm font-semibold">{coFounder.role}</p>}
+                  <span class="bg-primary/10 text-primary mt-1 inline-block rounded-full px-3 py-0.5 text-xs font-semibold">Germany — 14 Years</span>
+                </div>
+              </div>
+              {
+                coFounder.quote && (
+                  <p
+                    class="text-text-default/80 border-secondary border-l-4 pl-4 text-base italic leading-relaxed"
+                    set:html={markdownify(`"${coFounder.quote}"`)}
+                  />
+                )
+              }
+              {
+                coFounder.bio && (
+                  <p
+                    class="text-text-default/60 text-sm leading-relaxed"
+                    set:html={markdownify(coFounder.bio)}
+                  />
+                )
+              }
             </div>
           )
         }
-      </div>
-
-      <div>
-        {
-          quote && (
-            <p
-              class="text-h5-sm lg:text-h5 mb-4 font-medium italic"
-              set:html={markdownify(`“${quote}”`)}
-            />
-          )
-        }
-        {
-          bio && (
-            <p
-              class="text-text-default/70 mb-4 text-sm xl:text-base"
-              set:html={markdownify(bio)}
-            />
-          )
-        }
-        {name && <p class="font-semibold lg:text-lg">{name}</p>}
-        {role && <p class="text-primary text-sm font-medium">{role}</p>}
       </div>
     </div>
   </div>

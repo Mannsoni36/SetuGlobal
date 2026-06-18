@@ -14,7 +14,7 @@ features:
     description: "SOP writing, LOR drafts, certified translations, application forms — we handle the paperwork so you can focus on your future."
   - icon: "TrendingUp"
     title: "RESULT-ORIENTED APPROACH"
-    description: "Our 98% visa success rate comes from meticulous document prep, proactive embassy communication, and years of Germany-specific expertise."
+    description: "Our strong visa success record comes from meticulous document prep, proactive embassy communication, and years of Germany-specific expertise."
   - icon: "PlaneLanding"
     title: "END-TO-END TILL ARRIVAL"
     description: "Our support doesn't stop at the visa. We help with accommodation, pre-departure orientation, and settling in once you land in Germany."

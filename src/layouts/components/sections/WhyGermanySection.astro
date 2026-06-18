@@ -3,7 +3,6 @@ import { getEntryCTM } from "@/lib/contentParser.astro";
 import overrideObjects from "@/lib/utils/overrideObjects";
 import { markdownify } from "@/lib/utils/textConverter";
 import SectionBadge from "../global/SectionBadge.astro";
-import SectionTitle from "../global/SectionTitle.astro";
 import Icons from "@/helpers/Icons.astro";
 
 type Reason = { icon?: string; highlight?: string; title: string; description: string };
@@ -29,51 +28,99 @@ let actualContent = overrideObjects(
 const { enable = true, badge, title, description, reasons } = actualContent ?? {};
 
 if (!enable) return;
+
+const topReasons = reasons?.slice(0, 3) ?? [];
+const restReasons = reasons?.slice(3) ?? [];
 ---
 
-<section id="why-germany" class="section-spacing-vertical relative scroll-mt-28">
+<section id="why-germany" class="section-spacing-vertical relative scroll-mt-28 overflow-hidden">
+
+  <!-- Background gradient -->
+  <div class="pointer-events-none absolute inset-0 -z-10">
+    <div class="absolute -top-40 -right-40 size-[600px] rounded-full bg-primary/5 blur-3xl"></div>
+    <div class="absolute -bottom-40 -left-40 size-[500px] rounded-full bg-secondary/5 blur-3xl"></div>
+  </div>
+
   <div class="container">
-    <div class="mx-auto max-w-2xl text-center">
+    <!-- Header -->
+    <div class="mx-auto max-w-3xl text-center" data-aos="fade-up" data-aos-duration="500">
       {badge && <SectionBadge title={badge} />}
-      {title && <SectionTitle title={title} class="mb-4!" />}
-      {
-        description && (
-          <p
-            class="text-text-default/70 text-base xl:text-lg"
-            set:html={markdownify(description)}
-          />
-        )
-      }
+      {title && (
+        <h2 class="text-h2-sm lg:text-h2 mb-4 font-bold leading-tight">
+          {title}
+        </h2>
+      )}
+      {description && (
+        <p class="text-text-default/60 text-base xl:text-lg" set:html={markdownify(description)} />
+      )}
     </div>
 
-    {
-      reasons && reasons.length > 0 && (
-        <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-          {reasons.map((reason, i) => (
-            <div
-              class="bg-theme-light flex flex-col gap-3 rounded-lg p-5 xl:gap-4 xl:px-7 xl:py-7"
-              data-aos="fade-up"
-              data-aos-delay={(i % 4) * 100}
-              data-aos-duration="600">
+    <!-- Top 3 Spotlight Cards -->
+    {topReasons.length > 0 && (
+      <div class="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
+        {topReasons.map((reason, i) => (
+          <div
+            class:list={[
+              "group relative overflow-hidden rounded-2xl p-8 transition-transform duration-300 hover:-translate-y-1",
+              i === 0
+                ? "bg-primary text-white"
+                : i === 1
+                ? "bg-secondary text-white"
+                : "bg-theme-dark text-white"
+            ]}
+            data-aos="fade-up"
+            data-aos-delay={i * 100}
+            data-aos-duration="600">
+            <!-- Big highlight number/text -->
+            <p class="mb-2 text-5xl font-black opacity-20 lg:text-6xl">{reason.highlight}</p>
+            <div class="relative">
               {reason.icon && (
-                <div class="bg-primary/10 text-primary flex size-12 items-center justify-center rounded-full">
+                <div class="mb-4 flex size-12 items-center justify-center rounded-xl bg-white/15">
                   <Icons icon={reason.icon} width="24" height="24" />
                 </div>
               )}
-              {reason.highlight && (
-                <span class="text-primary text-sm font-semibold uppercase tracking-wide">
-                  {reason.highlight}
-                </span>
-              )}
-              <h3 class="text-h5-sm lg:text-h5 font-semibold">{reason.title}</h3>
-              <p
-                class="text-text-default/70 text-sm xl:text-base"
-                set:html={markdownify(reason.description)}
-              />
+              <h3 class="text-h5-sm lg:text-h5 mb-3 font-bold">{reason.title}</h3>
+              <p class="text-sm leading-relaxed opacity-80">{reason.description}</p>
             </div>
-          ))}
-        </div>
-      )
-    }
+          </div>
+        ))}
+      </div>
+    )}
+
+    <!-- Remaining 5 Reasons — clean list rows -->
+    {restReasons.length > 0 && (
+      <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5" data-aos="fade-up" data-aos-delay="200" data-aos-duration="600">
+        {restReasons.map((reason, i) => (
+          <div class="bg-theme-light group flex flex-col gap-3 rounded-xl p-6 transition-all duration-300 hover:shadow-md">
+            {reason.icon && (
+              <div class="bg-primary/10 text-primary flex size-10 items-center justify-center rounded-lg">
+                <Icons icon={reason.icon} width="20" height="20" />
+              </div>
+            )}
+            {reason.highlight && (
+              <span class="text-secondary text-base font-bold">{reason.highlight}</span>
+            )}
+            <h3 class="text-sm font-bold leading-snug lg:text-base">{reason.title}</h3>
+            <p class="text-text-default/60 text-xs leading-relaxed xl:text-sm">{reason.description}</p>
+          </div>
+        ))}
+      </div>
+    )}
+
+    <!-- Bottom CTA strip -->
+    <div
+      class="mt-10 flex flex-col items-center justify-between gap-4 rounded-2xl border border-primary/20 bg-primary/5 px-8 py-6 text-center sm:flex-row sm:text-left"
+      data-aos="fade-up"
+      data-aos-delay="300"
+      data-aos-duration="500">
+      <p class="text-text-default/80 text-base font-medium">
+        Ready to make Germany your next chapter?
+      </p>
+      <a
+        href="/#contact"
+        class="bg-primary hover:bg-primary/90 shrink-0 rounded-lg px-6 py-3 text-sm font-semibold text-white transition-colors duration-200">
+        Book a Free Consultation
+      </a>
+    </div>
   </div>
 </section>

@@ -15,7 +15,7 @@ items:
   - q: "Do I need to know German to study in Germany?"
     a: "No, not to start. Hundreds of master's and bachelor's programs at German universities are taught fully in English. For English-taught programs you typically need IELTS (6.0–6.5) or TOEFL. Learning basic German still helps with daily life and job opportunities, and we offer German language coaching to support you."
   - q: "How long does the entire Germany application and visa process take?"
-    a: "Ideally start 12 to 18 months before your target intake. The university application itself takes 2 to 4 months, and visa processing takes roughly 6 to 12 weeks after you receive your admission letter. We strongly recommend starting early, especially for the Winter Semester (October) and Summer Semester (April) intakes. Setu Global Solution manages the full process end to end with a 98% visa approval rate."
+    a: "Ideally start 12 to 18 months before your target intake. The university application itself takes 2 to 4 months, and visa processing takes roughly 6 to 12 weeks after you receive your admission letter. We strongly recommend starting early, especially for the Winter Semester (October) and Summer Semester (April) intakes. Setu Global Solution manages the full process end to end with expert guidance at every stage."
   - q: "What is the cost of studying and living in Germany?"
     a: "Public universities charge €0–€350 per semester as administrative fees only, with no tuition fees. Private universities range from €5,000 to €20,000 per year. Living costs vary by city: Munich is higher at €1,200–€1,500 per month, while cities like Leipzig or Dresden are very affordable at €700–€900 per month. In your free consultation we give you a realistic budget for your chosen city."
   - q: "Can I work while studying in Germany?"
@@ -27,7 +27,7 @@ items:
   - q: "What happens after graduation — can I stay in Germany?"
     a: "Absolutely. Germany offers an 18-month Job Seeker Visa after graduation, allowing you to stay and find employment. Once you have a job offer, you can convert it into a work permit. After five years of working in Germany, you can apply for Permanent Residency. Our career and job guidance helps you with resume building, interview prep, and your job search."
   - q: "Which is the best Germany education consultancy in Ahmedabad?"
-    a: "Setu Global Solution is Ahmedabad's dedicated Germany education consultancy with a 98% student visa success rate and 200+ students placed in German universities. Unlike general study-abroad consultancies, we focus exclusively on Germany — which means every recommendation is grounded in current APS rules, German university intake requirements, and what German embassies actually look for from Indian applicants. Our consultation is 100% free with no hidden fees."
+    a: "Setu Global Solution is Ahmedabad's dedicated Germany education consultancy with 200+ students successfully placed in German universities. Unlike general study-abroad consultancies, we focus exclusively on Germany — which means every recommendation is grounded in current APS rules, German university intake requirements, and what German embassies actually look for from Indian applicants. Our consultation is 100% free with no hidden fees."
   - q: "What is the APS certificate and how do I get it for a Germany student visa?"
     a: "The APS (Akademische Prüfstelle) certificate is a mandatory document verification issued by the German embassy's academic assessment office in India. It confirms that your academic qualifications meet German standards. To get it, you submit your degree certificates, transcripts, and marksheets to the APS India office along with the application fee. Processing takes 4–8 weeks. Setu Global Solution guides you through the complete APS application — including document preparation and what to expect in the APS interview."
   - q: "What IELTS score is required for German university admission?"
@@ -87,7 +87,7 @@ items:
       "name": "How long does the entire Germany application and visa process take?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ideally start 12 to 18 months before your target intake. The university application itself takes 2 to 4 months, and visa processing takes roughly 6 to 12 weeks after you receive your admission letter. We strongly recommend starting early, especially for the Winter Semester (October) and Summer Semester (April) intakes. Setu Global Solution manages the full process end to end with a 98% visa approval rate."
+        "text": "Ideally start 12 to 18 months before your target intake. The university application itself takes 2 to 4 months, and visa processing takes roughly 6 to 12 weeks after you receive your admission letter. We strongly recommend starting early, especially for the Winter Semester (October) and Summer Semester (April) intakes. Setu Global Solution manages the full process end to end with expert guidance at every stage."
       }
     },
     {
@@ -135,7 +135,7 @@ items:
       "name": "Which is the best Germany education consultancy in Ahmedabad?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Setu Global Solution is Ahmedabad's dedicated Germany education consultancy with a 98% student visa success rate and 200+ students placed in German universities. Unlike general study-abroad consultancies, we focus exclusively on Germany — which means every recommendation is grounded in current APS rules, German university intake requirements, and what German embassies actually look for from Indian applicants. Our consultation is 100% free with no hidden fees."
+        "text": "Setu Global Solution is Ahmedabad's dedicated Germany education consultancy with 200+ students successfully placed in German universities. Unlike general study-abroad consultancies, we focus exclusively on Germany — which means every recommendation is grounded in current APS rules, German university intake requirements, and what German embassies actually look for from Indian applicants. Our consultation is 100% free with no hidden fees."
       }
     },
     {

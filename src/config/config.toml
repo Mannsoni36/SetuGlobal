@@ -71,7 +71,7 @@
 
   # For changing footer description and footer copyright in different languages see src/i18n/en.json and src/i18n/fr.json
   [settings.copyright]
-    enable = true
+    enable = false
     text   = "© 2026 Setu Global Solution. All Rights Reserved." # Check src/i18n/en.json and src/i18n/fr.json for changing the copyright text in different languages or directly add value here if you are not using internationalization feature
 
   # Mailchimp Subscription Form located in footer

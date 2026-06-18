@@ -18,9 +18,55 @@ let { copyright, footerDescription } = config.settings;
 
 footerDescription = footerDescription || t("footerBlock.description");
 const copyrightText = copyright.text;
+
+const stats = [
+  { value: "200+", label: "Students Placed" },
+  { value: "14", label: "Years in Germany" },
+  { value: "8+", label: "Services Offered" },
+  { value: "100%", label: "Free Consultation" },
+];
 ---
 
 <footer>
+  <!-- Pre-footer CTA band -->
+  <div class="bg-primary">
+    <div class="container flex flex-col items-center justify-between gap-6 py-10 text-center md:flex-row md:text-left">
+      <div>
+        <p class="text-xl font-bold text-white md:text-2xl">Ready to study in Germany?</p>
+        <p class="mt-1 text-sm text-white/70">Book your free consultation — no fees, no commitment.</p>
+      </div>
+      <div class="flex flex-col gap-3 sm:flex-row">
+        <a
+          href="/#contact"
+          class="rounded-lg bg-white px-7 py-3 text-sm font-bold text-primary transition-opacity hover:opacity-90">
+          Book Free Consultation
+        </a>
+        <a
+          href={`https://wa.me/${config.contact.phone?.replace(/\s|\+/g, "")}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-lg border-2 border-white/40 px-7 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10">
+          WhatsApp Us
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats strip -->
+  <div class="bg-secondary">
+    <div class="container">
+      <div class="flex flex-wrap items-center justify-around gap-6 py-6">
+        {stats.map((s) => (
+          <div class="flex flex-col items-center gap-0.5">
+            <span class="text-2xl font-black text-white">{s.value}</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-white/70">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Main footer body -->
   <div class="bg-theme-dark">
     <div class="relative container flex flex-col">
       <div
@@ -38,6 +84,19 @@ const copyrightText = copyright.text;
               />
             )
           }
+          <!-- Contact info inline -->
+          <div class="mt-6 flex flex-col gap-2 text-sm">
+            <a
+              href={`mailto:${config.contact.email}`}
+              class="text-secondary hover:text-secondary/80 font-medium transition-colors">
+              {config.contact.email}
+            </a>
+            <a
+              href={`tel:${config.contact.phone?.replace(/\s/g, "")}`}
+              class="text-text-inverse/60 hover:text-text-inverse font-medium transition-colors">
+              {config.contact.phone}
+            </a>
+          </div>
         </div>
 
         <div class="md:col-span-3">
@@ -45,26 +104,13 @@ const copyrightText = copyright.text;
             class="text-text-inverse mb-4 text-2xl font-semibold capitalize md:mb-10">
             {t("footerBlock.officeLabel")}
           </h3>
-          <div class="text-text-inverse/50 flex flex-col gap-0 md:gap-4">
+          <div class="text-text-inverse/50 flex flex-col gap-4">
             <p class="leading-relaxed lg:max-w-50">
               {config.contact.location}
             </p>
-            <div
-              class="hover:text-text-inverse! text-text-inverse/50! mt-4 transition-colors"
-              set:html={markdownify(config.contact.email)}
-            />
-            <div class="mt-4 text-2xl font-semibold">
-              <Button
-                tag="a"
-                variant="text"
-                url={getLocaleUrlCTM(
-                  `tel:${config.contact.phone?.replace(/\s/g, "")}`,
-                  Astro.currentLocale,
-                )}
-                label={config.contact.phone}
-                class="text-text-inverse hover:text-text-inverse"
-              />
-            </div>
+            <p class="text-text-inverse/40 text-sm">
+              Mon – Sat &nbsp;·&nbsp; 10:00 AM – 7:00 PM IST
+            </p>
           </div>
         </div>
 
@@ -124,19 +170,11 @@ const copyrightText = copyright.text;
         </div>
       </div>
 
-      <div
-        class="border-border-dark flex flex-col items-center justify-center border-t py-7">
-        {
-          copyright.enable && (
-            <div
-              class="text-text-inverse/50 text-center"
-              set:html={markdownify(
-                t("footerBlock.copyright") || copyrightText,
-                true,
-              )}
-            />
-          )
-        }
+      <!-- Bottom bar without copyright -->
+      <div class="border-border-dark flex flex-col items-center justify-center gap-2 border-t py-6">
+        <p class="text-text-inverse/30 text-xs text-center">
+          Setu Global Solution · Ahmedabad, Gujarat, India · Dedicated Germany Education Consultancy
+        </p>
       </div>
     </div>
   </div>

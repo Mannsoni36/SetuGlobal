@@ -5,9 +5,9 @@
   --leading-inherit: inherit;
 
   /* Colors */
-  --color-primary: #2563ff;
-  --color-secondary: #9ECF59;
-  --color-accent: #6366F1;
+  --color-primary: #5B2D8E;
+  --color-secondary: #F47920;
+  --color-accent: #F47920;
   --color-body: #fff; /* Background color */
   --color-theme-light: #f5f3ef; /* light surface/card section */
   --color-theme-dark: #141414; /* dark surface/card section */

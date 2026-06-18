@@ -1,7 +1,7 @@
 ---
 subtitle: "Study Abroad, Without The Stress"
 title: "Your Dream of Studying<br />in Germany Starts Here"
-description: "From university shortlisting to visa approval and pre-departure, we guide Indian students through every step of the journey to Germany with a 98% visa success rate."
+description: "From university shortlisting to visa approval and pre-departure, we guide Indian students through every step of the journey to Germany — end to end, with expert support at every stage."
 
 image: "/images/home-banner/banner-3.jpg"
 imageAlt: "Skyline of a German city"
@@ -23,8 +23,8 @@ button:
 
 satisfactionClients:
   enable: true
-  count: "98%"
-  label: "Visa success rate — **200+** students placed in Germany"
+  count: "200+"
+  label: "Students successfully placed in German universities"
   avatars:
     - "/images/customers/avatar/client-1-1.png"
     - "/images/customers/avatar/client-2-1.png"
