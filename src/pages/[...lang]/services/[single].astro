@@ -51,6 +51,36 @@ const { Content } = await render(service);
 ---
 
 <Base {...service.data}>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": service.data.metaTitle || service.data.title,
+      "serviceType": service.data.title,
+      "description": service.data.description,
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Setu Global Solution",
+        "url": "https://www.setuglobalsolution.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Ahmedabad",
+          "addressRegion": "Gujarat",
+          "addressCountry": "IN"
+        }
+      },
+      "areaServed": "Ahmedabad",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR",
+        "description": "Free consultation"
+      }
+    })}
+  />
+
   <PageHeader title={service.data.title} breadcrumbTitle={service.data.title} />
 
   <section>
