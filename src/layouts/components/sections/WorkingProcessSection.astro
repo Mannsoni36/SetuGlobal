@@ -5,107 +5,107 @@ import { getEntryCTM } from "@/lib/contentParser.astro";
 import overrideObjects from "@/lib/utils/overrideObjects";
 import type { workingProcessSectionSchema } from "@/sections.schema";
 import { markdownify } from "@/lib/utils/textConverter";
-import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
 import SectionBadge from "../global/SectionBadge.astro";
-import SectionTitle from "../global/SectionTitle.astro";
 
-type SectionType = Section &
-  NonNullable<z.infer<typeof workingProcessSectionSchema>>;
-type Props = {
-  content?: SectionType;
-};
+type SectionType = Section & NonNullable<z.infer<typeof workingProcessSectionSchema>>;
+type Props = { content?: SectionType };
 
 let defaultContent = (
   await getEntryCTM("sections", "working-process", Astro.currentLocale)
 )?.data as SectionType;
 
-let actualContent = overrideObjects(
-  { ...defaultContent },
-  Astro.props.content,
-) as SectionType;
+let actualContent = overrideObjects({ ...defaultContent }, Astro.props.content) as SectionType;
 
-const { enable = true, badge, title, image, list } = actualContent;
-
+const { enable = true, badge, title, list } = actualContent;
 if (!enable) return;
+
+const stepColors = [
+  { num: "text-primary", card: "bg-primary", border: "border-primary/20", bg: "bg-primary/5" },
+  { num: "text-secondary", card: "bg-secondary", border: "border-secondary/20", bg: "bg-secondary/5" },
+  { num: "text-primary", card: "bg-primary", border: "border-primary/20", bg: "bg-primary/5" },
+  { num: "text-secondary", card: "bg-secondary", border: "border-secondary/20", bg: "bg-secondary/5" },
+];
 ---
 
-<section class="overflow-hidden relative pt-0">
-  <div
-    class="container grid grid-cols-1 place-items-stretch lg:grid-cols-2 lg:gap-16 xl:gap-32">
-    <div>
-      {
-        image && (
-          <OptimizedImage
-            src={image}
-            alt={title}
-            width={870}
-            height={900}
-            class="h-100 lg:h-full w-full overflow-hidden object-cover md:h-150 lg:absolute lg:right-[calc(50%+2rem)] lg:max-w-1/2 xl:right-[calc(50%+4rem)]"
-            data-aos="fade-left"
-            data-aos-duration="800"
-          />
-        )
-      }
+<section class="section-spacing-vertical bg-[#f5f3ef] relative">
+
+  <div class="container">
+
+    <!-- Header -->
+    <div class="mb-8 lg:mb-10 max-w-xl" data-aos="fade-up" data-aos-duration="500">
+      {badge && <SectionBadge title={badge} />}
+      {title && (
+        <h2
+          class="text-3xl font-black lg:text-4xl mt-3 leading-tight"
+          set:html={markdownify(title)}
+        />
+      )}
     </div>
 
-    <div
-      class="section-spacing-vertical flex flex-col justify-center gap-6 lg:order-2 lg:col-start-2 lg:gap-12 xl:gap-17">
-      {/* Header content */}
-      <div>
-        {badge && <SectionBadge title={badge} />}
-        {title && <SectionTitle title={title} />}
-      </div>
+    <!-- Steps grid -->
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+      {list?.map((item, i) => {
+        const color = stepColors[i % stepColors.length];
+        const isLast = i === (list.length - 1);
+        return (
+          <div
+            class="relative"
+            data-aos="fade-up"
+            data-aos-delay={i * 100}
+            data-aos-duration="500">
 
-      {/* Process list */}
-      {
-        list && list.length > 0 && (
-          <div class="relative flex flex-col gap-8 xl:gap-14">
-            {list.map((item, i) => (
-              <div
-                class="relative flex items-center [clip-path:unset]!"
-                data-aos="fade-up"
-                data-aos-delay={i * 100}
-                data-aos-duration="600">
-                {/* Timeline dotted line connector (hide on last item) */}
-                {i !== list.length - 1 && (
-                  <div class="border-primary absolute top-[75%] left-7 -ml-px h-full w-0 border-l-2 border-dashed md:left-7.25 lg:top-25 lg:left-[47.5px]" />
-                )}
-
-                {/* Icon Node */}
-                <div class="relative z-10 pe-5 md:pe-10">
-                  <div
-                    class:list={[
-                      "flex size-14 items-center justify-center rounded-full p-4 text-white lg:size-25",
-                      i === 0 ? "bg-primary" : "bg-theme-dark",
-                    ]}>
-                    {item.icon && (
-                      <OptimizedImage
-                        src={item.icon}
-                        alt={item.title}
-                        width={56}
-                        height={56}
-                        class="size-10"
-                        inlineSvg={true}
-                      />
-                    )}
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div>
-                  <h3 class="text-h4-sm lg:text-h4 mb-3 font-semibold lg:mb-4.5">
-                    {item.title}
-                  </h3>
-                  <p
-                    class="text-text-default/70 text-sm md:text-base lg:max-w-md xl:leading-7"
-                    set:html={markdownify(item.description)}
-                  />
-                </div>
+            <!-- Connector arrow (desktop only, not on last item) -->
+            {!isLast && (
+              <div class="absolute top-10 left-full z-10 hidden lg:flex items-center -translate-x-1/2 w-5">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 10h12M12 5l5 5-5 5" stroke="#5B2D8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+                </svg>
               </div>
-            ))}
+            )}
+
+            <!-- Step card -->
+            <div class:list={[
+              "h-full rounded-2xl border p-6 lg:p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg",
+              color.border, color.bg
+            ]}>
+
+              <!-- Step number pill -->
+              <div class="mb-6 flex items-center justify-between">
+                <span class:list={[
+                  "inline-flex h-9 w-9 items-center justify-center rounded-full text-sm font-black text-white",
+                  color.card
+                ]}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span class:list={["text-5xl font-black opacity-10 leading-none", color.num]}>
+                  {String(i + 1)}
+                </span>
+              </div>
+
+              <!-- Title -->
+              <h3 class="text-lg font-black mb-3 leading-snug">
+                {item.title}
+              </h3>
+
+              <!-- Description -->
+              <p
+                class="text-text-default/60 text-sm leading-relaxed"
+                set:html={markdownify(item.description)}
+              />
+            </div>
           </div>
-        )
-      }
+        );
+      })}
     </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-12 text-center" data-aos="fade-up" data-aos-duration="400">
+      <a
+        href="/#contact"
+        class="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-4 rounded-xl hover:bg-primary/90 transition-colors duration-200 text-sm lg:text-base">
+        Start with a free call →
+      </a>
+    </div>
+
   </div>
 </section>

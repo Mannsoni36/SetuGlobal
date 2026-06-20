@@ -1,0 +1,66 @@
+---
+const photos = [
+  { src: "/images/gallery/cities/berlin.jpg", label: "Berlin" },
+  { src: "/images/gallery/cities/munich.jpg", label: "Munich" },
+  { src: "/images/gallery/culture/neuschwanstein.jpg", label: "Neuschwanstein" },
+  { src: "/images/gallery/student-life/campus.jpg", label: "Campus Life" },
+  { src: "/images/gallery/cities/hamburg.jpg", label: "Hamburg" },
+  { src: "/images/gallery/culture/oktoberfest.jpg", label: "Oktoberfest" },
+  { src: "/images/gallery/universities/tu-munich.jpg", label: "TU Munich" },
+  { src: "/images/gallery/student-life/international.jpg", label: "Student Life" },
+];
+---
+
+<section class="section-spacing-vertical bg-[#f5f3ef] overflow-hidden">
+  <div class="container">
+    <div class="flex items-end justify-between mb-8" data-aos="fade-up" data-aos-duration="500">
+      <div>
+        <p class="text-primary mb-1 text-sm font-bold uppercase tracking-widest">Germany Awaits</p>
+        <h2 class="text-3xl font-black lg:text-4xl">See it before you go</h2>
+      </div>
+      <a
+        href="/gallery/"
+        class="hidden sm:inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/70 transition-colors">
+        View all photos
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- Photo grid -->
+    <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 lg:gap-4">
+      <!-- First photo: tall, spans 2 rows -->
+      <div
+        class="col-span-1 row-span-2 relative overflow-hidden rounded-2xl"
+        style="aspect-ratio: unset; min-height: 300px;"
+        data-aos="fade-up" data-aos-duration="500">
+        <img src={photos[0].src} alt={photos[0].label} loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+          <span class="text-white text-sm font-bold">{photos[0].label}</span>
+        </div>
+      </div>
+
+      <!-- Remaining 7 photos in regular grid -->
+      {photos.slice(1).map((photo, i) => (
+        <div
+          class="relative overflow-hidden rounded-2xl aspect-[4/3]"
+          data-aos="fade-up"
+          data-aos-delay={(i % 4) * 60}
+          data-aos-duration="500">
+          <img src={photo.src} alt={photo.label} loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+          <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+            <span class="text-white text-xs font-bold">{photo.label}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Mobile view all button -->
+    <div class="mt-6 text-center sm:hidden">
+      <a
+        href="/gallery/"
+        class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/70 transition-colors">
+        View all photos →
+      </a>
+    </div>
+  </div>
+</section>

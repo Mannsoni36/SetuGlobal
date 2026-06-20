@@ -2,7 +2,7 @@
 enable: true
 badge: "Contact"
 title: "Start Your <br /> Germany Journey Today"
-description: "Book a free consultation. Our expert counsellors will guide you from university selection all the way to landing in Germany — no cost, no commitment."
+description: "Free consultation, no commitment. Drop us a message and we'll get back within one business day."
 image: "/images/contact-home.jpg"
 imageAlt: "Student preparing for their move to Germany"
 characterImage: "/images/character-3d.png"
@@ -67,5 +67,5 @@ form:
       content: "We have received your message! We'll get back to you within one business day."
     - note: deprecated
       parentClass: "hidden text-sm message error"
-      content: "Something went wrong! Please try again or WhatsApp us at +91 81408 81823."
+      content: "Something went wrong! Please try again or WhatsApp us at +91 8140881823."
 ---

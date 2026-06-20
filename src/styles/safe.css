@@ -1,6 +1,31 @@
 @import "./buttons.css";
 @import "./utilities.css";
 
+/* ─── Global soft blob backgrounds ─────────────────────────────────────── */
+section {
+  position: relative;
+  isolation: isolate;
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 55% at 8% 18%,  rgba(91, 45, 142, 0.10) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 50% at 92% 82%, rgba(244, 121, 32, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Alternate blob positions on even sections for variety */
+section:nth-child(even)::before {
+  background:
+    radial-gradient(ellipse 50% 55% at 88% 15%, rgba(91, 45, 142, 0.09) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 50% at 12% 85%, rgba(244, 121, 32, 0.07) 0%, transparent 70%);
+}
+/* ─────────────────────────────────────────────────────────────────────── */
+
 form.contact-form {
   @apply prose-a:text-white/80 prose-a:underline prose-a:underline-offset-2;
 }
@@ -188,4 +213,56 @@ form.contact-form {
   box-shadow: 0 0 0 1000px var(--color-theme-dark) inset !important;
   caret-color: var(--color-text-inverse);
   transition: background-color 9999s ease-in-out 0s;
+}
+
+/* ── Light-background form variant (contact section on cream bg) ─────── */
+.contact-form--light .contact-form-field-label {
+  @apply text-text-default/70;
+}
+.contact-form--light .contact-form-control-shell {
+  @apply border-text-default/20;
+}
+.contact-form--light .contact-form-field:focus-within .contact-form-control-shell,
+.contact-form--light .contact-form-field.is-filled .contact-form-control-shell {
+  @apply border-primary;
+}
+.contact-form--light .contact-form-control {
+  @apply text-text-default placeholder-text-default/40;
+  caret-color: var(--color-text-default);
+}
+.contact-form--light .contact-form-choice-label {
+  @apply text-text-default/70;
+}
+.contact-form--light .contact-form-select-toggle {
+  @apply text-text-default;
+}
+.contact-form--light .contact-form-select-title {
+  @apply text-text-default/40;
+}
+.contact-form--light .contact-form-field:focus-within .contact-form-select-title,
+.contact-form--light .contact-form-field.is-filled .contact-form-select-title {
+  @apply text-text-default;
+}
+.contact-form--light .contact-form-select-arrow {
+  @apply text-text-default/40;
+}
+.contact-form--light .contact-form-select-dropdown {
+  @apply bg-white border-black/10;
+}
+.contact-form--light .contact-form-select-option {
+  @apply text-text-default/70 hover:bg-primary/5;
+}
+.contact-form--light .contact-form-select-search-wrap {
+  @apply bg-white;
+}
+.contact-form--light .contact-form-select-search {
+  @apply bg-white text-text-default placeholder:text-text-default/40 border-black/10;
+}
+.contact-form--light .contact-form-control:-webkit-autofill,
+.contact-form--light .contact-form-control:-webkit-autofill:hover,
+.contact-form--light .contact-form-control:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-text-default) !important;
+  -webkit-box-shadow: 0 0 0 1000px #f5f3ef inset !important;
+  box-shadow: 0 0 0 1000px #f5f3ef inset !important;
+  caret-color: var(--color-text-default);
 }

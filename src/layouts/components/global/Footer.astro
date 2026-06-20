@@ -46,7 +46,14 @@ const stats = [
           target="_blank"
           rel="noopener noreferrer"
           class="rounded-lg border-2 border-white/40 px-7 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10">
-          WhatsApp Us
+          🇮🇳 WhatsApp India
+        </a>
+        <a
+          href={`https://wa.me/${(config.contact as any).phoneGermany?.replace(/\s|\+/g, "")}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-lg border-2 border-white/40 px-7 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10">
+          🇩🇪 WhatsApp Germany
         </a>
       </div>
     </div>
@@ -92,7 +99,12 @@ const stats = [
             <a
               href={`tel:${config.contact.phone?.replace(/\s/g, "")}`}
               class="text-text-default/60 hover:text-text-default font-medium transition-colors">
-              {config.contact.phone}
+              🇮🇳 {config.contact.phone}
+            </a>
+            <a
+              href={`tel:${(config.contact as any).phoneGermany?.replace(/\s/g, "")}`}
+              class="text-text-default/60 hover:text-text-default font-medium transition-colors">
+              🇩🇪 {(config.contact as any).phoneGermany}
             </a>
             <p class="text-text-default/40 text-xs mt-1">Mon – Sat · 10:00 AM – 7:00 PM IST</p>
           </div>
@@ -103,9 +115,14 @@ const stats = [
             {t("footerBlock.officeLabel")}
           </h3>
           <div class="text-text-default/60 flex flex-col gap-4">
-            <p class="leading-relaxed lg:max-w-50">
-              {config.contact.location}
-            </p>
+            <div class="flex gap-2">
+              <span class="font-bold text-primary shrink-0">IN</span>
+              <p class="leading-relaxed text-sm">{config.contact.location}</p>
+            </div>
+            <div class="flex gap-2">
+              <span class="font-bold text-secondary shrink-0">DE</span>
+              <p class="leading-relaxed text-sm">{(config.contact as any).locationGermany}</p>
+            </div>
           </div>
         </div>
 

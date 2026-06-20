@@ -6,7 +6,7 @@ imageSecondary: "/images/about/about-rated-pic.jpg"
 imageSecondaryAlt: "Students reviewing university applications together"
 image: "/images/about/about-two.png"
 imageAlt: "Counsellor guiding a student through their application"
-description: "Setu Global Solution is Ahmedabad's dedicated Germany education consultancy. We handle the full arc of a study-abroad application — university shortlisting, SOP and visa documentation, blocked account setup, and arrival support — so you can focus on academics and language tests while we take care of everything else."
+description: "Ahmedabad's Germany-only consultancy. We handle university shortlisting, SOP, visa, blocked account and arrival support. One team, one destination, end to end."
 
 button:
   # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options

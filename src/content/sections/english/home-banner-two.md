@@ -1,15 +1,13 @@
 ---
 subtitle: "Study Abroad, Without The Stress"
 title: "Your Dream of Studying<br />in Germany Starts Here"
-description: "From university shortlisting to visa approval and pre-departure, we guide Indian students through every step of the journey to Germany — end to end, with expert support at every stage."
+description: ""
 
 image: "/images/home-banner/banner-3.jpg"
 imageAlt: "Skyline of a German city"
 
 button:
-  # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options
-  # (e.g., enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)
-  enable: true
+  enable: false
   label: "Request a Free Consultation"
   url: "/#contact"
   icon: # Optional

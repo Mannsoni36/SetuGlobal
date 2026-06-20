@@ -48,10 +48,10 @@
 }
 
 @utility section-spacing {
-  @apply pt-15 md:pt-16.5 lg:pt-20 xl:pt-25;
+  @apply pt-10 md:pt-12 lg:pt-14 xl:pt-16;
 }
 @utility section-spacing-vertical {
-  @apply py-15 md:py-16.5 lg:py-20 xl:py-25;
+  @apply py-10 md:py-12 lg:py-14 xl:py-16;
 }
 
 /* For debug */

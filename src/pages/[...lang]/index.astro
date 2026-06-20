@@ -12,6 +12,8 @@ import FounderSection from "@/components/sections/FounderSection.astro";
 import WhyGermanySection from "@/components/sections/WhyGermanySection.astro";
 import ProgramsSection from "@/components/sections/ProgramsSection.astro";
 import FaqSection from "@/components/sections/FaqSection.astro";
+import GalleryPreviewSection from "@/components/sections/GalleryPreviewSection.astro";
+import AusbildungPreviewSection from "@/components/sections/AusbildungPreviewSection.astro";
 import bgOptimizedImage from "@/lib/utils/bgOptimizedImage";
 
 export function getStaticPaths() {
@@ -37,12 +39,13 @@ imageToPreload = imageToPreload
 <Base {...homepage.data} homepage={true} preloadImages={[imageToPreload]}>
   <HomeBannerTwo />
   <FeaturesGridTwo />
-  <AboutCompanySectionTwo hasSectionSpacing={false} />
-  <FounderSection />
   <WorkingProcessSection />
   <WhyGermanySection />
   <ProgramsSection />
   <OurServicesSection />
+  <AusbildungPreviewSection />
+  <GalleryPreviewSection />
   <FaqSection />
+  <FounderSection />
   <ContactSection />
 </Base>

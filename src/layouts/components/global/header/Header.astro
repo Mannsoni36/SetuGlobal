@@ -22,7 +22,7 @@ const { stickyHeader, navigationButton } = config.settings;
 
 <header
   class:list={[
-    "header group/header border-border-dark/15 w-full transform border-b",
+    "header group/header w-full transform",
     { "sticky-header": stickyHeader },
   ]}>
   <div class="container-2xl">
@@ -34,7 +34,7 @@ const { stickyHeader, navigationButton } = config.settings;
 
       <ul
         id="nav-menu"
-        class="navbar hs-dropdown-menu lg:flex! lg:hs-dropdown-open:flex border-border-dark/15 flex-1 justify-center border-x max-lg:absolute max-lg:transform-none! lg:transform-none!">
+        class="navbar hs-dropdown-menu lg:flex! lg:hs-dropdown-open:flex flex-1 justify-center max-lg:absolute max-lg:transform-none! lg:transform-none!">
         {main.map((menu) => <NavMenuItem menu={menu} />)}
 
         {

@@ -41,9 +41,11 @@
 # Contact Information
 # -----------------------------------------------------------------------------------------------------------------------------------
 [contact]
-  location = "Ahmedabad, Gujarat, India"
-  phone    = "+91 81408 81823"
-  email    = "info@setuglobalsolution.com"
+  location        = "205 Avani Icon, Haridarshan Cross Road, Naroda, Ahmedabad, Gujarat 382330, India"
+  locationGermany = "Am Teltowkanal 07, 14513 Teltow, Germany"
+  phone           = "+91 8140881823"
+  phoneGermany    = "+49 17643615051"
+  email           = "info@setuglobalsolution.com"
 
 # Different theme settings
 # -----------------------------------------------------------------------------------------------------------------------------------

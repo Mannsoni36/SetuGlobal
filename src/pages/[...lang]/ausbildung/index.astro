@@ -1,0 +1,270 @@
+---
+import Base from "@/layouts/Base.astro";
+import { generatePaths } from "@/lib/utils/i18nUtils";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const trades = [
+  { icon: "🏥", german: "Pflegefachmann / Pflegefachfrau", english: "Nurse / Care Worker", duration: "3 Yrs", stipend: "€1,000–€1,200", demand: "Very High", accent: "primary" },
+  { icon: "⚡", german: "Elektroniker / Elektronikerin", english: "Electrician", duration: "3.5 Yrs", stipend: "€700–€900", demand: "High", accent: "secondary" },
+  { icon: "🚗", german: "KFZ-Mechatroniker", english: "Automobile Technician", duration: "3.5 Yrs", stipend: "€650–€850", demand: "High", accent: "primary" },
+  { icon: "⚙️", german: "Industriemechaniker", english: "Industrial Mechanic", duration: "3.5 Yrs", stipend: "€650–€800", demand: "High", accent: "secondary" },
+  { icon: "🔩", german: "Zerspanungsmechaniker", english: "CNC Technician", duration: "3.5 Yrs", stipend: "€650–€800", demand: "High", accent: "primary" },
+  { icon: "📊", german: "Kaufmann / Kauffrau", english: "Business & Commerce", duration: "3 Yrs", stipend: "€600–€800", demand: "Medium", accent: "secondary" },
+  { icon: "💻", german: "Fachinformatiker", english: "IT Specialist", duration: "3 Yrs", stipend: "€700–€950", demand: "Very High", accent: "primary" },
+  { icon: "🏗️", german: "Anlagenmechaniker", english: "Pipe & Plant Mechanic", duration: "3.5 Yrs", stipend: "€650–€850", demand: "High", accent: "secondary" },
+];
+
+const steps = [
+  { num: "01", title: "Free Guidance Session", desc: "We look at your background, chosen trade and German level, then map a realistic path.", accent: "primary" },
+  { num: "02", title: "German Training in India", desc: "We coach you to B1/B2 before you apply. Trade-relevant, practical German.", accent: "secondary" },
+  { num: "03", title: "Company Placement", desc: "We connect you with German companies hiring from India and prep your application.", accent: "primary" },
+  { num: "04", title: "Visa & Pre-Departure", desc: "Training contract, visa process, blocked account, full pre-departure checklist.", accent: "secondary" },
+  { num: "05", title: "Arrival Support", desc: "Our Germany-based team helps with registration, bank, insurance and settling in.", accent: "primary" },
+];
+---
+
+<Base
+  title="Ausbildung in Germany | Vocational Training | Setu Global Solution"
+  metaDescription="Setu Global Solution places Indian candidates in Ausbildung programs in Germany. Earn €600–€1,200/month training as an electrician, nurse, mechanic, IT specialist and more.">
+
+  <!-- Hero -->
+  <section class="ausbildung-hero py-16 lg:py-24">
+    <div class="container">
+      <div class="mx-auto max-w-2xl text-center">
+        <span class="bg-primary/10 text-primary mb-5 inline-block rounded-full px-5 py-1.5 text-xs font-bold uppercase tracking-widest">
+          Now Offered by Setu Global
+        </span>
+        <h1 class="mb-5 text-4xl font-black leading-tight text-text-default lg:text-5xl">
+          Ausbildung in Germany<br />
+          <span class="text-primary">for Technical Professionals</span>
+        </h1>
+        <p class="mx-auto mb-8 max-w-xl text-base text-text-default/70 leading-relaxed">
+          Train at a real German company. Earn a monthly stipend. Graduate as a certified professional in 2 to 3.5 years.
+        </p>
+        <a href="/#contact" class="rounded-xl bg-primary px-7 py-3.5 font-bold text-white transition-opacity hover:opacity-90 inline-block text-sm">
+          Book Appointment for Guidance
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is Ausbildung -->
+  <section class="section-spacing-vertical bg-white">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16 lg:items-center">
+        <div data-aos="fade-right" data-aos-duration="600">
+          <p class="text-primary mb-3 text-xs font-bold uppercase tracking-widest">What Is Ausbildung?</p>
+          <h2 class="mb-5 text-3xl font-black leading-tight lg:text-4xl">
+            Germany's vocational<br /><span class="text-primary">training system</span>
+          </h2>
+          <p class="text-text-default/70 mb-4 text-base leading-relaxed">
+            Ausbildung is Germany's dual training program. You work at a company 3 to 4 days a week and attend a vocational school the rest. At the end, you get a recognised professional qualification valid across Germany and the EU.
+          </p>
+          <p class="text-text-default/70 text-base leading-relaxed">
+            Germany values skilled tradespeople highly. Demand is strong, salaries are good, and a clear path to permanent residency exists for those who qualify.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-3" data-aos="fade-left" data-aos-duration="600">
+          {[
+            { value: "€600–€1,200", label: "Monthly Stipend", sub: "Earn while you train" },
+            { value: "2–3.5 Yrs", label: "Duration", sub: "Full qualification at the end" },
+            { value: "B1 / B2", label: "German Level", sub: "We help you get there in India" },
+            { value: "18–35", label: "Age Range", sub: "Most companies prefer" },
+          ].map((b) => (
+            <div class="rounded-2xl bg-[#f5f3ef] p-5 border border-[#e0d9cc]">
+              <p class="text-primary text-xl font-black lg:text-2xl">{b.value}</p>
+              <p class="mt-1 text-xs font-bold text-text-default">{b.label}</p>
+              <p class="text-text-default/50 mt-0.5 text-xs">{b.sub}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trades -->
+  <section id="trades" class="ausbildung-dot-bg section-spacing-vertical scroll-mt-28">
+    <div class="container">
+      <div class="mb-8 text-center" data-aos="fade-up" data-aos-duration="500">
+        <p class="text-primary mb-2 text-xs font-bold uppercase tracking-widest">Technical Fields</p>
+        <h2 class="text-3xl font-black lg:text-4xl">Trades We Place In</h2>
+      </div>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {trades.map((trade, i) => (
+          <div
+            class:list={["rounded-2xl border bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md", trade.accent === "primary" ? "border-primary/15" : "border-secondary/15"]}
+            data-aos="fade-up"
+            data-aos-delay={(i % 4) * 60}
+            data-aos-duration="500">
+            <div class="mb-3 text-3xl">{trade.icon}</div>
+            <p class:list={["mb-0.5 text-xs font-bold uppercase tracking-wide", trade.accent === "primary" ? "text-primary" : "text-secondary"]}>{trade.english}</p>
+            <h3 class="mb-3 text-sm font-black text-text-default">{trade.german}</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="rounded-full bg-[#f5f3ef] px-3 py-1 text-xs font-semibold text-text-default/60">{trade.duration}</span>
+              <span class:list={["rounded-full px-3 py-1 text-xs font-semibold", trade.accent === "primary" ? "bg-primary/10 text-primary" : "bg-secondary/10 text-secondary"]}>{trade.stipend}/mo</span>
+            </div>
+            <p class:list={["mt-2 text-xs font-bold", trade.demand === "Very High" ? "text-green-600" : "text-text-default/40"]}>
+              ● Demand: {trade.demand}
+            </p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-8 text-center">
+        <p class="text-text-default/40 text-xs mb-4">Many more trades available based on your profile.</p>
+        <a href="/#contact" class="rounded-xl bg-primary px-7 py-3.5 text-sm font-bold text-white hover:opacity-90 inline-block transition-opacity">
+          Book Appointment for Guidance
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- German Language in India -->
+  <section class="section-spacing-vertical bg-white">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+        <div data-aos="fade-right" data-aos-duration="600">
+          <p class="text-secondary mb-3 text-xs font-bold uppercase tracking-widest">Prepare in India</p>
+          <h2 class="mb-5 text-3xl font-black leading-tight lg:text-4xl">
+            German Language<br /><span class="text-secondary">Training in India</span>
+          </h2>
+          <p class="text-text-default/70 mb-8 text-base leading-relaxed">
+            Most Ausbildung companies and the visa process require B1 or B2 German. We offer language coaching in India focused on practical, trade-relevant German so you're ready before you apply.
+          </p>
+          <a href="/#contact" class="rounded-xl bg-secondary px-7 py-3.5 text-sm font-bold text-white hover:opacity-90 inline-block transition-opacity">
+            Ask About Language Training
+          </a>
+        </div>
+        <div class="space-y-3" data-aos="fade-left" data-aos-duration="600">
+          {[
+            { level: "A1 / A2", title: "Beginner", desc: "Start from zero and build a strong foundation.", accent: "primary" },
+            { level: "B1", title: "Intermediate", desc: "Minimum for most Ausbildung applications and the visa.", accent: "secondary" },
+            { level: "B2", title: "Advanced", desc: "Required for nursing, strongly preferred by top companies.", accent: "primary" },
+          ].map((lvl) => (
+            <div class="flex gap-4 rounded-2xl bg-[#f5f3ef] p-5 border border-[#e0d9cc]">
+              <span class:list={["inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white text-xs font-black", lvl.accent === "primary" ? "bg-primary" : "bg-secondary"]}>
+                {lvl.level}
+              </span>
+              <div>
+                <p class="font-black text-text-default text-sm">{lvl.title}</p>
+                <p class="text-text-default/60 text-xs mt-0.5">{lvl.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Requirements + After -->
+  <section class="ausbildung-dot-bg section-spacing-vertical">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
+        <div data-aos="fade-right" data-aos-duration="600">
+          <p class="text-primary mb-3 text-xs font-bold uppercase tracking-widest">What You Need</p>
+          <h2 class="mb-6 text-3xl font-black lg:text-4xl">Requirements</h2>
+          <ul class="space-y-4">
+            {[
+              { label: "Education", detail: "10th or 12th pass. Aptitude and interest matter more than grades." },
+              { label: "Age", detail: "18 to 35 years. Some flexibility depending on the trade." },
+              { label: "German Level", detail: "B1 minimum, B2 preferred. We offer training in India." },
+              { label: "Technical Interest", detail: "Genuine passion for your chosen trade. Companies can tell." },
+              { label: "Passport", detail: "Valid Indian passport for at least 2 years beyond your start date." },
+            ].map((req) => (
+              <li class="flex gap-3">
+                <span class="bg-primary mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <div>
+                  <span class="font-bold text-text-default text-sm">{req.label}: </span>
+                  <span class="text-text-default/60 text-sm">{req.detail}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div data-aos="fade-left" data-aos-duration="600">
+          <p class="text-secondary mb-3 text-xs font-bold uppercase tracking-widest">After You Qualify</p>
+          <h2 class="mb-6 text-3xl font-black lg:text-4xl">Your Career Path</h2>
+          <div class="space-y-3">
+            {[
+              { step: "1", title: "Certified Professional", desc: "Recognised qualification valid across Germany and the EU." },
+              { step: "2", title: "Full Work Permit", desc: "Convert your training visa to an employment work permit and stay." },
+              { step: "3", title: "€2,000–€3,500+/month", desc: "Competitive salary as a qualified tradesperson in Germany." },
+              { step: "4", title: "Permanent Residency", desc: "After a few years of work, apply for permanent residency." },
+            ].map((item) => (
+              <div class="flex gap-4 rounded-2xl bg-white p-4 border border-[#e0d9cc]">
+                <span class="bg-secondary text-white flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-black">{item.step}</span>
+                <div>
+                  <p class="font-bold text-text-default text-sm">{item.title}</p>
+                  <p class="text-text-default/60 text-xs mt-0.5">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How We Help -->
+  <section class="section-spacing-vertical bg-white">
+    <div class="container">
+      <div class="mb-8 text-center" data-aos="fade-up" data-aos-duration="500">
+        <p class="text-primary mb-2 text-xs font-bold uppercase tracking-widest">Our Process</p>
+        <h2 class="text-3xl font-black lg:text-4xl">How Setu Guides You</h2>
+      </div>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {steps.map((step, i) => (
+          <div
+            class:list={["rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md", step.accent === "primary" ? "border-primary/15 bg-primary/4" : "border-secondary/15 bg-secondary/4"]}
+            data-aos="fade-up"
+            data-aos-delay={i * 70}
+            data-aos-duration="500">
+            <div class="flex items-start justify-between mb-4">
+              <span class:list={["inline-flex h-8 w-8 items-center justify-center rounded-full text-xs font-black text-white", step.accent === "primary" ? "bg-primary" : "bg-secondary"]}>{step.num}</span>
+              <span class:list={["text-4xl font-black opacity-8 leading-none", step.accent === "primary" ? "text-primary" : "text-secondary"]}>{parseInt(step.num)}</span>
+            </div>
+            <h3 class="mb-2 text-sm font-black text-text-default">{step.title}</h3>
+            <p class="text-text-default/60 text-xs leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-primary py-16">
+    <div class="container text-center" data-aos="fade-up" data-aos-duration="500">
+      <h2 class="mb-3 text-3xl font-black text-white lg:text-4xl">Ready to start?</h2>
+      <p class="text-white/60 mx-auto mb-7 max-w-md text-sm">
+        Book a free guidance call. We'll look at your profile and map the right path.
+      </p>
+      <div class="flex flex-col gap-3 sm:flex-row sm:justify-center">
+        <a href="/#contact" class="rounded-xl bg-secondary px-7 py-3.5 text-sm font-bold text-white hover:opacity-90 inline-block transition-opacity">
+          Book Appointment for Guidance
+        </a>
+        <a href="https://wa.me/918140881823" target="_blank" rel="noopener noreferrer"
+          class="rounded-xl border-2 border-white/30 px-7 py-3.5 text-sm font-bold text-white hover:bg-white/10 inline-block transition-colors">
+          WhatsApp Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .ausbildung-hero {
+    background-color: #f5f3ef;
+    background-image: radial-gradient(circle, #c8bfb0 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .ausbildung-dot-bg {
+    background-color: #f5f3ef;
+    background-image: radial-gradient(circle, #c8bfb0 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+</style>
