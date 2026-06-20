@@ -7,14 +7,14 @@ export function getStaticPaths() {
 }
 
 const trades = [
-  { icon: "🏥", german: "Pflegefachmann / Pflegefachfrau", english: "Nurse / Care Worker", duration: "3 Yrs", stipend: "€1,000–€1,200", demand: "Very High", accent: "primary" },
-  { icon: "⚡", german: "Elektroniker / Elektronikerin", english: "Electrician", duration: "3.5 Yrs", stipend: "€700–€900", demand: "High", accent: "secondary" },
-  { icon: "🚗", german: "KFZ-Mechatroniker", english: "Automobile Technician", duration: "3.5 Yrs", stipend: "€650–€850", demand: "High", accent: "primary" },
-  { icon: "⚙️", german: "Industriemechaniker", english: "Industrial Mechanic", duration: "3.5 Yrs", stipend: "€650–€800", demand: "High", accent: "secondary" },
-  { icon: "🔩", german: "Zerspanungsmechaniker", english: "CNC Technician", duration: "3.5 Yrs", stipend: "€650–€800", demand: "High", accent: "primary" },
-  { icon: "📊", german: "Kaufmann / Kauffrau", english: "Business & Commerce", duration: "3 Yrs", stipend: "€600–€800", demand: "Medium", accent: "secondary" },
-  { icon: "💻", german: "Fachinformatiker", english: "IT Specialist", duration: "3 Yrs", stipend: "€700–€950", demand: "Very High", accent: "primary" },
-  { icon: "🏗️", german: "Anlagenmechaniker", english: "Pipe & Plant Mechanic", duration: "3.5 Yrs", stipend: "€650–€850", demand: "High", accent: "secondary" },
+  { icon: "🏥", german: "Pflegefachmann / Pflegefachfrau", english: "Nurse / Care Worker", duration: "3 Yrs", stipend: "€1,300–€1,700", demand: "Very High", accent: "primary" },
+  { icon: "⚡", german: "Elektroniker / Elektronikerin", english: "Electrician", duration: "3.5 Yrs", stipend: "€1,100–€1,400", demand: "High", accent: "secondary" },
+  { icon: "🚗", german: "KFZ-Mechatroniker", english: "Automobile Technician", duration: "3.5 Yrs", stipend: "€1,100–€1,400", demand: "High", accent: "primary" },
+  { icon: "⚙️", german: "Industriemechaniker", english: "Industrial Mechanic", duration: "3.5 Yrs", stipend: "€1,100–€1,500", demand: "High", accent: "secondary" },
+  { icon: "🔩", german: "Zerspanungsmechaniker", english: "CNC Technician", duration: "3.5 Yrs", stipend: "€1,100–€1,500", demand: "High", accent: "primary" },
+  { icon: "📊", german: "Kaufmann / Kauffrau", english: "Business & Commerce", duration: "3 Yrs", stipend: "€1,100–€1,300", demand: "Medium", accent: "secondary" },
+  { icon: "💻", german: "Fachinformatiker", english: "IT Specialist", duration: "3 Yrs", stipend: "€1,200–€1,600", demand: "Very High", accent: "primary" },
+  { icon: "🏗️", german: "Anlagenmechaniker", english: "Pipe & Plant Mechanic", duration: "3.5 Yrs", stipend: "€1,100–€1,400", demand: "High", accent: "secondary" },
 ];
 
 const steps = [
@@ -28,7 +28,7 @@ const steps = [
 
 <Base
   title="Ausbildung in Germany | Vocational Training | Setu Global Solution"
-  metaDescription="Setu Global Solution places Indian candidates in Ausbildung programs in Germany. Earn €600–€1,200/month training as an electrician, nurse, mechanic, IT specialist and more.">
+  metaDescription="Setu Global Solution places Indian candidates in Ausbildung programs in Germany. Earn €1,100–€1,700/month training as an electrician, nurse, mechanic, IT specialist and more.">
 
   <!-- Hero -->
   <section class="ausbildung-hero py-16 lg:py-24">
@@ -69,7 +69,7 @@ const steps = [
         </div>
         <div class="grid grid-cols-2 gap-3" data-aos="fade-left" data-aos-duration="600">
           {[
-            { value: "€600–€1,200", label: "Monthly Stipend", sub: "Earn while you train" },
+            { value: "€1,100–€1,700", label: "Monthly Stipend", sub: "Earn while you train" },
             { value: "2–3.5 Yrs", label: "Duration", sub: "Full qualification at the end" },
             { value: "B1 / B2", label: "German Level", sub: "We help you get there in India" },
             { value: "18–35", label: "Age Range", sub: "Most companies prefer" },
@@ -167,7 +167,7 @@ const steps = [
           <h2 class="mb-6 text-3xl font-black lg:text-4xl">Requirements</h2>
           <ul class="space-y-4">
             {[
-              { label: "Education", detail: "10th or 12th pass. Aptitude and interest matter more than grades." },
+              { label: "Education", detail: "12th pass or higher. A degree is not required but 12th is the minimum." },
               { label: "Age", detail: "18 to 35 years. Some flexibility depending on the trade." },
               { label: "German Level", detail: "B1 minimum, B2 preferred. We offer training in India." },
               { label: "Technical Interest", detail: "Genuine passion for your chosen trade. Companies can tell." },
@@ -192,7 +192,7 @@ const steps = [
             {[
               { step: "1", title: "Certified Professional", desc: "Recognised qualification valid across Germany and the EU." },
               { step: "2", title: "Full Work Permit", desc: "Convert your training visa to an employment work permit and stay." },
-              { step: "3", title: "€2,000–€3,500+/month", desc: "Competitive salary as a qualified tradesperson in Germany." },
+              { step: "3", title: "€2,500–€4,000+/month", desc: "Competitive salary as a qualified tradesperson in Germany." },
               { step: "4", title: "Permanent Residency", desc: "After a few years of work, apply for permanent residency." },
             ].map((item) => (
               <div class="flex gap-4 rounded-2xl bg-white p-4 border border-[#e0d9cc]">
