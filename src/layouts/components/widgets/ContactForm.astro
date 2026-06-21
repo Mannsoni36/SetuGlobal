@@ -621,6 +621,9 @@ const defaultErrorMessage = messageContent.error || (isFrench
                   form,
                 );
                 break;
+              case "resend":
+                await formUtils.resendSubmit(form, action);
+                break;
               default:
                 throw new Error("Unknown form provider.");
             }

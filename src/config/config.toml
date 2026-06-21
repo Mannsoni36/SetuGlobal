@@ -64,10 +64,10 @@
 
   # documentation - https://formspree.io/ | https://formsubmit.co/ | https://docs.netlify.com/forms/setup/
   # Form action URL for the contact form (For more settings related to form see "src/content/sections/contact-section.md")
-  contactFormAction = "https://formsubmit.co/info@setuglobalsolution.com" # https://formspree.io/f/your_form_id | https://formsubmit.co/your_form_submission_receive_email | "/"
+  contactFormAction = "/api/contact/"
 
-  # formspree | formsubmit.co | netlify (default is formsubmit.co)
-  contactFormProvider = "formsubmit.co"
+  # formspree | formsubmit.co | netlify | resend
+  contactFormProvider = "resend"
 
   footerDescription = "Bridging Ahmedabad to Germany — your trusted partner for university admissions, visa, and career guidance in Germany." # Check src/i18n/en.json and src/i18n/fr.json for changing the footer description in different languages or directly add value here if you are not using internationalization feature
 

@@ -273,6 +273,39 @@ export const formspreeSubmit = async (
 };
 
 /**
+ * Submits form data to the Resend API endpoint.
+ *
+ * @param form - The form element.
+ * @param action - The API endpoint URL.
+ */
+export const resendSubmit = async (
+  form: HTMLFormElement,
+  action: string,
+) => {
+  const data = Object.fromEntries(new FormData(form).entries());
+  const url = action.endsWith("/") ? action : action + "/";
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    let json: Record<string, any> = {};
+    try { json = await response.json(); } catch { /* empty */ }
+
+    if (response.ok && json.success !== false) {
+      setMessage("default", true, false, form);
+      formReset(form);
+    } else {
+      setMessage(json.message || "Something went wrong. Please try again.", false, false, form);
+    }
+  } catch {
+    setMessage("Could not reach the server. Please try again.", false, false, form);
+  }
+};
+
+/**
  * Submits form data for Netlify.
  *
  * @param form - The form element.

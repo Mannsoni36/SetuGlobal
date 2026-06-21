@@ -41,10 +41,10 @@ const {
 
 if (!enable) return;
 
-let servicesList = await getCollectionCTM(
+let servicesList = (await getCollectionCTM(
   config.settings.servicesFolder as "services",
   Astro.currentLocale,
-);
+))?.slice(0, 4);
 ---
 
 <section class="overflow-hidden">
