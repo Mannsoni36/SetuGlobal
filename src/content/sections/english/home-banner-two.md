@@ -1,9 +1,9 @@
 ---
 subtitle: "Study Abroad, Without The Stress"
-title: "Your Dream of Studying<br />in Germany Starts Here"
+title: "Your Dream of Studying <br />in Germany Starts Here"
 description: ""
 
-image: "/images/home-banner/banner-3.jpg"
+image: "/images/home-banner/scholty1970-architecture-3128171.jpg"
 imageAlt: "Skyline of a German city"
 
 button:

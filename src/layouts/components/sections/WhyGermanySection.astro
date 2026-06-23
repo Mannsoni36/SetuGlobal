@@ -33,8 +33,17 @@ const keyReasons = reasons?.slice(0, 4) ?? [];
 <section id="why-germany" class="scroll-mt-28 overflow-hidden">
 
   <!-- Bold header band -->
-  <div class="bg-primary py-20 lg:py-28">
-    <div class="container">
+  <div class="relative overflow-hidden bg-primary py-20 lg:py-28">
+    <img
+      src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1800&q=80"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 size-full object-cover object-center opacity-20"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="absolute inset-0 bg-primary/75"></div>
+    <div class="container relative z-10">
       <div class="mx-auto max-w-4xl" data-aos="fade-up" data-aos-duration="600">
         <p class="text-secondary mb-3 text-sm font-bold uppercase tracking-[0.25em]">Your Future Destination</p>
         <h2 class="text-4xl font-black text-white leading-tight lg:text-6xl xl:text-7xl">
@@ -49,12 +58,12 @@ const keyReasons = reasons?.slice(0, 4) ?? [];
   </div>
 
   <!-- Editorial reason rows -->
-  <div class="bg-[#f5f3ef]">
+  <div class="bg-theme-light">
     {keyReasons.map((reason, i) => (
       <div
         class:list={[
           "border-border-light border-b last:border-0",
-          i % 2 === 1 ? "bg-white" : "bg-[#f5f3ef]"
+          i % 2 === 1 ? "bg-white" : "bg-theme-light"
         ]}
         data-aos="fade-up"
         data-aos-delay={i * 80}
@@ -108,7 +117,7 @@ const keyReasons = reasons?.slice(0, 4) ?? [];
   </div>
 
   <!-- Bottom CTA -->
-  <div class="bg-[#f5f3ef] border-t border-border-light">
+  <div class="bg-theme-light border-t border-border-light">
     <div class="container py-12 flex flex-col items-center gap-5 text-center" data-aos="fade-up" data-aos-duration="400">
       <p class="text-text-default/70 text-base lg:text-lg max-w-xl">
         Still wondering if Germany is right for you? Let's talk — it's free, and it takes 30 minutes.

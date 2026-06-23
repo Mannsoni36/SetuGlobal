@@ -31,20 +31,29 @@ const steps = [
   metaDescription="Setu Global Solution places Indian candidates in Ausbildung programs in Germany. Earn €1,100–€1,700/month training as an electrician, nurse, mechanic, IT specialist and more.">
 
   <!-- Hero -->
-  <section class="ausbildung-hero py-16 lg:py-24">
-    <div class="container">
+  <section class="ausbildung-hero relative overflow-hidden py-16 lg:py-28">
+    <img
+      src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1600&q=80"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 size-full object-cover object-center"
+      loading="eager"
+      decoding="async"
+    />
+    <div class="absolute inset-0 bg-[#1A1640]/82"></div>
+    <div class="container relative z-10">
       <div class="mx-auto max-w-2xl text-center">
-        <span class="bg-primary/10 text-primary mb-5 inline-block rounded-full px-5 py-1.5 text-xs font-bold uppercase tracking-widest">
+        <span class="mb-5 inline-block rounded-full border border-white/25 bg-white/10 px-5 py-1.5 text-xs font-bold uppercase tracking-widest text-white">
           Now Offered by Setu Global
         </span>
-        <h1 class="mb-5 text-4xl font-black leading-tight text-text-default lg:text-5xl">
+        <h1 class="mb-5 text-4xl font-black leading-tight text-white lg:text-5xl">
           Ausbildung in Germany<br />
-          <span class="text-primary">for Technical Professionals</span>
+          <span class="text-[#E87722]">for Technical Professionals</span>
         </h1>
-        <p class="mx-auto mb-8 max-w-xl text-base text-text-default/70 leading-relaxed">
+        <p class="mx-auto mb-8 max-w-xl text-base text-white/70 leading-relaxed">
           Train at a real German company. Earn a monthly stipend. Graduate as a certified professional in 2 to 3.5 years.
         </p>
-        <a href="/#contact" class="rounded-xl bg-primary px-7 py-3.5 font-bold text-white transition-opacity hover:opacity-90 inline-block text-sm">
+        <a href="/#contact" class="rounded-xl bg-[#E87722] px-7 py-3.5 font-bold text-white transition-opacity hover:opacity-90 inline-block text-sm">
           Book Appointment for Guidance
         </a>
       </div>
@@ -67,19 +76,29 @@ const steps = [
             Germany values skilled tradespeople highly. Demand is strong, salaries are good, and a clear path to permanent residency exists for those who qualify.
           </p>
         </div>
-        <div class="grid grid-cols-2 gap-3" data-aos="fade-left" data-aos-duration="600">
-          {[
-            { value: "€1,100–€1,700", label: "Monthly Stipend", sub: "Earn while you train" },
-            { value: "2–3.5 Yrs", label: "Duration", sub: "Full qualification at the end" },
-            { value: "B1 / B2", label: "German Level", sub: "We help you get there in India" },
-            { value: "18–35", label: "Age Range", sub: "Most companies prefer" },
-          ].map((b) => (
-            <div class="rounded-2xl bg-[#f5f3ef] p-5 border border-[#e0d9cc]">
-              <p class="text-primary text-xl font-black lg:text-2xl">{b.value}</p>
-              <p class="mt-1 text-xs font-bold text-text-default">{b.label}</p>
-              <p class="text-text-default/50 mt-0.5 text-xs">{b.sub}</p>
-            </div>
-          ))}
+        <div class="relative overflow-hidden rounded-2xl" data-aos="fade-left" data-aos-duration="600">
+          <img
+            src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=900&q=80"
+            alt="Vocational training in Germany"
+            class="h-80 w-full object-cover object-center lg:h-96"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="absolute inset-0 bg-linear-to-t from-[#1A1640]/95 via-[#1A1640]/40 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 grid grid-cols-2 gap-2 p-4">
+            {[
+              { value: "€1,100–€1,700", label: "Monthly Stipend", sub: "Earn while you train" },
+              { value: "2–3.5 Yrs", label: "Duration", sub: "Full qualification at the end" },
+              { value: "B1 / B2", label: "German Level", sub: "We help you get there in India" },
+              { value: "18–35", label: "Age Range", sub: "Most companies prefer" },
+            ].map((b) => (
+              <div class="rounded-xl border border-white/15 bg-white/10 p-3 backdrop-blur-sm">
+                <p class="text-lg font-black text-[#E87722] lg:text-xl">{b.value}</p>
+                <p class="mt-0.5 text-xs font-bold text-white">{b.label}</p>
+                <p class="mt-0.5 text-xs text-white/55">{b.sub}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -137,22 +156,33 @@ const steps = [
             Ask About Language Training
           </a>
         </div>
-        <div class="space-y-3" data-aos="fade-left" data-aos-duration="600">
-          {[
-            { level: "A1 / A2", title: "Beginner", desc: "Start from zero and build a strong foundation.", accent: "primary" },
-            { level: "B1", title: "Intermediate", desc: "Minimum for most Ausbildung applications and the visa.", accent: "secondary" },
-            { level: "B2", title: "Advanced", desc: "Required for nursing, strongly preferred by top companies.", accent: "primary" },
-          ].map((lvl) => (
-            <div class="flex gap-4 rounded-2xl bg-[#f5f3ef] p-5 border border-[#e0d9cc]">
-              <span class:list={["inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white text-xs font-black", lvl.accent === "primary" ? "bg-primary" : "bg-secondary"]}>
-                {lvl.level}
-              </span>
-              <div>
-                <p class="font-black text-text-default text-sm">{lvl.title}</p>
-                <p class="text-text-default/60 text-xs mt-0.5">{lvl.desc}</p>
+        <div data-aos="fade-left" data-aos-duration="600">
+          <div class="mb-4 overflow-hidden rounded-2xl">
+            <img
+              src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=900&q=80"
+              alt="Students studying German language"
+              class="h-52 w-full object-cover object-center"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="space-y-3">
+            {[
+              { level: "A1 / A2", title: "Beginner", desc: "Start from zero and build a strong foundation.", accent: "primary" },
+              { level: "B1", title: "Intermediate", desc: "Minimum for most Ausbildung applications and the visa.", accent: "secondary" },
+              { level: "B2", title: "Advanced", desc: "Required for nursing, strongly preferred by top companies.", accent: "primary" },
+            ].map((lvl) => (
+              <div class="flex gap-4 rounded-2xl bg-theme-light p-5 border border-[#e0d9cc]">
+                <span class:list={["inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white text-xs font-black", lvl.accent === "primary" ? "bg-primary" : "bg-secondary"]}>
+                  {lvl.level}
+                </span>
+                <div>
+                  <p class="font-black text-text-default text-sm">{lvl.title}</p>
+                  <p class="text-text-default/60 text-xs mt-0.5">{lvl.desc}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>

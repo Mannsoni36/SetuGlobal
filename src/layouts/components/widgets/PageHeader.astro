@@ -2,15 +2,19 @@
 import { markdownify } from "@/lib/utils/textConverter";
 import Breadcrumbs from "@/layouts/components/widgets/Breadcrumbs.astro";
 import AnimatedText from "./AnimatedText.astro";
-import OptimizedImage from "../utilities/OptimizedImage.astro";
-
 interface Props {
   title?: string;
   breadcrumbTitle?: string;
   hiddenPaths?: string[];
+  image?: string;
 }
 
-const { title, breadcrumbTitle, hiddenPaths } = Astro.props;
+const {
+  title,
+  breadcrumbTitle,
+  hiddenPaths,
+  image = "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80",
+} = Astro.props;
 ---
 
 <section class="pt-0">
@@ -18,12 +22,13 @@ const { title, breadcrumbTitle, hiddenPaths } = Astro.props;
     class:list={[
       "relative flex min-h-40 items-center overflow-hidden py-15 md:min-h-60 md:py-10 lg:min-h-80 xl:min-h-112.5",
     ]}>
-    <OptimizedImage
-      src={"/images/page-header-bg.png"}
-      alt={title}
-      width={1920}
-      height={450}
+    <img
+      src={image}
+      alt=""
+      aria-hidden="true"
       class="absolute inset-0 size-full object-cover object-top"
+      loading="eager"
+      decoding="async"
     />
     <div class="absolute inset-0 bg-black/65"></div>
 
