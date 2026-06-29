@@ -31,15 +31,19 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 
-  const sheetsUrl = import.meta.env.GOOGLE_SHEETS_WEBHOOK_URL;
+  const sheetsUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL || import.meta.env.GOOGLE_SHEETS_WEBHOOK_URL;
 
   const saveToSheets = sheetsUrl
     ? fetch(sheetsUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
-      }).catch((err) => console.error("Google Sheets write failed:", err))
-    : Promise.resolve();
+      })
+        .then(async (res) => {
+          if (!res.ok) console.error("Google Sheets error:", res.status, await res.text());
+        })
+        .catch((err) => console.error("Google Sheets fetch failed:", err))
+    : (console.warn("GOOGLE_SHEETS_WEBHOOK_URL not set"), Promise.resolve());
 
   try {
     await Promise.all([
