@@ -31,6 +31,16 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 
+  const sheetsUrl = import.meta.env.GOOGLE_SHEETS_WEBHOOK_URL;
+
+  const saveToSheets = sheetsUrl
+    ? fetch(sheetsUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      }).catch((err) => console.error("Google Sheets write failed:", err))
+    : Promise.resolve();
+
   try {
     await Promise.all([
       resend.emails.send({
@@ -46,6 +56,7 @@ export const POST: APIRoute = async ({ request }) => {
         subject: "We received your message — Setu Global Solution",
         html: buildUserEmail(name),
       }),
+      saveToSheets,
     ]);
 
     return new Response(JSON.stringify({ success: true }), {
