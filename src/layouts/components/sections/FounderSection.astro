@@ -42,10 +42,10 @@ if (!founder?.enable) return;
         <h2 class="text-h3-sm lg:text-h3 font-bold">Built by people who've lived it</h2>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-2">
+      <div class={`grid gap-6 ${coFounder?.enable !== false && coFounder ? "md:grid-cols-2" : "place-items-center"}`}>
         <!-- Founder Card -->
         <div
-          class="bg-theme-light flex flex-col gap-6 rounded-2xl p-8 md:p-10"
+          class={`bg-theme-light flex flex-col gap-6 rounded-2xl p-8 md:p-10 ${coFounder?.enable !== false && coFounder ? "" : "w-full md:max-w-md"}`}
           data-aos="fade-up"
           data-aos-delay="0"
           data-aos-duration="600">
