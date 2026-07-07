@@ -42,13 +42,14 @@ if (!founder?.enable) return;
         <h2 class="text-h3-sm lg:text-h3 font-bold">Built by people who've lived it</h2>
       </div>
 
-      <div class={`grid gap-6 ${coFounder?.enable !== false && coFounder ? "md:grid-cols-2" : "place-items-center"}`}>
-        <!-- Founder Card -->
+      <div class={`grid gap-10 ${coFounder?.enable !== false && coFounder ? "md:grid-cols-2 md:divide-x md:divide-border-light" : "place-items-center"}`}>
+        <!-- Founder -->
         <div
-          class={`bg-theme-light flex flex-col gap-6 rounded-2xl p-8 md:p-10 ${coFounder?.enable !== false && coFounder ? "" : "w-full md:max-w-md"}`}
+          class={`flex flex-col gap-6 ${coFounder?.enable !== false && coFounder ? "md:pr-10" : "w-full md:max-w-md"}`}
           data-aos="fade-up"
           data-aos-delay="0"
           data-aos-duration="600">
+          {(coFounder?.enable === false || !coFounder) && <div class="bg-primary h-1 w-12"></div>}
           <div class="flex items-center gap-5">
             <div class="shrink-0">
               {
@@ -97,7 +98,7 @@ if (!founder?.enable) return;
         {
           coFounder?.enable !== false && coFounder && (
             <div
-              class="bg-theme-light flex flex-col gap-6 rounded-2xl p-8 md:p-10"
+              class="flex flex-col gap-6 md:pl-10"
               data-aos="fade-up"
               data-aos-delay="150"
               data-aos-duration="600">

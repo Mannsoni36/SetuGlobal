@@ -41,19 +41,16 @@ const trades = [
         </div>
       </div>
 
-      <!-- Trade Grid -->
+      <!-- Trade List -->
       <div data-aos="fade-left" data-aos-duration="600">
-        <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
+        <div class="flex flex-wrap gap-x-6 gap-y-4">
           {trades.map((trade, i) => (
             <div
-              class:list={[
-                "flex flex-col items-center gap-2 rounded-2xl border bg-white p-4 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md",
-                i % 2 === 0 ? "border-primary/15" : "border-secondary/15"
-              ]}
-              data-aos="zoom-in"
+              class="border-border-light flex items-center gap-2 border-b pb-3"
+              data-aos="fade-up"
               data-aos-delay={i * 50}
               data-aos-duration="400">
-              <span class="text-3xl">{trade.icon}</span>
+              <span class="text-2xl">{trade.icon}</span>
               <span class="text-xs font-bold text-text-default leading-tight">{trade.label}</span>
             </div>
           ))}

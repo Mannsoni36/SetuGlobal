@@ -6,6 +6,7 @@ import overrideObjects from "@/lib/utils/overrideObjects";
 import type { workingProcessSectionSchema } from "@/sections.schema";
 import { markdownify } from "@/lib/utils/textConverter";
 import SectionBadge from "../global/SectionBadge.astro";
+import EditorialRow from "../utilities/EditorialRow.astro";
 
 type SectionType = Section & NonNullable<z.infer<typeof workingProcessSectionSchema>>;
 type Props = { content?: SectionType };
@@ -18,13 +19,6 @@ let actualContent = overrideObjects({ ...defaultContent }, Astro.props.content) 
 
 const { enable = true, badge, title, list } = actualContent;
 if (!enable) return;
-
-const stepColors = [
-  { num: "text-primary", card: "bg-primary", border: "border-primary/20", bg: "bg-primary/5" },
-  { num: "text-secondary", card: "bg-secondary", border: "border-secondary/20", bg: "bg-secondary/5" },
-  { num: "text-primary", card: "bg-primary", border: "border-primary/20", bg: "bg-primary/5" },
-  { num: "text-secondary", card: "bg-secondary", border: "border-secondary/20", bg: "bg-secondary/5" },
-];
 ---
 
 <section class="section-spacing-vertical bg-[#f5f3ef] relative">
@@ -42,60 +36,11 @@ const stepColors = [
       )}
     </div>
 
-    <!-- Steps grid -->
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-      {list?.map((item, i) => {
-        const color = stepColors[i % stepColors.length];
-        const isLast = i === (list.length - 1);
-        return (
-          <div
-            class="relative"
-            data-aos="fade-up"
-            data-aos-delay={i * 100}
-            data-aos-duration="500">
-
-            <!-- Connector arrow (desktop only, not on last item) -->
-            {!isLast && (
-              <div class="absolute top-10 left-full z-10 hidden lg:flex items-center -translate-x-1/2 w-5">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M4 10h12M12 5l5 5-5 5" stroke="#5B2D8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
-                </svg>
-              </div>
-            )}
-
-            <!-- Step card -->
-            <div class:list={[
-              "h-full rounded-2xl border p-6 lg:p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg",
-              color.border, color.bg
-            ]}>
-
-              <!-- Step number pill -->
-              <div class="mb-6 flex items-center justify-between">
-                <span class:list={[
-                  "inline-flex h-9 w-9 items-center justify-center rounded-full text-sm font-black text-white",
-                  color.card
-                ]}>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span class:list={["text-5xl font-black opacity-10 leading-none", color.num]}>
-                  {String(i + 1)}
-                </span>
-              </div>
-
-              <!-- Title -->
-              <h3 class="text-lg font-black mb-3 leading-snug">
-                {item.title}
-              </h3>
-
-              <!-- Description -->
-              <p
-                class="text-text-default/60 text-sm leading-relaxed"
-                set:html={markdownify(item.description)}
-              />
-            </div>
-          </div>
-        );
-      })}
+    <!-- Steps -->
+    <div>
+      {list?.map((item, i) => (
+        <EditorialRow index={i} title={item.title} description={item.description} />
+      ))}
     </div>
 
     <!-- Bottom CTA -->

@@ -4,6 +4,7 @@ import overrideObjects from "@/lib/utils/overrideObjects";
 import type { featuresSectionSchema } from "@/sections.schema";
 import type { z } from "astro/zod";
 import type { Section } from "@/types";
+import EditorialRow from "../utilities/EditorialRow.astro";
 
 type SectionType = Section & NonNullable<z.infer<typeof featuresSectionSchema>>;
 type Props = { content?: SectionType };
@@ -16,10 +17,6 @@ let actualContent = overrideObjects({ ...defaultContent }, Astro.props.content) 
 const { features } = actualContent;
 
 if (!features || features.length === 0) return;
-
-const accents = ["border-primary bg-primary/8", "border-secondary bg-secondary/8", "border-primary bg-primary/8", "border-secondary bg-secondary/8", "border-primary bg-primary/8"];
-const numColors = ["text-primary", "text-secondary", "text-primary", "text-secondary", "text-primary"];
-const pillColors = ["bg-primary text-white", "bg-secondary text-white", "bg-primary text-white", "bg-secondary text-white", "bg-primary text-white"];
 ---
 
 <section id="features" class="features-section section-spacing-vertical relative overflow-hidden">
@@ -36,37 +33,9 @@ const pillColors = ["bg-primary text-white", "bg-secondary text-white", "bg-prim
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+    <div>
       {features.map((feature, i) => (
-        <div
-          class:list={[
-            "group relative overflow-hidden rounded-2xl border-l-4 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md",
-            accents[i]
-          ]}
-          data-aos="fade-up"
-          data-aos-delay={i * 80}
-          data-aos-duration="500">
-
-          <div class="flex items-start justify-between mb-5">
-            <span class:list={[
-              "inline-flex h-9 w-9 items-center justify-center rounded-full text-sm font-black",
-              pillColors[i]
-            ]}>
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <span class:list={["text-5xl font-black leading-none opacity-8", numColors[i]]}>
-              {String(i + 1)}
-            </span>
-          </div>
-
-          <h3 class="mb-3 text-sm font-black uppercase tracking-wide text-text-default">
-            {feature.title}
-          </h3>
-
-          <p class="text-text-default/60 text-sm leading-relaxed">
-            {feature.description}
-          </p>
-        </div>
+        <EditorialRow index={i} title={feature.title} description={feature.description} />
       ))}
     </div>
 
@@ -82,9 +51,5 @@ const pillColors = ["bg-primary text-white", "bg-secondary text-white", "bg-prim
     background-image: radial-gradient(circle, #c8bfb0 1px, transparent 1px);
     background-size: 28px 28px;
     opacity: 0.6;
-  }
-  @media (min-width: 1024px) {
-    #features .grid > *:nth-child(4) { grid-column-start: 1; }
-    #features .grid > *:nth-child(5) { grid-column-start: 2; }
   }
 </style>

@@ -1,0 +1,74 @@
+---
+import { markdownify } from "@/lib/utils/textConverter";
+
+type Props = {
+  index: number;
+  eyebrow?: string;
+  title: string;
+  description: string;
+  variant?: "primary" | "secondary";
+};
+
+const {
+  index,
+  eyebrow,
+  title,
+  description,
+  variant = index % 2 === 0 ? "primary" : "secondary",
+} = Astro.props;
+---
+
+<div
+  class="border-border-light border-b last:border-0"
+  data-aos="fade-up"
+  data-aos-delay={index * 80}
+  data-aos-duration="500">
+  <div class="grid grid-cols-1 gap-4 py-8 lg:grid-cols-12 lg:items-center lg:gap-10 lg:py-10">
+    <!-- Number -->
+    <div class="flex items-center lg:col-span-2">
+      <span
+        class:list={[
+          "text-6xl leading-none font-black lg:text-7xl",
+          variant === "primary" ? "text-primary/15" : "text-secondary/25",
+        ]}>
+        {String(index + 1).padStart(2, "0")}
+      </span>
+    </div>
+
+    <!-- Eyebrow + Title -->
+    <div class="lg:col-span-4">
+      {
+        eyebrow && (
+          <span
+            class:list={[
+              "mb-2 block text-xs font-black tracking-[0.2em] uppercase",
+              variant === "primary" ? "text-primary" : "text-secondary",
+            ]}>
+            {eyebrow}
+          </span>
+        )
+      }
+      <h3 class="text-lg leading-snug font-black text-text-default lg:text-xl">
+        {title}
+      </h3>
+    </div>
+
+    <!-- Divider (hidden on mobile) -->
+    <div class="hidden lg:col-span-1 lg:flex lg:justify-center">
+      <div
+        class:list={[
+          "h-12 w-px",
+          variant === "primary" ? "bg-primary/20" : "bg-secondary/30",
+        ]}>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="lg:col-span-5">
+      <p
+        class="text-text-default/60 text-sm leading-relaxed lg:text-base"
+        set:html={markdownify(description)}
+      />
+    </div>
+  </div>
+</div>
