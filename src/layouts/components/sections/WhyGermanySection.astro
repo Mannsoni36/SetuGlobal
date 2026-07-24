@@ -1,6 +1,7 @@
 ---
 import { getEntryCTM } from "@/lib/contentParser.astro";
 import overrideObjects from "@/lib/utils/overrideObjects";
+import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
 
 type Reason = { icon?: string; highlight?: string; title: string; description: string };
 type SectionType = {
@@ -34,13 +35,13 @@ const keyReasons = reasons?.slice(0, 4) ?? [];
 
   <!-- Bold header band -->
   <div class="relative overflow-hidden bg-primary py-20 lg:py-28">
-    <img
-      src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1800&q=80"
-      alt=""
-      aria-hidden="true"
+    <OptimizedImage
+      src="/images/why-germany/germany-architecture.jpg"
+      alt="Cobblestone street lined with traditional half-timbered houses and a clock tower in a historic German old town"
+      width={1800}
+      height={1201}
       class="absolute inset-0 size-full object-cover object-center opacity-20"
       loading="lazy"
-      decoding="async"
     />
     <div class="absolute inset-0 bg-primary/75"></div>
     <div class="container relative z-10">

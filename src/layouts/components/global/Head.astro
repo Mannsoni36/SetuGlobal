@@ -6,9 +6,37 @@ import OpenGraph from "@/components/seo/OpenGraph.astro";
 import config from ".astro/config.generated.json";
 import { Font } from "astro:assets";
 import fontsJson from "@/config/fonts.json";
+import { getEntryCTM } from "@/lib/contentParser.astro";
 
 const fontVariables = fontsJson.map((font) => font.cssVariable) as any[];
 const preloadImages = (Astro.props.preloadImages as string[]) || [];
+
+// Generate FAQPage schema from the same content that drives the visible FAQ
+// section, so the two can never drift out of sync. Only emitted on the
+// homepage, since that's the only page rendering <FaqSection />.
+type FaqItem = { q: string; a: string };
+let faqSchema: Record<string, any> | null = null;
+if (Astro.props.homepage) {
+  const faqEntry = await getEntryCTM("sections", "faq", Astro.currentLocale);
+  const faqData = faqEntry?.data as unknown as
+    | { enable?: boolean; items?: FaqItem[] }
+    | undefined;
+
+  if (faqData?.enable !== false && faqData?.items?.length) {
+    faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqData.items.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.a,
+        },
+      })),
+    };
+  }
+}
 ---
 
 <head>
@@ -109,7 +137,7 @@ const preloadImages = (Astro.props.preloadImages as string[]) || [];
     "estimatedCost": {
       "@type": "MonetaryAmount",
       "currency": "EUR",
-      "value": "11208"
+      "value": "11904"
     },
     "step": [
       {
@@ -134,7 +162,7 @@ const preloadImages = (Astro.props.preloadImages as string[]) || [];
         "@type": "HowToStep",
         "position": "4",
         "name": "Blocked Account (Sperrkonto) Setup",
-        "text": "We guide you through opening a Sperrkonto with the current required deposit (€11,208 as of 2024) through trusted providers like Fintiba or Expatrio, ensuring your confirmation documents match embassy requirements exactly."
+        "text": "We guide you through opening a Sperrkonto with the required deposit (currently €11,904) through trusted providers like Fintiba or Expatrio, ensuring your confirmation documents match embassy requirements exactly."
       },
       {
         "@type": "HowToStep",
@@ -151,6 +179,17 @@ const preloadImages = (Astro.props.preloadImages as string[]) || [];
     ]
   }
   </script>
+
+  <!-- FAQPage Schema: generated from the FAQ section content, homepage only -->
+  {
+    faqSchema && (
+      <script
+        type="application/ld+json"
+        is:inline
+        set:html={JSON.stringify(faqSchema)}
+      />
+    )
+  }
   <noscript>
     <style>
       [data-aos] {

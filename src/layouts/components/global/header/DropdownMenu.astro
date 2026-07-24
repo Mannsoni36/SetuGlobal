@@ -28,21 +28,33 @@ const enabledChildren = menu.children?.filter((child) => child.enable !== false)
   role="menuitem">
   <span
     class:list={[
-      "nav-dropdown-toggle hs-dropdown-toggle flex items-center",
-      {
-        active:
-          isActiveMenu(menu, pathname, Astro.currentLocale, hostname) &&
-          !menu.hasChildren,
-      },
+      "hs-dropdown-toggle-wrapper flex items-center",
       recursive
-        ? "nav-dropdown-link justify-between"
-        : "nav-link max-lg:flex! max-lg:justify-between",
+        ? "justify-between"
+        : "px-3 py-1.5 tracking-wide transition-all duration-300 max-lg:justify-between lg:py-3 xl:px-4",
     ]}>
-    {menu.name}
-    <Icons
-      icon="ChevronDown"
-      class="hs-dropdown-open:rotate-180 ms-2 size-4 transition-transform duration-300"
-    />
+    <a
+      href={getLocaleUrlCTM(
+        menu.url || Astro.url.origin,
+        Astro.currentLocale,
+      )}
+      class:list={[
+        recursive ? "nav-dropdown-link" : "nav-link",
+        {
+          active: isActiveMenu(menu, pathname, Astro.currentLocale, hostname),
+        },
+      ]}>
+      {menu.name}
+    </a>
+    <button
+      type="button"
+      class="nav-dropdown-toggle hs-dropdown-toggle ms-2 flex items-center"
+      aria-label={`Toggle ${menu.name} submenu`}>
+      <Icons
+        icon="ChevronDown"
+        class="hs-dropdown-open:rotate-180 size-4 transition-transform duration-300"
+      />
+    </button>
   </span>
   {
     !menu.hasMegaMenu && menu.hasChildren && enabledChildren?.length && (
