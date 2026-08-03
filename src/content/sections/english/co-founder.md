@@ -1,5 +1,5 @@
 ---
-enable: false
+enable: true
 name: "Malay Ginoya"
 role: "Co-Founder, Setu Global Solution"
 initials: "MG"

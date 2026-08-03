@@ -48,7 +48,13 @@ const stats = [
           class="rounded-lg border-2 border-white/40 px-7 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10">
           🇮🇳 WhatsApp India
         </a>
-        {/* German WhatsApp temporarily hidden */}
+        <a
+          href={`https://wa.me/${(config.contact as any).phoneGermany?.replace(/\s|\+/g, "")}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-lg border-2 border-white/40 px-7 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10">
+          🇩🇪 WhatsApp Germany
+        </a>
       </div>
     </div>
   </div>
@@ -95,7 +101,11 @@ const stats = [
               class="text-text-default/60 hover:text-text-default font-medium transition-colors">
               🇮🇳 {config.contact.phone}
             </a>
-            {/* German phone temporarily hidden */}
+            <a
+              href={`tel:${(config.contact as any).phoneGermany?.replace(/\s/g, "")}`}
+              class="text-text-default/60 hover:text-text-default font-medium transition-colors">
+              🇩🇪 {(config.contact as any).phoneGermany}
+            </a>
             <p class="text-text-default/40 text-xs mt-1">Mon – Sat · 10:00 AM – 7:00 PM IST</p>
           </div>
         </div>
