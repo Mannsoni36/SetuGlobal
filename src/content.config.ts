@@ -5,6 +5,7 @@ import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 
 const servicesFolder = config.settings.servicesFolder || "services";
+const blogFolder = config.settings.blogFolder || "blog";
 
 const contentLoader = (base: string) =>
   glob({ pattern: "**/[^_]*.{md,mdx}", base });
@@ -53,6 +54,11 @@ const serviceCollection = defineCollection({
   }),
 });
 
+const blogCollection = defineCollection({
+  loader: contentLoader(`./src/content/${blogFolder}`),
+  schema: page,
+});
+
 export const teamCollection = defineCollection({
   loader: contentLoader("./src/content/team"),
   schema: page.extend({
@@ -97,6 +103,8 @@ export const teamCollection = defineCollection({
 export const collections = {
   [servicesFolder]: serviceCollection,
   services: serviceCollection,
+  [blogFolder]: blogCollection,
+  blog: blogCollection,
   sections: defineCollection({
     loader: contentLoader("./src/content/sections"),
   }),

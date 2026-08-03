@@ -1,0 +1,76 @@
+---
+import { getEntrySlugCTM } from "@/lib/utils/i18nUtils";
+import Icons from "@/helpers/Icons.astro";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  content: CollectionEntry<"blog">;
+  index?: number;
+  class?: string;
+}
+
+let { content, index = 0, class: className, ...rest } = Astro.props;
+
+let { title, description, date, author } = content.data || {};
+
+const formattedDate = date
+  ? new Date(date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+  : undefined;
+
+// Resolve URL from content id/collection
+let slug =
+  content.id && content.collection
+    ? getEntrySlugCTM(content, Astro.currentLocale)
+    : undefined;
+
+const href = slug ?? "#";
+---
+
+<div
+  class="group border-border-dark/15 relative border-b py-6 transition-colors lg:py-9"
+  data-aos="fade-up"
+  data-aos-delay={index * 80}
+  data-aos-duration="600"
+  {...rest}>
+  <div class="flex flex-col gap-4 md:flex-row md:items-start lg:gap-10 xl:gap-14">
+    {/* Number */}
+    <div class="text-text-default/70 w-auto shrink-0 pt-2 font-medium lg:pt-4 lg:text-lg">
+      {String(index + 1).padStart(3, "0")}
+    </div>
+
+    {/* Title & meta */}
+    <div class="relative z-10 flex flex-1 flex-col justify-center">
+      <h2 class="text-h3-sm md:text-h3 font-bold transition-colors">
+        <a href={href}>{title}</a>
+      </h2>
+      <div class="text-text-default/60 mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+        {formattedDate && <span>{formattedDate}</span>}
+        {formattedDate && author && <span aria-hidden="true">·</span>}
+        {author && <span>{author}</span>}
+      </div>
+      {
+        description && (
+          <p class="text-text-default/70 pt-4 pb-1 lg:max-w-140 lg:pt-4.5 lg:text-lg">
+            {description}
+          </p>
+        )
+      }
+    </div>
+
+    {/* Arrow */}
+    <div class="relative z-10 mt-2 flex shrink-0 lg:mt-2.5">
+      <a
+        href={href}
+        aria-label={title}
+        class="border-border-dark/20 text-dark flex h-10 w-15 items-center justify-center rounded-sm border transition-all duration-300 max-lg:border-primary max-lg:bg-primary max-lg:text-white lg:hover:border-primary lg:hover:bg-primary lg:hover:text-white">
+        <Icons icon="ArrowRight" class="stroke-1.5 h-5 w-5" />
+      </a>
+    </div>
+  </div>
+
+  <a href={href} class="absolute inset-0 z-10 hidden size-full lg:block" aria-hidden="true"></a>
+</div>

@@ -1,0 +1,23 @@
+---
+import Base from "@/layouts/Base.astro";
+import { generatePaths } from "@/lib/utils/i18nUtils";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import ContactSection from "@/components/sections/ContactSection.astro";
+import PageHeader from "@/layouts/components/widgets/PageHeader.astro";
+import BlogListSection from "@/components/sections/BlogListSection.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const blogIndex = await getEntryCTM("blog", "-index", Astro.currentLocale);
+---
+
+<Base {...blogIndex.data}>
+  <PageHeader
+    title={blogIndex.data.title}
+    breadcrumbTitle={blogIndex?.data?.breadcrumbTitle}
+  />
+  <BlogListSection />
+  <ContactSection />
+</Base>
