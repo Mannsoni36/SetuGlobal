@@ -1,0 +1,316 @@
+---
+import Base from "@/layouts/Base.astro";
+import { generatePaths } from "@/lib/utils/i18nUtils";
+import { buildBreadcrumbSchema } from "@/lib/utils/breadcrumbSchema";
+import SeoHero from "@/layouts/components/seo/SeoHero.astro";
+import AnswerBox from "@/layouts/components/seo/AnswerBox.astro";
+import StepsSection from "@/layouts/components/seo/StepsSection.astro";
+import ChecklistSection from "@/layouts/components/seo/ChecklistSection.astro";
+import MistakesSection from "@/layouts/components/seo/MistakesSection.astro";
+import HelpSection from "@/layouts/components/seo/HelpSection.astro";
+import MidCtaBanner from "@/layouts/components/seo/MidCtaBanner.astro";
+import InternalLinksSection from "@/layouts/components/seo/InternalLinksSection.astro";
+import FaqSection from "@/layouts/components/sections/FaqSection.astro";
+import FinalCtaSection from "@/layouts/components/seo/FinalCtaSection.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const PAGE_TITLE = "Germany Student Visa from India 2026";
+
+const faqs = [
+  {
+    q: "Is Setu's consultation really free?",
+    a: "Yes. Our consultation is completely free, with no hidden charges. We guide you from counselling through to visa and settling in Germany.",
+  },
+  {
+    q: "How long does the Germany student visa take?",
+    a: "Visa processing usually takes 6 to 12 weeks after your embassy appointment. Add APS (4–8 weeks) and blocked account setup on top, so start 12 to 18 months before your intake.",
+  },
+  {
+    q: "What is the blocked account amount for 2026?",
+    a: "For 2026, you need €11,904 for the year, released as €992 per month once you're in Germany. See our [blocked account guide](/blocked-account-germany/) for the full process.",
+  },
+  {
+    q: "Do I need an APS certificate?",
+    a: "Yes. An APS certificate is generally required for Indian students applying for a German student visa. Read our [APS certificate guide](/aps-certificate-germany-india/) for documents and timeline.",
+  },
+  {
+    q: "Do I need to know German for the visa?",
+    a: "Not for many programs — plenty of German master's programs are taught fully in English. Check our [German language requirement guide](/german-language-requirement/) to see what applies to your course.",
+  },
+  {
+    q: "Can I work while studying in Germany?",
+    a: "Yes. International students can work up to 140 full days (or 280 half-days) a year alongside their studies.",
+  },
+  {
+    q: "What causes most visa delays?",
+    a: "Small errors — mismatched dates, missing certified translations, or an outdated blocked account amount — are the most common reasons for delay. We review every document with you before submission.",
+  },
+  {
+    q: "Does Setu guarantee visa approval?",
+    a: "No one can guarantee a visa — the German embassy makes the final decision. What we do is help you prepare a careful, complete file and avoid the mistakes that most often cause delays.",
+  },
+];
+
+const breadcrumbSchema = buildBreadcrumbSchema(PAGE_TITLE, Astro.url.pathname);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Germany Student Visa Guidance",
+  serviceType: "Student visa guidance",
+  description:
+    "Free, end-to-end guidance for Indian students applying for a Germany student (national/type D) visa — documents, APS, blocked account and embassy preparation.",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Setu Global Solution",
+    url: "https://www.setuglobalsolution.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "205 Avani Icon, Haridarshan Cross Road, Naroda",
+      addressLocality: "Ahmedabad",
+      addressRegion: "Gujarat",
+      postalCode: "382330",
+      addressCountry: "IN",
+    },
+  },
+  areaServed: "Ahmedabad",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "INR",
+    description: "Free consultation",
+  },
+};
+---
+
+<Base
+  title={PAGE_TITLE}
+  metaTitle="Germany Student Visa from India 2026 | Process, Documents & Guidance"
+  metaDescription="Complete Germany student visa guide for Indian students. Learn documents, APS, blocked account, visa process, timeline, mistakes and Setu's free guidance."
+  keywords={[
+    "germany student visa from india",
+    "germany student visa process 2026",
+    "germany visa documents",
+    "germany national visa students",
+  ]}
+  disableTagline={true}>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(breadcrumbSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(faqSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(serviceSchema)}
+  />
+
+  <SeoHero
+    eyebrow="Germany Student Visa"
+    h1={PAGE_TITLE}
+    intro="Everything Indian students need to know about the Germany national (type D) student visa — documents, APS, blocked account, timeline and the exact steps to avoid delays."
+    breadcrumbTitle={PAGE_TITLE}
+  />
+
+  <AnswerBox
+    question="What is the Germany student visa process for Indian students?"
+    answer="You need a university admission letter, an APS certificate, a blocked account with €11,904, health insurance and a completed application. You apply for a national (type D) visa through VFS/the German embassy. The full process usually takes 3 to 6 months, so start 12 to 18 months before your intake."
+  />
+
+  <StepsSection
+    eyebrow="Step by Step"
+    title="Germany Student Visa Process"
+    steps={[
+      {
+        title: "Get University Admission",
+        desc: "Apply to your shortlisted universities and secure a conditional or unconditional admission letter — the visa process cannot begin without it.",
+      },
+      {
+        title: "Complete Your APS Certificate",
+        desc: "Get your academic documents verified by the APS office in India. This confirms your qualifications meet German standards.",
+      },
+      {
+        title: "Open Your Blocked Account",
+        desc: "Deposit €11,904 in a recognised blocked account (Sperrkonto) with a provider like Fintiba or Expatrio.",
+      },
+      {
+        title: "Arrange Health Insurance",
+        desc: "Get incoming/travel insurance for the period before enrolment, then switch to public student insurance in Germany.",
+      },
+      {
+        title: "Book Your Embassy Appointment",
+        desc: "Apply for your national (type D) student visa and book your appointment via VFS or the German consulate.",
+      },
+      {
+        title: "Attend Your Visa Interview",
+        desc: "Submit your documents and answer questions about your admission, finances and study plans.",
+      },
+      {
+        title: "Receive Your Visa & Travel",
+        desc: "Once approved (usually 6–12 weeks), book your flights, arrange accommodation and prepare to fly.",
+      },
+    ]}
+  />
+
+  <MidCtaBanner
+    text="Not sure which step you're stuck on? Get free guidance from Setu."
+  />
+
+  <ChecklistSection
+    eyebrow="What You Need"
+    title="Documents for the Germany Student Visa"
+    items={[
+      {
+        label: "Admission Letter",
+        detail:
+          "Conditional or unconditional offer from a recognised German university.",
+      },
+      {
+        label: "Valid Passport",
+        detail:
+          "Valid well beyond your intended stay, with enough blank pages.",
+      },
+      {
+        label: "Blocked Account Proof",
+        detail:
+          "Sperrkonto confirmation showing €11,904 deposited for the year.",
+      },
+      {
+        label: "APS Certificate",
+        detail:
+          "Document verification certificate from the APS office in India.",
+      },
+      {
+        label: "Health Insurance",
+        detail:
+          "Travel insurance for the interim period, then public student insurance.",
+      },
+      {
+        label: "Academic Records",
+        detail: "Transcripts and certificates with certified translations.",
+      },
+      {
+        label: "Language Certificate",
+        detail:
+          "IELTS/TOEFL or German level certificate, as required by your program.",
+      },
+      {
+        label: "SOP, CV & Photos",
+        detail: "Statement of purpose, CV and biometric passport photos.",
+      },
+    ]}
+  />
+
+  <MistakesSection
+    eyebrow="Avoid These"
+    title="Common Visa Mistakes"
+    items={[
+      {
+        title: "Applying too late",
+        detail:
+          "Embassy appointment slots fill up fast during peak intake season — book as early as your documents allow.",
+      },
+      {
+        title: "Wrong blocked account amount",
+        detail:
+          "Depositing an outdated figure instead of the current €11,904 causes avoidable rejections.",
+      },
+      {
+        title: "Missing certified translations",
+        detail:
+          "Academic documents without proper certified translation are a common cause of delay.",
+      },
+      {
+        title: "Starting APS too late",
+        detail:
+          "APS verification takes 4 to 8 weeks — leaving it until the last moment pushes back your whole timeline.",
+      },
+      {
+        title: "A generic SOP",
+        detail:
+          "A statement of purpose that doesn't clearly connect your background to your chosen course raises questions.",
+      },
+      {
+        title: "Mismatched details",
+        detail:
+          "Small inconsistencies in names, dates or addresses across documents can trigger extra scrutiny.",
+      },
+    ]}
+  />
+
+  <HelpSection
+    title="How Setu Global Solution Helps"
+    items={[
+      {
+        title: "Free Profile Assessment",
+        desc: "We review your academics, budget and goals, then map a realistic university and visa timeline.",
+      },
+      {
+        title: "University Shortlisting",
+        desc: "We help you shortlist universities and programs that genuinely fit your profile.",
+      },
+      {
+        title: "APS & Document Guidance",
+        desc: "We help prepare and organise your documents for a smooth APS verification.",
+      },
+      {
+        title: "Blocked Account Support",
+        desc: "We guide you through opening your Sperrkonto with a trusted provider.",
+      },
+      {
+        title: "Visa File Review",
+        desc: "We review your complete visa file and run mock interviews before your appointment.",
+      },
+      {
+        title: "Pre-Departure & Arrival Support",
+        desc: "We support you with accommodation, city registration and settling in after you land.",
+      },
+    ]}
+  />
+
+  <InternalLinksSection
+    links={[
+      {
+        label: "APS Certificate Guide",
+        url: "/aps-certificate-germany-india/",
+      },
+      { label: "Blocked Account Guide", url: "/blocked-account-germany/" },
+      {
+        label: "German Language Requirement",
+        url: "/german-language-requirement/",
+      },
+      { label: "Book Free Consultation", url: "/#contact" },
+    ]}
+  />
+
+  <FaqSection
+    content={{
+      enable: true,
+      badge: "Got Questions?",
+      title: "Germany Student Visa FAQs",
+      description:
+        "Still unsure about something? Book a free call with our team anytime.",
+      items: faqs,
+    }}
+  />
+
+  <FinalCtaSection />
+</Base>

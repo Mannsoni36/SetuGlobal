@@ -1,0 +1,315 @@
+---
+import Base from "@/layouts/Base.astro";
+import { generatePaths } from "@/lib/utils/i18nUtils";
+import { buildBreadcrumbSchema } from "@/lib/utils/breadcrumbSchema";
+import SeoHero from "@/layouts/components/seo/SeoHero.astro";
+import AnswerBox from "@/layouts/components/seo/AnswerBox.astro";
+import ComparisonTable from "@/layouts/components/seo/ComparisonTable.astro";
+import StepsSection from "@/layouts/components/seo/StepsSection.astro";
+import ChecklistSection from "@/layouts/components/seo/ChecklistSection.astro";
+import MistakesSection from "@/layouts/components/seo/MistakesSection.astro";
+import HelpSection from "@/layouts/components/seo/HelpSection.astro";
+import MidCtaBanner from "@/layouts/components/seo/MidCtaBanner.astro";
+import InternalLinksSection from "@/layouts/components/seo/InternalLinksSection.astro";
+import FaqSection from "@/layouts/components/sections/FaqSection.astro";
+import FinalCtaSection from "@/layouts/components/seo/FinalCtaSection.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const PAGE_TITLE = "Public Universities in Germany for Indian Students";
+
+const faqs = [
+  {
+    q: "Are German public universities really free?",
+    a: "Most charge no tuition fees for bachelor's and many master's programs. You still pay a small semester contribution, typically €150–€350, and cover your own living costs.",
+  },
+  {
+    q: "What is uni-assist?",
+    a: "Uni-assist is a service many German universities use to pre-check international applications before forwarding them to the university itself.",
+  },
+  {
+    q: "What does the semester contribution pay for?",
+    a: "It usually covers student services and, at many universities, a public transport ticket for the semester.",
+  },
+  {
+    q: "Are public universities lower quality than private ones?",
+    a: "No. Many of Germany's top-ranked and most research-active universities are public — tuition-free doesn't mean lower quality.",
+  },
+  {
+    q: "Can Indian students get direct admission after 12th?",
+    a: "Not usually for a full bachelor's — most need a bridging step first. See our [study after 12th guide](/study-in-germany-after-12th/) for details.",
+  },
+  {
+    q: "How many public universities does Germany have?",
+    a: "Germany has over 100 public universities, most charging no tuition fees, spread across every major field of study.",
+  },
+];
+
+const breadcrumbSchema = buildBreadcrumbSchema(PAGE_TITLE, Astro.url.pathname);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Public University Admission Guidance",
+  serviceType: "University admission counselling",
+  description:
+    "Free guidance helping Indian students shortlist and apply to tuition-free public universities in Germany.",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Setu Global Solution",
+    url: "https://www.setuglobalsolution.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "205 Avani Icon, Haridarshan Cross Road, Naroda",
+      addressLocality: "Ahmedabad",
+      addressRegion: "Gujarat",
+      postalCode: "382330",
+      addressCountry: "IN",
+    },
+  },
+  areaServed: "Ahmedabad",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "INR",
+    description: "Free consultation",
+  },
+};
+---
+
+<Base
+  title={PAGE_TITLE}
+  metaTitle="Public Universities in Germany for Indian Students | Low Tuition Guide"
+  metaDescription="Find out how public universities in Germany work, tuition fees, semester contribution, admission requirements and best courses for Indian students."
+  keywords={[
+    "public universities in germany",
+    "germany tuition free universities",
+    "semester contribution germany",
+    "german university admission india",
+  ]}
+  disableTagline={true}>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(breadcrumbSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(faqSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(serviceSchema)}
+  />
+
+  <SeoHero
+    eyebrow="Public Universities"
+    h1={PAGE_TITLE}
+    intro="Germany's public universities charge little to no tuition — here's how they actually work, what you'll pay, and how to get admitted."
+    breadcrumbTitle={PAGE_TITLE}
+  />
+
+  <AnswerBox
+    question="Are public universities in Germany really tuition-free?"
+    answer="Yes, for most bachelor's and many master's programs. Public universities charge no tuition fees — you only pay a semester contribution, typically €150–€350, which usually includes a public transport ticket."
+  />
+
+  <ComparisonTable
+    eyebrow="Know the Difference"
+    title="Public vs Private Universities"
+    headers={["Factor", "Public Universities", "Private Universities"]}
+    rows={[
+      [
+        "Tuition Fees",
+        "Usually none (semester fee only)",
+        "Often €5,000–€20,000+ per year",
+      ],
+      [
+        "Recognition",
+        "State-recognised, widely respected",
+        "Varies — check accreditation carefully",
+      ],
+      [
+        "Application Route",
+        "Often via uni-assist or direct",
+        "Usually direct to the institution",
+      ],
+      [
+        "Class Sizes",
+        "Can be larger, especially for popular courses",
+        "Often smaller and more personalised",
+      ],
+      [
+        "Language of Instruction",
+        "Mostly German, growing English options",
+        "More English-taught programs available",
+      ],
+    ]}
+  />
+
+  <StepsSection
+    eyebrow="Step by Step"
+    title="Applying to a Public University"
+    steps={[
+      {
+        title: "Research Programs",
+        desc: "Shortlist public universities and courses that match your background and goals.",
+      },
+      {
+        title: "Check Admission Requirements",
+        desc: "Review grade, language and entrance exam requirements for each program.",
+      },
+      {
+        title: "Apply via uni-assist or Directly",
+        desc: "Submit your application through uni-assist or the university's own portal.",
+      },
+      {
+        title: "Get Your Admission Letter",
+        desc: "Receive your conditional or unconditional offer.",
+      },
+      {
+        title: "Complete Visa & Blocked Account",
+        desc: "Move on to your student visa and financial proof once admitted.",
+      },
+      {
+        title: "Enrol & Pay Semester Fee",
+        desc: "Complete enrolment and pay your semester contribution to begin.",
+      },
+    ]}
+  />
+
+  <MidCtaBanner
+    text="Want a shortlist of public universities that fit you? Ask us for free."
+  />
+
+  <ChecklistSection
+    eyebrow="What You Need"
+    title="Admission Requirements"
+    items={[
+      {
+        label: "Academic Transcripts",
+        detail:
+          "Your school and/or college records, properly translated where required.",
+      },
+      {
+        label: "Recognised Qualification",
+        detail:
+          "12th plus a bridging step, or a bachelor's degree, depending on the level you're applying for.",
+      },
+      {
+        label: "Language Proof",
+        detail: "German or English proficiency, depending on the program.",
+      },
+      {
+        label: "APS Certificate",
+        detail:
+          "Document verification is generally required for Indian applicants.",
+      },
+      {
+        label: "SOP & LORs",
+        detail: "Especially important for master's applications.",
+      },
+      {
+        label: "Application Fee",
+        detail:
+          "A nominal uni-assist or university application fee, where applicable.",
+      },
+    ]}
+  />
+
+  <MistakesSection
+    eyebrow="Avoid These"
+    title="Common Mistakes"
+    items={[
+      {
+        title: "Thinking 'free' means zero cost",
+        detail:
+          "Tuition may be free, but living costs, insurance and the blocked account still apply.",
+      },
+      {
+        title: "Missing application windows",
+        detail:
+          "Public universities generally work on fixed intake deadlines — missing them means waiting a full semester.",
+      },
+      {
+        title: "Applying to too few universities",
+        detail:
+          "Applying to only one or two options limits your chances — build a realistic shortlist.",
+      },
+      {
+        title: "Ignoring program-specific rules",
+        detail:
+          "Requirements can differ even within the same university — always check the exact program.",
+      },
+      {
+        title: "Overlooking public vs private differences",
+        detail:
+          "Comparing costs without understanding recognition and structure can lead to a poor choice.",
+      },
+    ]}
+  />
+
+  <HelpSection
+    title="How Setu Global Solution Helps"
+    items={[
+      {
+        title: "University Shortlisting",
+        desc: "We help you find public universities that genuinely fit your profile and budget.",
+      },
+      {
+        title: "Application Support",
+        desc: "We guide your uni-assist or direct application, start to finish.",
+      },
+      {
+        title: "Document Preparation",
+        desc: "We help prepare transcripts, SOP and supporting documents.",
+      },
+      {
+        title: "Realistic Guidance",
+        desc: "We tell you honestly which programs fit your background, not just what sounds impressive.",
+      },
+    ]}
+  />
+
+  <InternalLinksSection
+    links={[
+      {
+        label: "Study in Germany After 12th",
+        url: "/study-in-germany-after-12th/",
+      },
+      { label: "Study Without IELTS", url: "/study-in-germany-without-ielts/" },
+      {
+        label: "German Language Requirement",
+        url: "/german-language-requirement/",
+      },
+      { label: "Book Free Consultation", url: "/#contact" },
+    ]}
+  />
+
+  <FaqSection
+    content={{
+      enable: true,
+      badge: "Got Questions?",
+      title: "Public Universities FAQs",
+      description:
+        "Still unsure about something? Book a free call with our team anytime.",
+      items: faqs,
+    }}
+  />
+
+  <FinalCtaSection />
+</Base>

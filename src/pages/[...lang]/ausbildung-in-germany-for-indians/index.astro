@@ -1,0 +1,287 @@
+---
+import Base from "@/layouts/Base.astro";
+import { generatePaths } from "@/lib/utils/i18nUtils";
+import { buildBreadcrumbSchema } from "@/lib/utils/breadcrumbSchema";
+import SeoHero from "@/layouts/components/seo/SeoHero.astro";
+import AnswerBox from "@/layouts/components/seo/AnswerBox.astro";
+import StepsSection from "@/layouts/components/seo/StepsSection.astro";
+import ChecklistSection from "@/layouts/components/seo/ChecklistSection.astro";
+import MistakesSection from "@/layouts/components/seo/MistakesSection.astro";
+import HelpSection from "@/layouts/components/seo/HelpSection.astro";
+import MidCtaBanner from "@/layouts/components/seo/MidCtaBanner.astro";
+import InternalLinksSection from "@/layouts/components/seo/InternalLinksSection.astro";
+import FaqSection from "@/layouts/components/sections/FaqSection.astro";
+import FinalCtaSection from "@/layouts/components/seo/FinalCtaSection.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const PAGE_TITLE = "Ausbildung in Germany for Indians";
+
+const faqs = [
+  {
+    q: "What exactly is Ausbildung?",
+    a: "Ausbildung is Germany's dual vocational training system. You work at a company most of the week and attend a vocational school the rest, earning a monthly stipend throughout.",
+  },
+  {
+    q: "Is Ausbildung free, like public university?",
+    a: "Ausbildung isn't a study program with tuition fees — it's a paid training role. You earn a stipend from day one instead of paying fees.",
+  },
+  {
+    q: "How much can I earn during Ausbildung?",
+    a: "Stipends generally range from around €1,100 to €1,700 per month depending on the trade and company.",
+  },
+  {
+    q: "Do I need German before applying?",
+    a: "Most companies and the visa process require B1, sometimes B2, German. See our [German language requirement guide](/german-language-requirement/) to understand what level you need.",
+  },
+  {
+    q: "Can Ausbildung lead to permanent residency?",
+    a: "After qualifying and working for a period, candidates can generally apply for a long-term work permit and later permanent residency, subject to the rules in place at the time.",
+  },
+  {
+    q: "What is the difference between Ausbildung and studying at a German university?",
+    a: "Ausbildung is paid, practical, trade-focused training; university is academic study. If you're weighing both, see our [Study in Germany After 12th](/study-in-germany-after-12th/) guide.",
+  },
+  {
+    q: "Where can I see specific trades and stipends?",
+    a: "Our dedicated [Ausbildung programs page](/ausbildung/) lists trades, durations and stipend ranges we currently place candidates in.",
+  },
+];
+
+const breadcrumbSchema = buildBreadcrumbSchema(PAGE_TITLE, Astro.url.pathname);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Ausbildung Placement Guidance",
+  serviceType: "Vocational training placement guidance",
+  description:
+    "Free guidance for Indian candidates pursuing Ausbildung (paid vocational training) in Germany — eligibility, language, company placement and visa.",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Setu Global Solution",
+    url: "https://www.setuglobalsolution.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "205 Avani Icon, Haridarshan Cross Road, Naroda",
+      addressLocality: "Ahmedabad",
+      addressRegion: "Gujarat",
+      postalCode: "382330",
+      addressCountry: "IN",
+    },
+  },
+  areaServed: "Ahmedabad",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "INR",
+    description: "Free consultation",
+  },
+};
+---
+
+<Base
+  title={PAGE_TITLE}
+  metaTitle="Ausbildung in Germany for Indians | Paid Training & Visa Guidance"
+  metaDescription="Explore Ausbildung in Germany for Indian students and skilled candidates. Learn German level, stipend, age, fields, visa process and Setu's guidance."
+  keywords={[
+    "ausbildung in germany for indians",
+    "ausbildung germany eligibility",
+    "vocational training germany indian students",
+    "ausbildung visa process",
+  ]}
+  disableTagline={true}>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(breadcrumbSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(faqSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(serviceSchema)}
+  />
+
+  <SeoHero
+    eyebrow="Ausbildung"
+    h1={PAGE_TITLE}
+    intro="Ausbildung is Germany's paid vocational training route — earn a stipend while you train, with a real path to long-term residency. Here's what Indian candidates need to know."
+    breadcrumbTitle={PAGE_TITLE}
+  />
+
+  <AnswerBox
+    question="Can Indian candidates do Ausbildung in Germany?"
+    answer="Yes. Indian candidates roughly 18–35 years old with at least a 12th-pass background and B1/B2 German can apply for Ausbildung — Germany's dual vocational training program — in fields like nursing, IT, electrical work and more."
+  />
+
+  <StepsSection
+    eyebrow="Step by Step"
+    title="Your Ausbildung Path"
+    steps={[
+      {
+        title: "Choose Your Field",
+        desc: "Pick a trade that matches your interest and background — nursing, IT, electrical, mechanical and more are all in demand.",
+      },
+      {
+        title: "Reach B1/B2 German",
+        desc: "Build the German level most companies and the visa process require.",
+      },
+      {
+        title: "Apply to Companies",
+        desc: "Apply to German companies hiring apprentices in your chosen trade.",
+      },
+      {
+        title: "Sign Your Training Contract",
+        desc: "Once selected, you sign a training contract that anchors your visa application.",
+      },
+      {
+        title: "Apply for Your Visa",
+        desc: "Prepare your training visa file, including your blocked account if required.",
+      },
+      {
+        title: "Travel & Start Training",
+        desc: "Begin your paid, dual training — part company work, part vocational school.",
+      },
+      {
+        title: "Convert to a Work Permit",
+        desc: "After qualifying, convert your training visa into a full work permit.",
+      },
+    ]}
+  />
+
+  <MidCtaBanner
+    text="Want to know which trades fit your background? Ask us — it's free."
+  />
+
+  <ChecklistSection
+    eyebrow="What You Need"
+    title="Ausbildung Requirements"
+    items={[
+      {
+        label: "Education",
+        detail: "12th pass or higher is the minimum for most trades.",
+      },
+      {
+        label: "Age",
+        detail:
+          "Roughly 18 to 35, with some flexibility depending on the trade and company.",
+      },
+      {
+        label: "German Level",
+        detail: "B1 minimum, B2 preferred — especially for nursing.",
+      },
+      {
+        label: "Genuine Interest",
+        detail:
+          "A real interest in your chosen trade — companies notice the difference.",
+      },
+      {
+        label: "Valid Passport",
+        detail: "Valid well beyond your intended training start date.",
+      },
+    ]}
+  />
+
+  <MistakesSection
+    eyebrow="Avoid These"
+    title="Common Ausbildung Mistakes"
+    items={[
+      {
+        title: "Skipping German preparation",
+        detail:
+          "Applying without solid B1 German limits your options with most companies.",
+      },
+      {
+        title: "Chasing only 'hot' trades",
+        detail:
+          "Picking a field purely for demand, without genuine interest, often backfires during training.",
+      },
+      {
+        title: "Weak applications",
+        detail:
+          "A generic CV and cover letter rarely stand out to German companies.",
+      },
+      {
+        title: "Underestimating the timeline",
+        detail:
+          "Language prep, applications and visa processing together can take several months — plan early.",
+      },
+      {
+        title: "Expecting it to work like a degree",
+        detail:
+          "Ausbildung is a paid training role, not a university program — the structure and expectations are different.",
+      },
+    ]}
+  />
+
+  <HelpSection
+    title="How Setu Global Solution Helps"
+    items={[
+      {
+        title: "Trade & Company Matching",
+        desc: "We help match you to trades and companies that fit your background.",
+      },
+      {
+        title: "German Language Guidance",
+        desc: "We coordinate practical, trade-relevant German coaching in India.",
+      },
+      {
+        title: "Application Support",
+        desc: "We help you prepare applications that stand out to German employers.",
+      },
+      {
+        title: "Visa & Blocked Account Guidance",
+        desc: "We guide your training visa file and blocked account, where needed.",
+      },
+      {
+        title: "Arrival Support",
+        desc: "We help with registration, banking and settling in once you land.",
+      },
+    ]}
+  />
+
+  <InternalLinksSection
+    links={[
+      {
+        label: "German Language Requirement",
+        url: "/german-language-requirement/",
+      },
+      { label: "Full Trades & Stipends List", url: "/ausbildung/" },
+      {
+        label: "Germany Student Visa Guide",
+        url: "/germany-student-visa-india/",
+      },
+      { label: "Book Free Consultation", url: "/#contact" },
+    ]}
+  />
+
+  <FaqSection
+    content={{
+      enable: true,
+      badge: "Got Questions?",
+      title: "Ausbildung FAQs",
+      description:
+        "Still unsure about something? Book a free call with our team anytime.",
+      items: faqs,
+    }}
+  />
+
+  <FinalCtaSection />
+</Base>

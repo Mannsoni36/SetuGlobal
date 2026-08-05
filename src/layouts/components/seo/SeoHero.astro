@@ -1,0 +1,66 @@
+---
+import Breadcrumbs from "@/layouts/components/widgets/Breadcrumbs.astro";
+
+interface Props {
+  eyebrow: string;
+  h1: string;
+  intro: string;
+  breadcrumbTitle: string;
+}
+
+const { eyebrow, h1, intro, breadcrumbTitle } = Astro.props;
+const whatsappUrl =
+  "https://wa.me/918140881823?text=Hi%20Setu%20Global%20Solution%2C%20I%20want%20free%20guidance%20for%20Germany.";
+---
+
+<section class="seo-hero relative overflow-hidden py-16 lg:py-24">
+  <div class="relative z-10 container">
+    <Breadcrumbs
+      class="mb-6 flex justify-center"
+      title={breadcrumbTitle}
+      pathname={Astro.url.pathname}
+    />
+    <div class="mx-auto max-w-3xl text-center">
+      <span
+        class="mb-5 inline-block rounded-full border border-white/25 bg-white/10 px-5 py-1.5 text-xs font-bold tracking-widest text-white uppercase">
+        {eyebrow}
+      </span>
+      <h1
+        class="mb-5 text-4xl leading-tight font-black text-white lg:text-5xl"
+        data-aos="fade-up"
+        data-aos-duration="500">
+        {h1}
+      </h1>
+      <p
+        class="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-white/70 lg:text-lg">
+        {intro}
+      </p>
+      <div class="flex flex-col gap-3 sm:flex-row sm:justify-center">
+        <a
+          href="/#contact"
+          class="bg-secondary inline-block rounded-xl px-7 py-3.5 text-sm font-bold text-white transition-opacity hover:opacity-90">
+          Book Free Consultation
+        </a>
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block rounded-xl border-2 border-white/30 px-7 py-3.5 text-sm font-bold text-white transition-colors hover:bg-white/10">
+          💬 WhatsApp Us
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .seo-hero {
+    background-color: #5b2d8e;
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px
+    );
+    background-size: 28px 28px;
+  }
+</style>

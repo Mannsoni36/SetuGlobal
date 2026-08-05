@@ -1,0 +1,287 @@
+---
+import Base from "@/layouts/Base.astro";
+import { generatePaths } from "@/lib/utils/i18nUtils";
+import { buildBreadcrumbSchema } from "@/lib/utils/breadcrumbSchema";
+import SeoHero from "@/layouts/components/seo/SeoHero.astro";
+import AnswerBox from "@/layouts/components/seo/AnswerBox.astro";
+import StepsSection from "@/layouts/components/seo/StepsSection.astro";
+import ChecklistSection from "@/layouts/components/seo/ChecklistSection.astro";
+import MistakesSection from "@/layouts/components/seo/MistakesSection.astro";
+import HelpSection from "@/layouts/components/seo/HelpSection.astro";
+import MidCtaBanner from "@/layouts/components/seo/MidCtaBanner.astro";
+import InternalLinksSection from "@/layouts/components/seo/InternalLinksSection.astro";
+import FaqSection from "@/layouts/components/sections/FaqSection.astro";
+import FinalCtaSection from "@/layouts/components/seo/FinalCtaSection.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const PAGE_TITLE = "APS Certificate for Germany from India";
+
+const faqs = [
+  {
+    q: "What does APS stand for?",
+    a: "APS (Akademische Prüfstelle) is the academic evaluation body that verifies Indian students' academic documents on behalf of German missions in India.",
+  },
+  {
+    q: "Is APS required for all Indian students?",
+    a: "An APS certificate is generally required for Indian students applying for a German student visa. A few categories are handled differently, so it's best to confirm your exact case with us before you start.",
+  },
+  {
+    q: "How long does APS verification take?",
+    a: "Typically 4 to 8 weeks from application to certificate, though it can vary. Starting early keeps your visa timeline safe.",
+  },
+  {
+    q: "Does Setu process the APS certificate for me?",
+    a: "APS is issued directly by the APS office, not by us. What we do is help you prepare the right documents, guide you through the application, and review everything before you submit.",
+  },
+  {
+    q: "What happens after I receive my APS certificate?",
+    a: "Your APS certificate becomes part of your visa file. Read our [Germany student visa guide](/germany-student-visa-india/) for the full process after APS.",
+  },
+  {
+    q: "Does APS delay my blocked account timeline?",
+    a: "It doesn't have to — you can work on your [blocked account](/blocked-account-germany/) in parallel with your APS application if you plan early.",
+  },
+  {
+    q: "What if my documents have a spelling mismatch?",
+    a: "Even small mismatches between your passport and academic records can cause delays or rejection. We review this with you before submission.",
+  },
+];
+
+const breadcrumbSchema = buildBreadcrumbSchema(PAGE_TITLE, Astro.url.pathname);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "APS Certificate Guidance",
+  serviceType: "Document verification guidance",
+  description:
+    "Free guidance for Indian students preparing their APS (Akademische Prüfstelle) certificate for a German student visa application.",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Setu Global Solution",
+    url: "https://www.setuglobalsolution.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "205 Avani Icon, Haridarshan Cross Road, Naroda",
+      addressLocality: "Ahmedabad",
+      addressRegion: "Gujarat",
+      postalCode: "382330",
+      addressCountry: "IN",
+    },
+  },
+  areaServed: "Ahmedabad",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "INR",
+    description: "Free consultation",
+  },
+};
+---
+
+<Base
+  title={PAGE_TITLE}
+  metaTitle="APS Certificate for Germany from India | Complete Guide 2026"
+  metaDescription="Learn what APS certificate is, who needs it, documents required, process, timeline and common mistakes for Indian students applying to Germany."
+  keywords={[
+    "aps certificate germany",
+    "aps certificate for indian students",
+    "apscheck germany",
+    "aps verification process",
+  ]}
+  disableTagline={true}>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(breadcrumbSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(faqSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(serviceSchema)}
+  />
+
+  <SeoHero
+    eyebrow="APS Certificate"
+    h1={PAGE_TITLE}
+    intro="What the APS certificate is, who needs it, which documents to prepare, and how to avoid the delays that catch most Indian applicants."
+    breadcrumbTitle={PAGE_TITLE}
+  />
+
+  <AnswerBox
+    question="What is the APS certificate and do I need one?"
+    answer="APS (Akademische Prüfstelle) is a document verification certificate issued by the German missions in India. It confirms your academic qualifications are genuine and meet German standards, and it is generally required for Indian students applying for a German student visa."
+  />
+
+  <StepsSection
+    eyebrow="Step by Step"
+    title="APS Certificate Process"
+    steps={[
+      {
+        title: "Check If You Need APS",
+        desc: "Confirm your exact requirement based on your program and admission stage — most Indian applicants need it.",
+      },
+      {
+        title: "Create Your APS Account",
+        desc: "Register on the official APS portal and pay the applicable fee.",
+      },
+      {
+        title: "Upload Your Documents",
+        desc: "Submit clear scans of your academic transcripts, degree certificates and mark sheets.",
+      },
+      {
+        title: "Attend Verification",
+        desc: "Complete your document verification appointment, in person or online, as scheduled.",
+      },
+      {
+        title: "Receive Your Certificate",
+        desc: "Your APS certificate is typically issued in 4 to 8 weeks after successful verification.",
+      },
+      {
+        title: "Submit With Your Visa File",
+        desc: "Include your APS certificate in your student visa application.",
+      },
+    ]}
+  />
+
+  <MidCtaBanner
+    text="Confused about whether APS applies to your case? Ask us — it's free."
+  />
+
+  <ChecklistSection
+    eyebrow="What You Need"
+    title="Documents for APS Verification"
+    items={[
+      {
+        label: "10th & 12th Mark Sheets",
+        detail:
+          "Clear scans of your school-leaving certificates and mark sheets.",
+      },
+      {
+        label: "Bachelor's Certificate & Transcripts",
+        detail: "Required if you're applying for a master's program.",
+      },
+      {
+        label: "Passport Copy",
+        detail: "A valid passport with your details clearly visible.",
+      },
+      {
+        label: "Passport-size Photographs",
+        detail: "As per the format specified on the APS portal.",
+      },
+      {
+        label: "Application Form & Fee Receipt",
+        detail: "Your completed APS application and proof of fee payment.",
+      },
+      {
+        label: "University Admission Letter",
+        detail:
+          "Include it if you already have one — it helps streamline verification.",
+      },
+    ]}
+  />
+
+  <MistakesSection
+    eyebrow="Avoid These"
+    title="Common APS Mistakes"
+    items={[
+      {
+        title: "Starting too late",
+        detail:
+          "Beginning APS only after university applications are done adds unnecessary pressure to your timeline.",
+      },
+      {
+        title: "Unclear document scans",
+        detail:
+          "Blurry or incomplete uploads are a common reason for extra rounds of verification.",
+      },
+      {
+        title: "Name mismatches",
+        detail:
+          "Differences in spelling between your passport and academic records can cause delays.",
+      },
+      {
+        title: "Missing the verification appointment",
+        detail:
+          "Missed slots push your certificate — and your whole visa timeline — back by weeks.",
+      },
+      {
+        title: "Assuming APS is optional",
+        detail:
+          "Skipping it when it actually applies to your case can stall your entire visa application.",
+      },
+    ]}
+  />
+
+  <HelpSection
+    title="How Setu Global Solution Helps"
+    items={[
+      {
+        title: "Document Checklist",
+        desc: "We help prepare a complete, correctly formatted document set before you apply.",
+      },
+      {
+        title: "Application Guidance",
+        desc: "We walk you through the APS portal and application steps.",
+      },
+      {
+        title: "Appointment Coordination",
+        desc: "We help you plan your verification appointment around your intake timeline.",
+      },
+      {
+        title: "Pre-Submission Review",
+        desc: "We review your documents with you to catch mismatches before they cause delays.",
+      },
+      {
+        title: "Timeline Planning",
+        desc: "We map your APS timeline against your visa and blocked account steps.",
+      },
+      {
+        title: "Ongoing Support",
+        desc: "We stay available for questions throughout the process.",
+      },
+    ]}
+  />
+
+  <InternalLinksSection
+    links={[
+      {
+        label: "Germany Student Visa Guide",
+        url: "/germany-student-visa-india/",
+      },
+      { label: "Blocked Account Guide", url: "/blocked-account-germany/" },
+      { label: "Book Free Consultation", url: "/#contact" },
+    ]}
+  />
+
+  <FaqSection
+    content={{
+      enable: true,
+      badge: "Got Questions?",
+      title: "APS Certificate FAQs",
+      description:
+        "Still unsure about something? Book a free call with our team anytime.",
+      items: faqs,
+    }}
+  />
+
+  <FinalCtaSection />
+</Base>

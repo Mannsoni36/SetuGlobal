@@ -1,0 +1,58 @@
+---
+interface Item {
+  label: string;
+  detail: string;
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  items: Item[];
+  bg?: "white" | "light";
+}
+
+const { eyebrow, title, items, bg = "white" } = Astro.props;
+---
+
+<section
+  class:list={["section-spacing-vertical", bg === "light" && "bg-theme-light"]}>
+  <div class="container">
+    <div class="mx-auto max-w-3xl">
+      <div class="mb-8 text-center" data-aos="fade-up" data-aos-duration="500">
+        <p
+          class="text-primary mb-2 text-xs font-bold tracking-widest uppercase">
+          {eyebrow}
+        </p>
+        <h2 class="text-3xl font-black lg:text-4xl">{title}</h2>
+      </div>
+      <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {
+          items.map((item) => (
+            <li class="border-border-light flex gap-3 rounded-xl border bg-white p-4">
+              <span class="bg-primary mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="10"
+                  height="10"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <div>
+                <span class="text-text-default text-sm font-bold">
+                  {item.label}:{" "}
+                </span>
+                <span class="text-text-default/60 text-sm">{item.detail}</span>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

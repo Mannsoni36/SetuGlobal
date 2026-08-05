@@ -1,0 +1,290 @@
+---
+import Base from "@/layouts/Base.astro";
+import { generatePaths } from "@/lib/utils/i18nUtils";
+import { buildBreadcrumbSchema } from "@/lib/utils/breadcrumbSchema";
+import SeoHero from "@/layouts/components/seo/SeoHero.astro";
+import AnswerBox from "@/layouts/components/seo/AnswerBox.astro";
+import StepsSection from "@/layouts/components/seo/StepsSection.astro";
+import ChecklistSection from "@/layouts/components/seo/ChecklistSection.astro";
+import MistakesSection from "@/layouts/components/seo/MistakesSection.astro";
+import HelpSection from "@/layouts/components/seo/HelpSection.astro";
+import MidCtaBanner from "@/layouts/components/seo/MidCtaBanner.astro";
+import InternalLinksSection from "@/layouts/components/seo/InternalLinksSection.astro";
+import FaqSection from "@/layouts/components/sections/FaqSection.astro";
+import FinalCtaSection from "@/layouts/components/seo/FinalCtaSection.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const PAGE_TITLE = "Study in Germany Consultant in Ahmedabad";
+
+const faqs = [
+  {
+    q: "Where is your Ahmedabad office located?",
+    a: "We're located at 205 Avani Icon, Haridarshan Cross Road, Naroda, Ahmedabad, Gujarat 382330. You're welcome to visit or book an online consultation.",
+  },
+  {
+    q: "Is the consultation really free?",
+    a: "Yes. Every first consultation is completely free, with no hidden charges and no obligation.",
+  },
+  {
+    q: "Do you help with countries other than Germany?",
+    a: "No. We are a Germany-only consultancy. That focus means our guidance is specific and current, not a generic multi-country checklist. If you'd like a broader comparison, see our [Germany vs Canada guide](/germany-vs-canada-for-indian-students/).",
+  },
+  {
+    q: "Can you help with visa interview preparation?",
+    a: "Yes. We review your visa file and run mock interviews before your embassy appointment.",
+  },
+  {
+    q: "Do you help with Ausbildung as well as university admissions?",
+    a: "Yes. We guide both routes — see our [Ausbildung guide](/ausbildung-in-germany-for-indians/) for details.",
+  },
+  {
+    q: "Do you support students after they land in Germany?",
+    a: "Yes. We help with accommodation, city registration, and settling in after arrival, through our Germany-based team.",
+  },
+  {
+    q: "Can students outside Ahmedabad book a consultation?",
+    a: "Yes. We offer consultations over WhatsApp and video call for students anywhere in India.",
+  },
+];
+
+const breadcrumbSchema = buildBreadcrumbSchema(PAGE_TITLE, Astro.url.pathname);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Study in Germany Consultancy — Ahmedabad",
+  serviceType: "Germany-only study abroad consultancy",
+  description:
+    "Free counselling for Indian students in Ahmedabad on German university admissions, visa, blocked account, accommodation and career guidance.",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Setu Global Solution",
+    url: "https://www.setuglobalsolution.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "205 Avani Icon, Haridarshan Cross Road, Naroda",
+      addressLocality: "Ahmedabad",
+      addressRegion: "Gujarat",
+      postalCode: "382330",
+      addressCountry: "IN",
+    },
+  },
+  areaServed: "Ahmedabad",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "INR",
+    description: "Free consultation",
+  },
+};
+---
+
+<Base
+  title={PAGE_TITLE}
+  metaTitle="Study in Germany Consultant in Ahmedabad | Setu Global Solution"
+  metaDescription="Germany-only study abroad consultant in Ahmedabad. Get free counselling for German universities, APS, student visa, blocked account, accommodation and arrival support."
+  keywords={[
+    "study in germany consultant ahmedabad",
+    "germany education consultancy ahmedabad",
+    "germany study abroad ahmedabad",
+    "germany visa consultant naroda",
+  ]}
+  disableTagline={true}>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(breadcrumbSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(faqSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(serviceSchema)}
+  />
+
+  <SeoHero
+    eyebrow="Ahmedabad · Germany-Only"
+    h1={PAGE_TITLE}
+    intro="Setu Global Solution is a Germany-only study abroad consultancy based in Naroda, Ahmedabad — free counselling from your first question through to settling in Germany."
+    breadcrumbTitle={PAGE_TITLE}
+  />
+
+  <AnswerBox
+    question="What does a Germany-only consultant in Ahmedabad actually do?"
+    answer="We give Indian students free 1:1 counselling focused only on Germany — university shortlisting, visa guidance, blocked account setup, accommodation help and support after you arrive. No multi-country sales pitch, just Germany, done properly."
+  />
+
+  <StepsSection
+    eyebrow="Our Process"
+    title="From Counselling to Settling In"
+    steps={[
+      {
+        title: "Free Counselling",
+        desc: "We understand your background, budget and goals in a free, no-obligation session.",
+      },
+      {
+        title: "University Shortlisting",
+        desc: "We help you shortlist German universities or Ausbildung options that genuinely fit you.",
+      },
+      {
+        title: "Application & SOP",
+        desc: "We help prepare your application, SOP and supporting documents.",
+      },
+      {
+        title: "Visa & Blocked Account",
+        desc: "We guide you through APS, the blocked account and your visa file.",
+      },
+      {
+        title: "Accommodation Help",
+        desc: "We help you find and arrange student accommodation before you fly.",
+      },
+      {
+        title: "Arrival & Settling In",
+        desc: "Our Germany-based team supports registration, banking and daily-life essentials.",
+      },
+    ]}
+  />
+
+  <MidCtaBanner
+    text="Based in Ahmedabad or anywhere in India — book a free session with us."
+  />
+
+  <ChecklistSection
+    eyebrow="What We Help With"
+    title="Our Services"
+    items={[
+      {
+        label: "Study Counselling",
+        detail: "Honest, Germany-only guidance on courses and universities.",
+      },
+      {
+        label: "Visa Guidance",
+        detail:
+          "Support with your full student visa file and embassy preparation.",
+      },
+      {
+        label: "Blocked Account Support",
+        detail:
+          "Guidance choosing a provider and opening your Sperrkonto correctly.",
+      },
+      {
+        label: "Accommodation Help",
+        detail: "Support finding student housing before you arrive.",
+      },
+      {
+        label: "Career & Settling Guidance",
+        detail: "Resume, job search and settling-in support after graduation.",
+      },
+    ]}
+  />
+
+  <MistakesSection
+    eyebrow="Choose Carefully"
+    title="Common Mistakes When Choosing a Consultant"
+    items={[
+      {
+        title: "Picking a multi-country generalist",
+        detail:
+          "Consultants who push several countries at once often lack current, specific Germany knowledge.",
+      },
+      {
+        title: "Paying large upfront fees",
+        detail:
+          "Be cautious of consultants demanding big fees before any real guidance is given.",
+      },
+      {
+        title: "No support after the visa",
+        detail:
+          "Many students are left on their own for accommodation and arrival — ask what happens after your visa is approved.",
+      },
+      {
+        title: "Unclear timelines",
+        detail:
+          "A good consultant should give you a realistic, step-by-step timeline from day one.",
+      },
+      {
+        title: "No post-arrival help",
+        detail:
+          "Settling in Germany is easier with local support — check if that's included.",
+      },
+    ]}
+  />
+
+  <HelpSection
+    title="Why Students Choose Setu Global Solution"
+    items={[
+      {
+        title: "Germany-Only Focus",
+        desc: "We specialise in one country, so our guidance stays current and specific.",
+      },
+      {
+        title: "Free, No-Obligation Consultation",
+        desc: "No fees for counselling, no hidden charges, no pressure.",
+      },
+      {
+        title: "India + Germany Presence",
+        desc: "Support from our Ahmedabad office and our Germany-based team after you arrive.",
+      },
+      {
+        title: "End-to-End Guidance",
+        desc: "From your first question to settling in Germany, we stay with you.",
+      },
+      {
+        title: "Honest Advice",
+        desc: "We tell you what realistically fits your profile, not just what sounds appealing.",
+      },
+      {
+        title: "Local & Accessible",
+        desc: "Visit us in Naroda, Ahmedabad, or connect over WhatsApp from anywhere in India.",
+      },
+    ]}
+  />
+
+  <InternalLinksSection
+    links={[
+      {
+        label: "Germany Student Visa Guide",
+        url: "/germany-student-visa-india/",
+      },
+      {
+        label: "Germany vs Canada Comparison",
+        url: "/germany-vs-canada-for-indian-students/",
+      },
+      {
+        label: "Ausbildung for Indians",
+        url: "/ausbildung-in-germany-for-indians/",
+      },
+      { label: "Book Free Consultation", url: "/#contact" },
+    ]}
+  />
+
+  <FaqSection
+    content={{
+      enable: true,
+      badge: "Got Questions?",
+      title: "Ahmedabad Consultant FAQs",
+      description:
+        "Still unsure about something? Book a free call with our team anytime.",
+      items: faqs,
+    }}
+  />
+
+  <FinalCtaSection />
+</Base>

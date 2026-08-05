@@ -1,0 +1,289 @@
+---
+import Base from "@/layouts/Base.astro";
+import { generatePaths } from "@/lib/utils/i18nUtils";
+import { buildBreadcrumbSchema } from "@/lib/utils/breadcrumbSchema";
+import SeoHero from "@/layouts/components/seo/SeoHero.astro";
+import AnswerBox from "@/layouts/components/seo/AnswerBox.astro";
+import StepsSection from "@/layouts/components/seo/StepsSection.astro";
+import ChecklistSection from "@/layouts/components/seo/ChecklistSection.astro";
+import MistakesSection from "@/layouts/components/seo/MistakesSection.astro";
+import HelpSection from "@/layouts/components/seo/HelpSection.astro";
+import MidCtaBanner from "@/layouts/components/seo/MidCtaBanner.astro";
+import InternalLinksSection from "@/layouts/components/seo/InternalLinksSection.astro";
+import FaqSection from "@/layouts/components/sections/FaqSection.astro";
+import FinalCtaSection from "@/layouts/components/seo/FinalCtaSection.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const PAGE_TITLE = "Study in Germany After 12th for Indian Students";
+
+const faqs = [
+  {
+    q: "What is Studienkolleg?",
+    a: "Studienkolleg is a foundation course, usually one year, that bridges the gap between Indian 12th-grade qualifications and German bachelor's entrance requirements, ending in an entrance exam called the FSP.",
+  },
+  {
+    q: "How long does Studienkolleg take?",
+    a: "Typically one academic year, though it can vary depending on your track and how quickly you clear the FSP exam.",
+  },
+  {
+    q: "Is Studienkolleg free at public institutions?",
+    a: "Studienkolleg attached to public universities usually charges only the standard low semester contribution, not separate tuition — see our [public universities guide](/public-universities-germany/) for how this works.",
+  },
+  {
+    q: "Can I skip Studienkolleg?",
+    a: "Yes, in some cases — for example, if you complete one year of a recognised bachelor's program in India first, or hold certain qualifying exams. We assess your specific case for free.",
+  },
+  {
+    q: "What language is Studienkolleg taught in?",
+    a: "Most Studienkolleg tracks are taught in German, so you'll need a solid language foundation before starting. See our [German language requirement guide](/german-language-requirement/).",
+  },
+  {
+    q: "Can I do Ausbildung instead of a bachelor's degree after 12th?",
+    a: "Yes. Ausbildung is a paid vocational training alternative open to 12th-pass candidates — read our [Ausbildung guide](/ausbildung-in-germany-for-indians/) to compare.",
+  },
+  {
+    q: "Do I need IELTS to apply after 12th?",
+    a: "It depends on the program and pathway. See our [study without IELTS guide](/study-in-germany-without-ielts/) for accepted alternatives.",
+  },
+];
+
+const breadcrumbSchema = buildBreadcrumbSchema(PAGE_TITLE, Astro.url.pathname);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Study in Germany After 12th — Pathway Guidance",
+  serviceType: "Study pathway counselling",
+  description:
+    "Free guidance for Indian 12th-pass students on Studienkolleg, bridging routes and bachelor's admission in Germany.",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Setu Global Solution",
+    url: "https://www.setuglobalsolution.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "205 Avani Icon, Haridarshan Cross Road, Naroda",
+      addressLocality: "Ahmedabad",
+      addressRegion: "Gujarat",
+      postalCode: "382330",
+      addressCountry: "IN",
+    },
+  },
+  areaServed: "Ahmedabad",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "INR",
+    description: "Free consultation",
+  },
+};
+---
+
+<Base
+  title={PAGE_TITLE}
+  metaTitle="Study in Germany After 12th for Indian Students | Complete Guide"
+  metaDescription="Can Indian students study in Germany after 12th? Learn requirements, Studienkolleg, bachelor options, language, cost and admission process."
+  keywords={[
+    "study in germany after 12th",
+    "studienkolleg for indian students",
+    "germany bachelor admission india",
+    "germany after 12th eligibility",
+  ]}
+  disableTagline={true}>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(breadcrumbSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(faqSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(serviceSchema)}
+  />
+
+  <SeoHero
+    eyebrow="After 12th"
+    h1={PAGE_TITLE}
+    intro="Can you go straight from 12th grade to a German bachelor's degree? Here's the honest answer, your real pathway options, and what each one requires."
+    breadcrumbTitle={PAGE_TITLE}
+  />
+
+  <AnswerBox
+    question="Can I study in Germany right after 12th?"
+    answer="Not directly, for most bachelor's programs. Indian 12th-grade qualifications are generally considered one year short of German university entrance requirements, so you'll need either a year of recognised university study in India first, or a Studienkolleg (foundation course) in Germany, before starting your bachelor's degree."
+  />
+
+  <StepsSection
+    eyebrow="Step by Step"
+    title="Your Pathway After 12th"
+    steps={[
+      {
+        title: "Understand Your Pathway",
+        desc: "We help you check whether you need Studienkolleg, a bridging year in India, or qualify for a direct route.",
+      },
+      {
+        title: "Choose Studienkolleg or a Bridging Year",
+        desc: "Pick the route that best fits your timeline, budget and course interest.",
+      },
+      {
+        title: "Meet the Language Requirement",
+        desc: "Reach the German (or English) level your chosen track needs.",
+      },
+      {
+        title: "Apply to Studienkolleg or University",
+        desc: "Submit your application within the limited intake windows.",
+      },
+      {
+        title: "Pass the FSP Entrance Exam",
+        desc: "Clear the exam at the end of Studienkolleg, if that's your route.",
+      },
+      {
+        title: "Start Your Bachelor's Degree",
+        desc: "Begin your full bachelor's program at a German university.",
+      },
+    ]}
+  />
+
+  <MidCtaBanner
+    text="Not sure which pathway fits you? We'll assess it for free."
+  />
+
+  <ChecklistSection
+    eyebrow="What You Need"
+    title="Requirements After 12th"
+    items={[
+      {
+        label: "Good 12th-Grade Results",
+        detail:
+          "Strong academic performance strengthens your Studienkolleg or bridging-year application.",
+      },
+      {
+        label: "Language Proficiency",
+        detail:
+          "German or English proficiency depending on your chosen track and program.",
+      },
+      {
+        label: "Clear Subject Fit",
+        detail:
+          "A course direction that logically connects to your 12th-grade stream.",
+      },
+      {
+        label: "Valid Passport",
+        detail:
+          "Needed for both Studienkolleg applications and your eventual visa.",
+      },
+      {
+        label: "Financial Planning",
+        detail:
+          "Blocked account and living-cost planning for later in the visa process.",
+      },
+    ]}
+  />
+
+  <MistakesSection
+    eyebrow="Avoid These"
+    title="Common Mistakes After 12th"
+    items={[
+      {
+        title: "Assuming direct admission",
+        detail:
+          "Expecting automatic bachelor's admission with only 12th-grade qualifications leads to rejected applications.",
+      },
+      {
+        title: "Choosing the wrong Studienkolleg track",
+        detail:
+          "Picking a track (T, W, M or G) that doesn't match your intended degree can cost you a year.",
+      },
+      {
+        title: "Underestimating language timelines",
+        detail:
+          "Reaching the required German level takes time — starting late delays your whole plan.",
+      },
+      {
+        title: "Missing intake deadlines",
+        detail:
+          "Studienkolleg has limited intakes each year, so late applications often mean waiting months.",
+      },
+      {
+        title: "Not planning finances early",
+        detail:
+          "Leaving blocked account and visa planning for later adds avoidable pressure.",
+      },
+    ]}
+  />
+
+  <HelpSection
+    title="How Setu Global Solution Helps"
+    items={[
+      {
+        title: "Pathway Assessment",
+        desc: "We help you decide between direct entry, a bridging year, or Studienkolleg.",
+      },
+      {
+        title: "Studienkolleg Applications",
+        desc: "We guide your application to the right track for your intended degree.",
+      },
+      {
+        title: "Language Planning",
+        desc: "We help you plan a realistic path to the German level you'll need.",
+      },
+      {
+        title: "University Shortlisting",
+        desc: "We help shortlist universities once you're ready for your bachelor's degree.",
+      },
+      {
+        title: "Visa & Blocked Account Support",
+        desc: "We guide you through the financial and visa steps when the time comes.",
+      },
+    ]}
+  />
+
+  <InternalLinksSection
+    links={[
+      {
+        label: "Ausbildung for Indians",
+        url: "/ausbildung-in-germany-for-indians/",
+      },
+      { label: "Study Without IELTS", url: "/study-in-germany-without-ielts/" },
+      {
+        label: "German Language Requirement",
+        url: "/german-language-requirement/",
+      },
+      {
+        label: "Public Universities in Germany",
+        url: "/public-universities-germany/",
+      },
+    ]}
+  />
+
+  <FaqSection
+    content={{
+      enable: true,
+      badge: "Got Questions?",
+      title: "Study After 12th FAQs",
+      description:
+        "Still unsure about something? Book a free call with our team anytime.",
+      items: faqs,
+    }}
+  />
+
+  <FinalCtaSection />
+</Base>

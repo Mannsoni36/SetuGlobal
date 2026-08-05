@@ -1,0 +1,55 @@
+---
+interface Step {
+  title: string;
+  desc: string;
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  steps: Step[];
+}
+
+const { eyebrow, title, steps } = Astro.props;
+---
+
+<section class="section-spacing-vertical">
+  <div class="container">
+    <div class="mb-10 text-center" data-aos="fade-up" data-aos-duration="500">
+      <p class="text-primary mb-2 text-xs font-bold tracking-widest uppercase">
+        {eyebrow}
+      </p>
+      <h2 class="text-3xl font-black lg:text-4xl">{title}</h2>
+    </div>
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {
+        steps.map((step, i) => (
+          <div
+            class:list={[
+              "rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md",
+              i % 2 === 0
+                ? "border-primary/15 bg-primary/4"
+                : "border-secondary/15 bg-secondary/4",
+            ]}
+            data-aos="fade-up"
+            data-aos-delay={i * 70}
+            data-aos-duration="500">
+            <span
+              class:list={[
+                "mb-4 inline-flex h-8 w-8 items-center justify-center rounded-full text-xs font-black text-white",
+                i % 2 === 0 ? "bg-primary" : "bg-secondary",
+              ]}>
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <h3 class="text-text-default mb-2 text-sm font-black">
+              {step.title}
+            </h3>
+            <p class="text-text-default/60 text-xs leading-relaxed">
+              {step.desc}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

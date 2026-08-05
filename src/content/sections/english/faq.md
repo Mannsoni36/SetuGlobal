@@ -17,7 +17,7 @@ items:
   - q: "How long does the whole process take?"
     a: "Start 12 to 18 months before your intake. University application takes 2 to 4 months, visa processing 6 to 12 weeks after your admission letter."
   - q: "Can I work while studying?"
-    a: "Yes. Up to 120 full days per year at €12–€15 per hour. After graduation you get an 18-month job seeker visa to find full-time work."
+    a: "Yes. Up to 140 full days (or 280 half-days) per year at €12–€15 per hour. After graduation you get an 18-month job seeker visa to find full-time work."
   - q: "What happens after graduation, can I stay?"
     a: "Yes. Germany gives an 18-month Job Seeker Visa after graduation. Get a job, convert to a work permit, and apply for Permanent Residency after a few years."
   - q: "What is the APS certificate?"

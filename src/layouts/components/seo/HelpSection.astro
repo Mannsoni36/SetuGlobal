@@ -1,0 +1,42 @@
+---
+interface Item {
+  title: string;
+  desc: string;
+}
+
+interface Props {
+  title: string;
+  items: Item[];
+}
+
+const { title, items } = Astro.props;
+---
+
+<section class="section-spacing-vertical">
+  <div class="container">
+    <div class="mb-10 text-center" data-aos="fade-up" data-aos-duration="500">
+      <p class="text-primary mb-2 text-xs font-bold tracking-widest uppercase">
+        Setu Global Solution
+      </p>
+      <h2 class="text-3xl font-black lg:text-4xl">{title}</h2>
+    </div>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        items.map((item, i) => (
+          <div
+            class="border-primary/15 rounded-2xl border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+            data-aos="fade-up"
+            data-aos-delay={(i % 3) * 70}
+            data-aos-duration="500">
+            <h3 class="text-text-default mb-2 text-sm font-black">
+              {item.title}
+            </h3>
+            <p class="text-text-default/60 text-xs leading-relaxed">
+              {item.desc}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

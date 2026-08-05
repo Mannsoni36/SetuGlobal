@@ -1,0 +1,275 @@
+---
+import Base from "@/layouts/Base.astro";
+import { generatePaths } from "@/lib/utils/i18nUtils";
+import { buildBreadcrumbSchema } from "@/lib/utils/breadcrumbSchema";
+import SeoHero from "@/layouts/components/seo/SeoHero.astro";
+import AnswerBox from "@/layouts/components/seo/AnswerBox.astro";
+import StepsSection from "@/layouts/components/seo/StepsSection.astro";
+import ChecklistSection from "@/layouts/components/seo/ChecklistSection.astro";
+import MistakesSection from "@/layouts/components/seo/MistakesSection.astro";
+import HelpSection from "@/layouts/components/seo/HelpSection.astro";
+import MidCtaBanner from "@/layouts/components/seo/MidCtaBanner.astro";
+import InternalLinksSection from "@/layouts/components/seo/InternalLinksSection.astro";
+import FaqSection from "@/layouts/components/sections/FaqSection.astro";
+import FinalCtaSection from "@/layouts/components/seo/FinalCtaSection.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const PAGE_TITLE = "Study in Germany Without IELTS";
+
+const faqs = [
+  {
+    q: "Do all German universities accept a Medium of Instruction (MOI) certificate?",
+    a: "No, it varies by university and program. Some accept MOI as a full substitute for IELTS, others don't — always confirm with the specific program before applying.",
+  },
+  {
+    q: "Is the Duolingo English Test widely accepted?",
+    a: "A growing number of German universities accept it, but not all — we check this against your shortlisted programs.",
+  },
+  {
+    q: "Should I just learn German instead?",
+    a: "It depends on your program. Many German-taught bachelor's and some master's programs don't ask for English proof at all — see our [German language requirement guide](/german-language-requirement/).",
+  },
+  {
+    q: "Does this apply to Ausbildung too?",
+    a: "Ausbildung generally focuses on German language ability rather than English tests — read our [Ausbildung guide](/ausbildung-in-germany-for-indians/) for details.",
+  },
+  {
+    q: "Does skipping IELTS affect my visa application?",
+    a: "Not directly. Your visa mainly depends on admission, APS, blocked account and other documents — not on which English test you used to get admitted.",
+  },
+  {
+    q: "What if my university doesn't accept any alternative?",
+    a: "In that case, IELTS or TOEFL may be unavoidable for that specific program. We help you find better-matched alternatives, or plan realistically for the test.",
+  },
+];
+
+const breadcrumbSchema = buildBreadcrumbSchema(PAGE_TITLE, Astro.url.pathname);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "English Requirement Guidance for Germany",
+  serviceType: "Admission language guidance",
+  description:
+    "Free guidance helping Indian students identify German university programs and accepted English-proficiency alternatives to IELTS.",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Setu Global Solution",
+    url: "https://www.setuglobalsolution.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "205 Avani Icon, Haridarshan Cross Road, Naroda",
+      addressLocality: "Ahmedabad",
+      addressRegion: "Gujarat",
+      postalCode: "382330",
+      addressCountry: "IN",
+    },
+  },
+  areaServed: "Ahmedabad",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "INR",
+    description: "Free consultation",
+  },
+};
+---
+
+<Base
+  title={PAGE_TITLE}
+  metaTitle="Study in Germany Without IELTS | Options for Indian Students"
+  metaDescription="Learn if Indian students can study in Germany without IELTS, accepted alternatives, English-taught programs, university rules and application strategy."
+  keywords={[
+    "study in germany without ielts",
+    "germany university without ielts",
+    "moi certificate germany",
+    "germany english taught programs",
+  ]}
+  disableTagline={true}>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(breadcrumbSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(faqSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(serviceSchema)}
+  />
+
+  <SeoHero
+    eyebrow="No IELTS Needed"
+    h1={PAGE_TITLE}
+    intro="IELTS isn't the only way to prove English proficiency for German university admission. Here's what universities actually accept, and how to apply the right way."
+    breadcrumbTitle={PAGE_TITLE}
+  />
+
+  <AnswerBox
+    question="Can I study in Germany without IELTS?"
+    answer="Yes, in many cases. Many German universities accept alternatives such as a Medium of Instruction (MOI) certificate, TOEFL, the Duolingo English Test, or the university's own English test — depending on the specific program."
+  />
+
+  <StepsSection
+    eyebrow="Step by Step"
+    title="Applying Without IELTS"
+    steps={[
+      {
+        title: "Check the Program's Policy",
+        desc: "Language rules vary by university and even by course — always check the specific program.",
+      },
+      {
+        title: "Gather Your MOI Proof",
+        desc: "If eligible, get a Medium of Instruction certificate from your previous institution.",
+      },
+      {
+        title: "Consider Alternative Tests",
+        desc: "If MOI isn't accepted, look at TOEFL, Duolingo or the university's own test.",
+      },
+      {
+        title: "Prepare Your Application",
+        desc: "Submit your proof in the exact format the university requires.",
+      },
+      {
+        title: "Confirm Before You Apply",
+        desc: "Double-check acceptance with the admissions office before submitting, to avoid rejection on a technicality.",
+      },
+    ]}
+  />
+
+  <MidCtaBanner
+    text="Not sure which universities fit your English-proof options? Ask us."
+  />
+
+  <ChecklistSection
+    eyebrow="Accepted Alternatives"
+    title="Alternatives to IELTS"
+    items={[
+      {
+        label: "MOI Certificate",
+        detail:
+          "Proof of English-medium education from your school or college, where accepted.",
+      },
+      {
+        label: "TOEFL iBT",
+        detail: "A widely recognised alternative English proficiency test.",
+      },
+      {
+        label: "Duolingo English Test",
+        detail: "Accepted by a growing number of German universities.",
+      },
+      {
+        label: "University's Own Test",
+        detail:
+          "Some universities run their own short English assessment or interview.",
+      },
+      {
+        label: "Prior English-Medium Study",
+        detail:
+          "Some universities accept 2+ years of full-time English-medium education as proof.",
+      },
+    ]}
+  />
+
+  <MistakesSection
+    eyebrow="Avoid These"
+    title="Common Mistakes"
+    items={[
+      {
+        title: "Assuming MOI works everywhere",
+        detail:
+          "Not every university accepts an MOI certificate — always confirm first.",
+      },
+      {
+        title: "Not checking the exact program",
+        detail:
+          "Language rules can differ between programs at the same university.",
+      },
+      {
+        title: "Wrong certificate format",
+        detail:
+          "Submitting an MOI certificate that doesn't match the university's required format causes rejections.",
+      },
+      {
+        title: "Leaving it too late",
+        detail:
+          "Sorting out language proof close to the deadline leaves no time for alternatives if one is rejected.",
+      },
+      {
+        title: "Ignoring German-taught options",
+        detail:
+          "Some programs need no English proof at all if they're taught in German.",
+      },
+    ]}
+  />
+
+  <HelpSection
+    title="How Setu Global Solution Helps"
+    items={[
+      {
+        title: "Program-Specific Checks",
+        desc: "We verify the exact language requirement for your shortlisted programs.",
+      },
+      {
+        title: "MOI Certificate Guidance",
+        desc: "We help you arrange a correctly formatted MOI certificate where accepted.",
+      },
+      {
+        title: "Alternative Test Advice",
+        desc: "We advise on TOEFL, Duolingo or other options if MOI isn't accepted.",
+      },
+      {
+        title: "University Matching",
+        desc: "We match you to universities that fit your actual language profile.",
+      },
+    ]}
+  />
+
+  <InternalLinksSection
+    links={[
+      {
+        label: "German Language Requirement",
+        url: "/german-language-requirement/",
+      },
+      {
+        label: "Study in Germany After 12th",
+        url: "/study-in-germany-after-12th/",
+      },
+      {
+        label: "Public Universities in Germany",
+        url: "/public-universities-germany/",
+      },
+      { label: "Book Free Consultation", url: "/#contact" },
+    ]}
+  />
+
+  <FaqSection
+    content={{
+      enable: true,
+      badge: "Got Questions?",
+      title: "Study Without IELTS FAQs",
+      description:
+        "Still unsure about something? Book a free call with our team anytime.",
+      items: faqs,
+    }}
+  />
+
+  <FinalCtaSection />
+</Base>

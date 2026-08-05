@@ -1,0 +1,59 @@
+---
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  headers: string[];
+  rows: string[][];
+}
+
+const { eyebrow, title, headers, rows } = Astro.props;
+---
+
+<section class="section-spacing-vertical">
+  <div class="container">
+    {
+      title && (
+        <div
+          class="mb-8 text-center"
+          data-aos="fade-up"
+          data-aos-duration="500">
+          {eyebrow && (
+            <p class="text-primary mb-2 text-xs font-bold tracking-widest uppercase">
+              {eyebrow}
+            </p>
+          )}
+          <h2 class="text-3xl font-black lg:text-4xl">{title}</h2>
+        </div>
+      )
+    }
+    <div
+      class="border-border-light overflow-x-auto rounded-2xl border"
+      data-aos="fade-up"
+      data-aos-duration="500">
+      <table class="w-full min-w-150 border-collapse text-left text-sm">
+        <thead>
+          <tr class="bg-primary text-white">
+            {
+              headers.map((h) => (
+                <th class="px-4 py-3 font-bold whitespace-nowrap">{h}</th>
+              ))
+            }
+          </tr>
+        </thead>
+        <tbody>
+          {
+            rows.map((row, i) => (
+              <tr class:list={[i % 2 === 0 ? "bg-white" : "bg-theme-light"]}>
+                {row.map((cell) => (
+                  <td class="border-border-light text-text-default/70 border-t px-4 py-3">
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

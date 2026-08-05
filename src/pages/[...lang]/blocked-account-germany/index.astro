@@ -1,0 +1,298 @@
+---
+import Base from "@/layouts/Base.astro";
+import { generatePaths } from "@/lib/utils/i18nUtils";
+import { buildBreadcrumbSchema } from "@/lib/utils/breadcrumbSchema";
+import SeoHero from "@/layouts/components/seo/SeoHero.astro";
+import AnswerBox from "@/layouts/components/seo/AnswerBox.astro";
+import StepsSection from "@/layouts/components/seo/StepsSection.astro";
+import ChecklistSection from "@/layouts/components/seo/ChecklistSection.astro";
+import ComparisonTable from "@/layouts/components/seo/ComparisonTable.astro";
+import MistakesSection from "@/layouts/components/seo/MistakesSection.astro";
+import HelpSection from "@/layouts/components/seo/HelpSection.astro";
+import MidCtaBanner from "@/layouts/components/seo/MidCtaBanner.astro";
+import InternalLinksSection from "@/layouts/components/seo/InternalLinksSection.astro";
+import FaqSection from "@/layouts/components/sections/FaqSection.astro";
+import FinalCtaSection from "@/layouts/components/seo/FinalCtaSection.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const PAGE_TITLE = "Germany Blocked Account for Indian Students";
+
+const faqs = [
+  {
+    q: "How much is the Germany blocked account amount for 2026?",
+    a: "For 2026, the required amount is €11,904 for the year, which works out to €992 per month.",
+  },
+  {
+    q: "When does the monthly release start?",
+    a: "Once you arrive in Germany and activate your account, you can withdraw up to €992 each month to cover living costs.",
+  },
+  {
+    q: "Which blocked account providers are recognised?",
+    a: "Fintiba and Expatrio are the two most commonly used providers among Indian students, both officially recognised for German student visa purposes.",
+  },
+  {
+    q: "Can I use my regular savings account instead?",
+    a: "No. The embassy requires a dedicated blocked account (Sperrkonto) from a recognised provider, not a regular bank account.",
+  },
+  {
+    q: "When should I open my blocked account?",
+    a: "Open it as soon as your finances are ready, well before your visa appointment — see our [Germany student visa guide](/germany-student-visa-india/) for the full timeline.",
+  },
+  {
+    q: "Is the money in the blocked account refundable?",
+    a: "The account is meant to fund your living costs in Germany. Any process for withdrawing unused funds depends on your provider's terms — we help you understand this before you commit.",
+  },
+  {
+    q: "What if I deposit the wrong amount?",
+    a: "Depositing an outdated or incorrect amount is one of the most common causes of visa delay. We double-check your figure against the current requirement before you transfer funds.",
+  },
+];
+
+const breadcrumbSchema = buildBreadcrumbSchema(PAGE_TITLE, Astro.url.pathname);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Blocked Account (Sperrkonto) Support",
+  serviceType: "Blocked account setup guidance",
+  description:
+    "Free guidance for Indian students opening a German blocked account (Sperrkonto) with the correct 2026 amount and a recognised provider.",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Setu Global Solution",
+    url: "https://www.setuglobalsolution.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "205 Avani Icon, Haridarshan Cross Road, Naroda",
+      addressLocality: "Ahmedabad",
+      addressRegion: "Gujarat",
+      postalCode: "382330",
+      addressCountry: "IN",
+    },
+  },
+  areaServed: "Ahmedabad",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "INR",
+    description: "Free consultation",
+  },
+};
+---
+
+<Base
+  title={PAGE_TITLE}
+  metaTitle="Germany Blocked Account for Indian Students 2026 | Amount & Process"
+  metaDescription="Germany blocked account guide for Indian students. Learn 2026 amount, monthly withdrawal, process, providers, visa use and common mistakes."
+  keywords={[
+    "germany blocked account 2026",
+    "sperrkonto amount",
+    "blocked account for germany student visa",
+    "fintiba expatrio",
+  ]}
+  disableTagline={true}>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(breadcrumbSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(faqSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(serviceSchema)}
+  />
+
+  <SeoHero
+    eyebrow="Blocked Account"
+    h1={PAGE_TITLE}
+    intro="The 2026 blocked account amount, how the monthly release works, which providers to use, and how to avoid the mistakes that delay a visa."
+    breadcrumbTitle={PAGE_TITLE}
+  />
+
+  <AnswerBox
+    question="How much do I need in my Germany blocked account?"
+    answer="For 2026, Indian students need to deposit €11,904 for the year in a recognised blocked account (Sperrkonto). This is released to you at €992 per month once you arrive in Germany."
+  />
+
+  <ComparisonTable
+    eyebrow="2026 Figures"
+    title="Blocked Account Amount at a Glance"
+    headers={["Item", "Amount"]}
+    rows={[
+      ["Total required for the year", "€11,904"],
+      ["Released per month", "€992"],
+      ["Recognised providers", "Fintiba, Expatrio"],
+      [
+        "When funds become accessible",
+        "After arrival & account activation in Germany",
+      ],
+    ]}
+  />
+
+  <StepsSection
+    eyebrow="Step by Step"
+    title="How to Open Your Blocked Account"
+    steps={[
+      {
+        title: "Choose Your Provider",
+        desc: "Compare Fintiba and Expatrio on fees, setup speed and bundled insurance options.",
+      },
+      {
+        title: "Create Your Account Online",
+        desc: "Complete registration with your passport and personal details.",
+      },
+      {
+        title: "Transfer the Required Amount",
+        desc: "Send €11,904 via an international transfer or a supported payment method.",
+      },
+      {
+        title: "Receive Your Blocking Confirmation",
+        desc: "Once funds are confirmed, you get a certificate to submit with your visa file.",
+      },
+      {
+        title: "Submit With Your Visa Application",
+        desc: "Include the confirmation in your student visa documents.",
+      },
+      {
+        title: "Activate After Arrival",
+        desc: "Activate your account in Germany to start your €992 monthly withdrawals.",
+      },
+    ]}
+  />
+
+  <MidCtaBanner
+    text="Not sure which provider fits your situation? We'll help you compare."
+  />
+
+  <ChecklistSection
+    eyebrow="What You Need"
+    title="Documents to Open a Blocked Account"
+    items={[
+      {
+        label: "Passport Copy",
+        detail: "A valid passport with clearly visible details.",
+      },
+      {
+        label: "Personal Details",
+        detail:
+          "Name, date of birth and contact information matching your passport.",
+      },
+      {
+        label: "University Admission (if available)",
+        detail: "Some providers ask for it, though it isn't always mandatory.",
+      },
+      {
+        label: "Transfer-Ready Funds",
+        detail: "€11,904 ready for an international transfer from India.",
+      },
+      {
+        label: "Valid Email & Phone",
+        detail:
+          "For account verification and communication with your provider.",
+      },
+    ]}
+  />
+
+  <MistakesSection
+    eyebrow="Avoid These"
+    title="Common Blocked Account Mistakes"
+    items={[
+      {
+        title: "Depositing the wrong amount",
+        detail:
+          "Using an outdated figure instead of the current €11,904 is one of the most common visa-delay causes.",
+      },
+      {
+        title: "Starting too late",
+        detail:
+          "Bank transfers and confirmations take time — leaving this for the last moment adds risk.",
+      },
+      {
+        title: "Mismatched insurance package",
+        detail:
+          "Choosing an insurance bundle that doesn't meet visa requirements can cause complications.",
+      },
+      {
+        title: "Transfer errors",
+        detail:
+          "Incorrect reference details or account information can delay fund confirmation by days or weeks.",
+      },
+      {
+        title: "Forgetting to activate after arrival",
+        detail:
+          "Your monthly release doesn't start automatically — you need to activate the account once you land.",
+      },
+    ]}
+  />
+
+  <HelpSection
+    title="How Setu Global Solution Helps"
+    items={[
+      {
+        title: "Provider Comparison",
+        desc: "We help you compare Fintiba and Expatrio for your specific situation.",
+      },
+      {
+        title: "Application Walkthrough",
+        desc: "We guide you step by step through setting up your account correctly.",
+      },
+      {
+        title: "Amount & Document Match",
+        desc: "We make sure your figures and paperwork match embassy requirements exactly.",
+      },
+      {
+        title: "Timeline Coordination",
+        desc: "We align your blocked account setup with your visa and intake timeline.",
+      },
+      {
+        title: "Arrival Support",
+        desc: "We help you activate your account and start withdrawals once you're in Germany.",
+      },
+    ]}
+  />
+
+  <InternalLinksSection
+    links={[
+      {
+        label: "Germany Student Visa Guide",
+        url: "/germany-student-visa-india/",
+      },
+      {
+        label: "APS Certificate Guide",
+        url: "/aps-certificate-germany-india/",
+      },
+      { label: "Book Free Consultation", url: "/#contact" },
+    ]}
+  />
+
+  <FaqSection
+    content={{
+      enable: true,
+      badge: "Got Questions?",
+      title: "Blocked Account FAQs",
+      description:
+        "Still unsure about something? Book a free call with our team anytime.",
+      items: faqs,
+    }}
+  />
+
+  <FinalCtaSection />
+</Base>

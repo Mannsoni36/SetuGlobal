@@ -1,0 +1,45 @@
+---
+interface Item {
+  title: string;
+  detail: string;
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  items: Item[];
+}
+
+const { eyebrow, title, items } = Astro.props;
+---
+
+<section class="bg-theme-light section-spacing-vertical">
+  <div class="container">
+    <div class="mx-auto max-w-3xl">
+      <div class="mb-8 text-center" data-aos="fade-up" data-aos-duration="500">
+        <p
+          class="text-secondary mb-2 text-xs font-bold tracking-widest uppercase">
+          {eyebrow}
+        </p>
+        <h2 class="text-3xl font-black lg:text-4xl">{title}</h2>
+      </div>
+      <ul class="space-y-3">
+        {
+          items.map((item) => (
+            <li class="border-secondary/20 flex gap-3 rounded-xl border bg-white p-4">
+              <span class="bg-secondary/15 text-secondary mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-black">
+                ✕
+              </span>
+              <div>
+                <p class="text-text-default text-sm font-bold">{item.title}</p>
+                <p class="text-text-default/60 mt-0.5 text-xs leading-relaxed">
+                  {item.detail}
+                </p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

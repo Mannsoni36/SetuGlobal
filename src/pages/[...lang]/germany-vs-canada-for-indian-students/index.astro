@@ -1,0 +1,314 @@
+---
+import Base from "@/layouts/Base.astro";
+import { generatePaths } from "@/lib/utils/i18nUtils";
+import { buildBreadcrumbSchema } from "@/lib/utils/breadcrumbSchema";
+import SeoHero from "@/layouts/components/seo/SeoHero.astro";
+import AnswerBox from "@/layouts/components/seo/AnswerBox.astro";
+import ComparisonTable from "@/layouts/components/seo/ComparisonTable.astro";
+import StepsSection from "@/layouts/components/seo/StepsSection.astro";
+import ChecklistSection from "@/layouts/components/seo/ChecklistSection.astro";
+import MistakesSection from "@/layouts/components/seo/MistakesSection.astro";
+import HelpSection from "@/layouts/components/seo/HelpSection.astro";
+import MidCtaBanner from "@/layouts/components/seo/MidCtaBanner.astro";
+import InternalLinksSection from "@/layouts/components/seo/InternalLinksSection.astro";
+import FaqSection from "@/layouts/components/sections/FaqSection.astro";
+import FinalCtaSection from "@/layouts/components/seo/FinalCtaSection.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const PAGE_TITLE = "Germany vs Canada for Indian Students";
+
+const faqs = [
+  {
+    q: "Is Germany cheaper than Canada for Indian students?",
+    a: "Usually, yes — mainly because public universities in Germany charge little to no tuition. Living costs in both countries are broadly comparable and depend heavily on the city.",
+  },
+  {
+    q: "Which country has better job opportunities?",
+    a: "It depends on your field. Germany is strong in engineering, IT and skilled trades; Canada is strong across a wide range of sectors. Check demand in your specific field before deciding.",
+  },
+  {
+    q: "Is PR easier to get in Canada than Germany?",
+    a: "Neither country guarantees permanent residency. Canada's PR is points-based and competitive; Germany's path runs through longer-term work after your post-study visa. Both require meeting ongoing criteria.",
+  },
+  {
+    q: "Does Setu help with Canada applications too?",
+    a: "No — we are a Germany-only consultancy. That's a deliberate choice so our guidance stays specific and current, rather than a generic multi-country service.",
+  },
+  {
+    q: "Which is better for engineering, IT or nursing?",
+    a: "Germany has strong, tuition-free public programs and high demand in these exact fields. Talk to us for a free, honest assessment of whether Germany fits your specific goals.",
+  },
+  {
+    q: "Do I need German for Germany but not for Canada?",
+    a: "Not necessarily — many German master's programs are taught fully in English. See our [German language requirement guide](/german-language-requirement/) for the details.",
+  },
+];
+
+const breadcrumbSchema = buildBreadcrumbSchema(PAGE_TITLE, Astro.url.pathname);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Germany Study Abroad Comparison Guidance",
+  serviceType: "Study destination counselling",
+  description:
+    "Free, honest guidance helping Indian students compare Germany against other study destinations and decide if Germany fits their goals.",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Setu Global Solution",
+    url: "https://www.setuglobalsolution.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "205 Avani Icon, Haridarshan Cross Road, Naroda",
+      addressLocality: "Ahmedabad",
+      addressRegion: "Gujarat",
+      postalCode: "382330",
+      addressCountry: "IN",
+    },
+  },
+  areaServed: "Ahmedabad",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "INR",
+    description: "Free consultation",
+  },
+};
+---
+
+<Base
+  title={PAGE_TITLE}
+  metaTitle="Germany vs Canada for Indian Students | Cost, Visa, Jobs & PR"
+  metaDescription="Germany vs Canada for Indian students. Compare tuition fees, living cost, work options, post-study visa, career path and settlement."
+  keywords={[
+    "germany vs canada for indian students",
+    "germany or canada study abroad",
+    "germany canada comparison students",
+    "study abroad germany canada cost",
+  ]}
+  disableTagline={true}>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(breadcrumbSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(faqSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(serviceSchema)}
+  />
+
+  <SeoHero
+    eyebrow="Germany vs Canada"
+    h1={PAGE_TITLE}
+    intro="Germany is not a backup plan — it's a first plan. Here's an honest, side-by-side comparison to help you decide what actually fits your goals."
+    breadcrumbTitle={PAGE_TITLE}
+  />
+
+  <AnswerBox
+    question="Should I choose Germany or Canada?"
+    answer="Germany offers low or no tuition at public universities and an 18-month post-study job seeker visa; Canada offers higher tuition but a well-known Post-Graduation Work Permit. Your best choice depends on your budget, field of study and long-term goals — not on which country is more talked about."
+  />
+
+  <ComparisonTable
+    eyebrow="Side by Side"
+    title="Germany vs Canada"
+    headers={["Factor", "Germany", "Canada"]}
+    rows={[
+      [
+        "Tuition Fees",
+        "Little to none at public universities",
+        "Typically CAD 15,000–35,000+ per year",
+      ],
+      [
+        "Living Cost",
+        "Moderate, varies by city",
+        "Moderate to high, varies by city",
+      ],
+      [
+        "Work Rights While Studying",
+        "140 full days / 280 half-days per year",
+        "Up to 20 hours per week during term",
+      ],
+      [
+        "Post-Study Work Visa",
+        "18-month Job Seeker Visa",
+        "Post-Graduation Work Permit (up to 3 years)",
+      ],
+      [
+        "Path to Long-Term Residency",
+        "Via qualifying work after graduation",
+        "Points-based, competitive PR system",
+      ],
+      [
+        "Popular Fields",
+        "Engineering, IT, skilled trades",
+        "Business, IT, healthcare, trades",
+      ],
+    ]}
+  />
+
+  <StepsSection
+    eyebrow="How to Decide"
+    title="How to Choose the Right Country"
+    steps={[
+      {
+        title: "Compare Total Cost",
+        desc: "Look beyond tuition — factor in living costs, blocked account and insurance for both countries.",
+      },
+      {
+        title: "Compare Work Rights",
+        desc: "Check how much you can legally work while studying in each country.",
+      },
+      {
+        title: "Compare Post-Study Options",
+        desc: "Understand the post-study visa length and what it takes to convert it into long-term work.",
+      },
+      {
+        title: "Check Demand in Your Field",
+        desc: "Some fields are stronger in Germany, others in Canada — research your specific area.",
+      },
+      {
+        title: "Talk to a Focused Consultant",
+        desc: "Get a realistic, honest assessment for your profile before committing either way.",
+      },
+    ]}
+  />
+
+  <MidCtaBanner
+    text="Weighing Germany against another country? Get an honest opinion, free."
+  />
+
+  <ChecklistSection
+    eyebrow="Key Decision Factors"
+    title="What Matters Most When Choosing"
+    items={[
+      {
+        label: "Budget",
+        detail:
+          "Total cost including tuition, living expenses and financial proof requirements.",
+      },
+      {
+        label: "Language Comfort",
+        detail: "Willingness to learn German versus staying fully in English.",
+      },
+      {
+        label: "Career Field Demand",
+        detail:
+          "Which country has stronger demand and pay in your specific field.",
+      },
+      {
+        label: "Risk Appetite for PR",
+        detail:
+          "How much certainty you need around long-term residency timelines.",
+      },
+      {
+        label: "Support Network",
+        detail:
+          "Whether you have contacts, family or a support system in either country.",
+      },
+    ]}
+  />
+
+  <MistakesSection
+    eyebrow="Avoid These"
+    title="Common Mistakes When Deciding"
+    items={[
+      {
+        title: "Following the crowd",
+        detail:
+          "Choosing a country only because many peers are going there, without checking if it fits your goals.",
+      },
+      {
+        title: "Comparing tuition only",
+        detail: "Ignoring total living costs gives an incomplete cost picture.",
+      },
+      {
+        title: "Not checking field-specific visa rules",
+        detail:
+          "Post-study work rules can vary by field and program — always confirm for your exact course.",
+      },
+      {
+        title: "Underestimating German language needs",
+        detail:
+          "Assuming every German program is in English can limit your real options.",
+      },
+      {
+        title: "Assuming PR is guaranteed",
+        detail:
+          "Neither country guarantees permanent residency — both require meeting ongoing criteria over time.",
+      },
+    ]}
+  />
+
+  <HelpSection
+    title="Why Talk to a Germany-Only Consultant"
+    items={[
+      {
+        title: "Focused Expertise",
+        desc: "We specialise only in Germany, so our guidance stays specific and current — not generic multi-country advice.",
+      },
+      {
+        title: "Honest Assessment",
+        desc: "We tell you if Germany genuinely fits your goals, budget and field.",
+      },
+      {
+        title: "End-to-End Support",
+        desc: "If Germany is right for you, we guide you from counselling to settling in.",
+      },
+      {
+        title: "Local Presence",
+        desc: "Meet us in person in Ahmedabad, or connect online from anywhere in India.",
+      },
+    ]}
+  />
+
+  <InternalLinksSection
+    links={[
+      {
+        label: "Study in Germany Consultant in Ahmedabad",
+        url: "/study-in-germany-consultant-ahmedabad/",
+      },
+      {
+        label: "Germany Student Visa Guide",
+        url: "/germany-student-visa-india/",
+      },
+      {
+        label: "Public Universities in Germany",
+        url: "/public-universities-germany/",
+      },
+      { label: "Book Free Consultation", url: "/#contact" },
+    ]}
+  />
+
+  <FaqSection
+    content={{
+      enable: true,
+      badge: "Got Questions?",
+      title: "Germany vs Canada FAQs",
+      description:
+        "Still unsure about something? Book a free call with our team anytime.",
+      items: faqs,
+    }}
+  />
+
+  <FinalCtaSection />
+</Base>

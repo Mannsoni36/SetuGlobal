@@ -1,0 +1,27 @@
+---
+interface Props {
+  question: string;
+  answer: string;
+}
+
+const { question, answer } = Astro.props;
+---
+
+<section class="pt-10 lg:pt-14">
+  <div class="container">
+    <div
+      class="border-secondary bg-theme-light mx-auto max-w-3xl rounded-2xl border-l-4 p-6 lg:p-8"
+      data-aos="fade-up"
+      data-aos-duration="500">
+      <p class="text-primary mb-2 text-xs font-bold tracking-widest uppercase">
+        Quick Answer
+      </p>
+      <h2 class="text-text-default mb-2 text-lg font-black lg:text-xl">
+        {question}
+      </h2>
+      <p class="text-text-default/70 text-sm leading-relaxed lg:text-base">
+        {answer}
+      </p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,298 @@
+---
+import Base from "@/layouts/Base.astro";
+import { generatePaths } from "@/lib/utils/i18nUtils";
+import { buildBreadcrumbSchema } from "@/lib/utils/breadcrumbSchema";
+import SeoHero from "@/layouts/components/seo/SeoHero.astro";
+import AnswerBox from "@/layouts/components/seo/AnswerBox.astro";
+import ComparisonTable from "@/layouts/components/seo/ComparisonTable.astro";
+import StepsSection from "@/layouts/components/seo/StepsSection.astro";
+import ChecklistSection from "@/layouts/components/seo/ChecklistSection.astro";
+import MistakesSection from "@/layouts/components/seo/MistakesSection.astro";
+import HelpSection from "@/layouts/components/seo/HelpSection.astro";
+import MidCtaBanner from "@/layouts/components/seo/MidCtaBanner.astro";
+import InternalLinksSection from "@/layouts/components/seo/InternalLinksSection.astro";
+import FaqSection from "@/layouts/components/sections/FaqSection.astro";
+import FinalCtaSection from "@/layouts/components/seo/FinalCtaSection.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const PAGE_TITLE = "Do You Need German to Study in Germany?";
+
+const faqs = [
+  {
+    q: "Can I do a master's in Germany without knowing German?",
+    a: "Yes, for many programs. Plenty of German master's degrees are taught fully in English, especially in engineering, IT and business fields.",
+  },
+  {
+    q: "Is German required for Ausbildung?",
+    a: "Yes, generally B1 and sometimes B2 German is required by companies and for the visa. See our [Ausbildung guide](/ausbildung-in-germany-for-indians/) for details.",
+  },
+  {
+    q: "What German level do I actually need?",
+    a: "It depends on your path — anywhere from A2 for daily life and part-time jobs to B1/B2 for Ausbildung or German-taught degrees.",
+  },
+  {
+    q: "How long does it take to reach B1 German?",
+    a: "With consistent study, most students reach B1 in around 6 to 12 months, though it varies by starting point and study intensity.",
+  },
+  {
+    q: "Do I need German for part-time jobs while studying?",
+    a: "Basic German (A2/B1) makes finding and keeping part-time work significantly easier, even in English-taught programs.",
+  },
+  {
+    q: "Does Setu teach German?",
+    a: "We offer German language coaching guidance in India to help you reach the right level before you apply, coordinated around your specific timeline.",
+  },
+];
+
+const breadcrumbSchema = buildBreadcrumbSchema(PAGE_TITLE, Astro.url.pathname);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "German Language Planning Guidance",
+  serviceType: "Language requirement counselling",
+  description:
+    "Free guidance helping Indian students understand German language requirements for university, Ausbildung, jobs and settling in Germany.",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Setu Global Solution",
+    url: "https://www.setuglobalsolution.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "205 Avani Icon, Haridarshan Cross Road, Naroda",
+      addressLocality: "Ahmedabad",
+      addressRegion: "Gujarat",
+      postalCode: "382330",
+      addressCountry: "IN",
+    },
+  },
+  areaServed: "Ahmedabad",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "INR",
+    description: "Free consultation",
+  },
+};
+---
+
+<Base
+  title={PAGE_TITLE}
+  metaTitle="Do You Need German to Study in Germany? | Student Guide"
+  metaDescription="Learn when German language is required for studying in Germany, English-taught programs, jobs, Ausbildung and long-term settlement."
+  keywords={[
+    "german language requirement",
+    "do i need german to study in germany",
+    "german level for germany student visa",
+    "german b1 b2 for students",
+  ]}
+  disableTagline={true}>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(breadcrumbSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(faqSchema)}
+  />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(serviceSchema)}
+  />
+
+  <SeoHero
+    eyebrow="German Language"
+    h1={PAGE_TITLE}
+    intro="It depends on your path. Here's exactly when German is required, when it isn't, and what level you should aim for."
+    breadcrumbTitle={PAGE_TITLE}
+  />
+
+  <AnswerBox
+    question="Do I need to know German to study in Germany?"
+    answer="It depends on your path. Many master's programs are taught fully in English and need no German. But Ausbildung, most bachelor's programs, part-time jobs and daily life in Germany all work much better — or require — German, typically at B1 or B2 level."
+  />
+
+  <ComparisonTable
+    eyebrow="By Path"
+    title="German Requirement by Path"
+    headers={["Path", "German Needed?", "Typical Level"]}
+    rows={[
+      [
+        "Bachelor's degree",
+        "Often required (many are German-taught)",
+        "B2 or higher",
+      ],
+      [
+        "Master's (English-taught)",
+        "Not required academically",
+        "A2/B1 recommended for daily life",
+      ],
+      ["Ausbildung", "Required by most companies & the visa", "B1–B2"],
+      ["Part-time jobs", "Strongly helpful, often expected", "A2–B1"],
+      ["Daily life & settling in", "Strongly recommended", "A2 or higher"],
+    ]}
+  />
+
+  <StepsSection
+    eyebrow="Step by Step"
+    title="Building Your German Level"
+    steps={[
+      {
+        title: "Start With A1 Basics",
+        desc: "Build foundational vocabulary and grammar before setting a target level.",
+      },
+      {
+        title: "Progress Toward B1",
+        desc: "Structured coaching helps you reach the level most paths require.",
+      },
+      {
+        title: "Learn Practical, Trade German",
+        desc: "If you're pursuing Ausbildung, focus on vocabulary relevant to your trade.",
+      },
+      {
+        title: "Take a Certified Exam",
+        desc: "Sit a recognised exam (like telc or Goethe) if your program or visa needs proof.",
+      },
+      {
+        title: "Keep Practising Before Departure",
+        desc: "Consistent practice before you fly makes settling in far easier.",
+      },
+    ]}
+  />
+
+  <MidCtaBanner
+    text="Not sure what level you actually need? We'll help you figure it out."
+  />
+
+  <ChecklistSection
+    eyebrow="Getting Ready"
+    title="How to Reach the Right Level"
+    items={[
+      {
+        label: "Assessment",
+        detail:
+          "Understand your target path and the exact German level it needs.",
+      },
+      {
+        label: "Structured Coaching",
+        detail: "Consistent, guided learning rather than ad-hoc self-study.",
+      },
+      {
+        label: "Practical Practice",
+        detail:
+          "Speaking and listening practice, not just grammar and vocabulary.",
+      },
+      {
+        label: "Certified Proof",
+        detail:
+          "A recognised exam certificate where your program or visa requires one.",
+      },
+      {
+        label: "Realistic Timeline",
+        detail:
+          "Plan 6 to 12 months for a level like B1, depending on your starting point.",
+      },
+    ]}
+  />
+
+  <MistakesSection
+    eyebrow="Avoid These"
+    title="Common Language Mistakes"
+    items={[
+      {
+        title: "Assuming everything is in English",
+        detail:
+          "Not all German programs — especially bachelor's degrees — are English-taught.",
+      },
+      {
+        title: "Waiting until after arrival",
+        detail:
+          "Leaving German learning for after you land makes daily life and job hunting much harder early on.",
+      },
+      {
+        title: "Skipping the check on instruction language",
+        detail:
+          "Choosing a bachelor's program without confirming its teaching language can cause a nasty surprise.",
+      },
+      {
+        title: "Underestimating job-hunting needs",
+        detail:
+          "Many part-time and post-study jobs expect at least basic German, even in English-taught programs.",
+      },
+      {
+        title: "Not certifying your level",
+        detail:
+          "Some programs and visas need a certified exam result, not just self-assessed ability.",
+      },
+    ]}
+  />
+
+  <HelpSection
+    title="How Setu Global Solution Helps"
+    items={[
+      {
+        title: "Level Assessment",
+        desc: "We help you understand exactly what German level your goal requires.",
+      },
+      {
+        title: "Coaching Coordination",
+        desc: "We guide you toward practical, trade- or study-relevant German coaching in India.",
+      },
+      {
+        title: "Program Matching",
+        desc: "We match you to programs that fit your actual language level and timeline.",
+      },
+      {
+        title: "Timeline Tracking",
+        desc: "We track your language progress alongside your other visa documents.",
+      },
+    ]}
+  />
+
+  <InternalLinksSection
+    links={[
+      {
+        label: "Ausbildung for Indians",
+        url: "/ausbildung-in-germany-for-indians/",
+      },
+      {
+        label: "Study in Germany After 12th",
+        url: "/study-in-germany-after-12th/",
+      },
+      {
+        label: "Public Universities in Germany",
+        url: "/public-universities-germany/",
+      },
+      { label: "Book Free Consultation", url: "/#contact" },
+    ]}
+  />
+
+  <FaqSection
+    content={{
+      enable: true,
+      badge: "Got Questions?",
+      title: "German Language FAQs",
+      description:
+        "Still unsure about something? Book a free call with our team anytime.",
+      items: faqs,
+    }}
+  />
+
+  <FinalCtaSection />
+</Base>
